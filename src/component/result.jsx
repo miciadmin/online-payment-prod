@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect} from 'react';
 
-
 function ResultPage() {
     const [resultDetails, setResultDetails] = useState(JSON.parse(sessionStorage.getItem('resultDtls')));
 

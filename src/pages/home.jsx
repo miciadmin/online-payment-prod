@@ -4,6 +4,7 @@ export default function() {
 
     const createPayment = () => {
         window.location.href = '/payment-step1';
+        console.log('clicked here!');
     }
 
     return(
