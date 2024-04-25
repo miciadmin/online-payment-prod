@@ -5,7 +5,7 @@ export default function() {
 
     const createPayment = () => {
         const navigate = useNavigate();
-        navigate('/payment-step1');
+        navigate('payment-step1');
     }
 
     return(
