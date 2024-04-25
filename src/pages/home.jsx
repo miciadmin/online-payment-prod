@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default function() {
 
@@ -12,7 +13,9 @@ export default function() {
             <h1>Welcome Home</h1>
             <p>Under Development</p>
             
-            <button type="button" className="btn btn-success mt-3" onClick={createPayment}>Create Payment</button>
+            <Link to="/payment-step1">
+                <button type="button" className="btn btn-success mt-3">Create Payment</button>
+            </Link>
         </div>
     )
 }
