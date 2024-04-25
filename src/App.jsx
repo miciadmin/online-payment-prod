@@ -1,3 +1,4 @@
+import React from 'react';
 import { BrowserRouter, Routes, Route} from 'react-router-dom'
 import Home from './pages/home'
 import PaymentStep1 from './pages/payment_step1'
