@@ -12,9 +12,8 @@ function App() {
   return(
       <BrowserRouter>
         <Routes>
-          <Route index element={<Home/>}></Route>
-          <Route path="home" element={<Home/>}></Route>
-          <Route path="payment-step1" element={<PaymentStep1/>}></Route>
+          <Route path="/" element={<Home/>}></Route>
+          <Route path="payment-step" element={<PaymentStep1/>}></Route>
           <Route path="payment-step2" element={<PaymentStep2/>}></Route>
           <Route path="payment-step3" element={<PaymentStep3/>}></Route>
           <Route path="payment-result" element={<PaymentResult/>}></Route>
