@@ -1,7 +1,3 @@
-export function endpoint() {
-    return 'http://192.168.0.254:8080/online-payment/api/v1';
-}
-
 export function currencyFormat(num) {
     if(!num) {
         return '';
@@ -26,14 +22,16 @@ export function lpad(str, length) {
     }
     return str;
 }
-
+export const endpoint = () => {
+    return 'http://192.168.0.254:8080/online-payment/api/v1';
+}
 export function goBack() {
     window.history.back();
 }
 export function goHome() {
     window.location.href = 'home';
 }
-export function getCurrentDateTime() {
+export const getCurrentDateTime = () => {
     const date = new Date();
     const year = date.getFullYear();
     const month = (date.getMonth() + 1).toString().padStart(2, '0');
