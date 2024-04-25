@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect} from 'react';
 import Sidebar from './sidebar';
-import { currencyFormat, lpad, goBack, getCurrentDateTime } from '../utils';
+import { endpoint, currencyFormat, lpad, goBack, getCurrentDateTime } from '../utils';
 
 
 function Step3() {
@@ -76,7 +76,7 @@ function Step3() {
     }
     const processPayment = async (requestBody) =>  {
         try {
-            const response = await fetch('http://localhost:8080/api/v1/payment', {
+            const response = await fetch(`${endpoint()}/payment`, {
                 method: 'POST',
                 headers: {  
                     'Content-Type': 'application/json'

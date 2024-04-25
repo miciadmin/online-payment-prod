@@ -1,3 +1,6 @@
+export function endpoint() {
+    return 'http://192.168.0.254:8080/online-payment/api/v1';
+}
 
 export function currencyFormat(num) {
     if(!num) {

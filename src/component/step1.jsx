@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect} from 'react';
 import Sidebar from './sidebar';
-import { currencyFormat, isValidEmail, isValidMobileNo, lpad, goBack} from '../utils';
+import { endpoint, currencyFormat, isValidEmail, isValidMobileNo, lpad, goBack} from '../utils';
 
 function Step1() {
     const [isSidebarVisible, setSidebarVisible] = useState(false);
@@ -91,7 +91,7 @@ function Step1() {
     const proceedPolicySearch = async () =>  {
         try {
             setLoading(true);
-            const response = await fetch(`http://localhost:8080/api/v1/inquire?lineCd=${policyFormData.lineCd}&sublineCd=${policyFormData.sublineCd}&issCd=${policyFormData.issCd}&issYy=${policyFormData.issYy}&seqNo=${policyFormData.seqNo}&renewNo=${policyFormData.renewNo}`, {
+            const response = await fetch(`${endpoint()}/inquire?lineCd=${policyFormData.lineCd}&sublineCd=${policyFormData.sublineCd}&issCd=${policyFormData.issCd}&issYy=${policyFormData.issYy}&seqNo=${policyFormData.seqNo}&renewNo=${policyFormData.renewNo}`, {
                 method: 'GET',
                 headers: {
                 'Content-Type': 'application/json'

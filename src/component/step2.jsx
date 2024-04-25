@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect} from 'react';
 import Sidebar from './sidebar';
 import DragonPayLogo from '../assets/dragonpay.png'
-import { currencyFormat, goBack } from '../utils';
+import { endpoint, currencyFormat, goBack } from '../utils';
 
 function Step2() {
     const [isSidebarVisible, setSidebarVisible] = useState(false);
@@ -61,7 +61,7 @@ function Step2() {
         try {
             //setLoading(true);
             console.log(src);
-            const response = await fetch(`http://localhost:8080/api/v1/processors/${src}`, {
+            const response = await fetch(`${endpoint()}/processors/${src}`, {
                 method: 'GET',
                 headers: {
                 'Content-Type': 'application/json'
