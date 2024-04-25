@@ -5,7 +5,7 @@ export default defineConfig({
   plugins: [reactRefresh()],
   build: {
     rollupOptions: {
-      external: ['react', 'react-dom', 'react-router-dom']
+      external: ['react', 'react-dom', /^react-dom\//]
     }
   }
 })
