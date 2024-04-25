@@ -1,11 +1,11 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export default function() {
 
     const createPayment = () => {
-        window.location.href = '/payment-step1';
-        console.log('clicked here!');
+        const navigate = useNavigate();
+        navigate('/payment-step1');
     }
 
     return(
@@ -13,9 +13,7 @@ export default function() {
             <h1>Welcome Home</h1>
             <p>Under Development</p>
             
-            <Link to="/payment-step1">
-                <button type="button" className="btn btn-success mt-3">Create Payment</button>
-            </Link>
+            <button type="button" className="btn btn-success mt-3" onClick={createPayment}>Create Payment</button>
         </div>
     )
 }
