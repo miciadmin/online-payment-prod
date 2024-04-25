@@ -1,3 +1,4 @@
+import React from 'react';
 import { goHome } from '../utils';
 import MiciLogo from '../assets/mici_logo.svg'
 

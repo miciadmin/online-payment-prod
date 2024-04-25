@@ -1,4 +1,4 @@
-import Sidebar from "../component/sidebar";
+import React from 'react';
 import Step3 from "../component/step3";
 
 
