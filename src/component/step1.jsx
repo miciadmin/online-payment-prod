@@ -139,7 +139,7 @@ function Step1() {
             if(validMobile) {
                 sessionStorage.setItem('contactDtls', JSON.stringify(contactFormData));
                 sessionStorage.setItem('policyDtls', JSON.stringify(policyDetails));
-                window.location.href = 'payment-step2';
+                window.location.href = '/payment-step2';
             } else {
                 setErrorContact('(Invalid mobile number)');
             }

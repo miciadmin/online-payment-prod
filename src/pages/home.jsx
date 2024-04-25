@@ -3,7 +3,7 @@ import React from 'react';
 export default function() {
 
     const createPayment = () => {
-        window.location.href = 'payment-step1';
+        window.location.href = '/payment-step1';
     }
 
     return(

@@ -101,7 +101,7 @@ function Step3() {
             window.location.href = tendoPayUrl;
         } else {
             sessionStorage.setItem('resultDtls', JSON.stringify(res));
-            window.location.href = 'payment-result';
+            window.location.href = '/payment-result';
         }
         sessionStorage.removeItem('policyDtls');
         sessionStorage.removeItem('contactDtls');

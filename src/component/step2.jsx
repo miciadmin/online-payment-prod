@@ -91,7 +91,7 @@ function Step2() {
             && creditFormData.country) {
                 sessionStorage.setItem('paymentMethod', selectedMethod);
                 sessionStorage.setItem('creditDtls', JSON.stringify(creditFormData));
-                window.location.href = 'payment-step3';
+                window.location.href = '/payment-step3';
             } else {
                 setErrorCredit('(Fill empty fields first)');
             }
@@ -103,7 +103,7 @@ function Step2() {
                     longName: selectedOption.longName,
                     logo: selectedOption.logo
                 }));
-                window.location.href = 'payment-step3';
+                window.location.href = '/payment-step3';
             } else {
                 setErrorBank('(Select payment method first)');
             }
