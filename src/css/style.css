@@ -64,7 +64,7 @@ body {
 }
 .back-container2 img {
     width: 35px;
-    margin-right: 10px;
+    margin: 8px;
 }
 .close-menu {
     visibility: hidden;
@@ -201,7 +201,7 @@ body {
     font-size: 1.2rem;
 }
 .result-container .body {
-    padding: 20px;
+    padding: 1rem;
 }
 .result-container .body span {
     font-size: 1.2rem;
@@ -375,7 +375,7 @@ label {
         z-index: 999;
         background-color: white;
         margin: 0;
-        padding: .2rem 1rem;
+        padding: .2rem .5rem;
         box-shadow: 0 2px 5px rgba(0,0,0,0.2);    
     }
     .steps {
@@ -396,21 +396,15 @@ label {
     }
     .note-box {
         font-size: .8rem;
-        margin: 2rem;
+        margin: 1rem;
     }
-    /*.search-container {  
-        margin: unset;
-        padding: .7rem;
-        border: unset;
-        border-radius: unset;
-        background-color: unset;
-    }
-    .search-container div button {  
-        width: 100%;
-    }*/
-    .card {
+    .card {  
+        margin: 1rem;
         padding: unset;
         border: none;
+    }
+    .payment-method-container {
+        margin: 0 1rem;
     }
     .divider {
         border-top: 1px solid;
