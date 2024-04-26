@@ -14,20 +14,10 @@ export default function() {
 
     useEffect(() => {
         const handlePopstate = () => {
-            /*if (prevLocation.current  === "/search-policy") {
-                window.history.go(-(window.history.length - 1));
-                navigate("/terms-and-condition", { replace: true });
-                console.log('goback');
-                console.log(-(window.history.length - 1));
-            }*/
-            // Check if the user is leaving the PWA
             if (prevLocation.current  === "/search-policy") {
-                console.log('goback');
-                /*while (window.history.state === null && window.history.length > 1) {
-                    history.back();
-                }*/
                 for (let i = 0; i < window.history.length; i++) {
-                    history.back();
+                    //history.back();
+                    history.go(-1);
                 }
             }
         };
