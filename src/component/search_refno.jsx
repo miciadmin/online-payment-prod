@@ -67,7 +67,7 @@ function SearchRefNo() {
                     <i className="bi bi-list ico-btn" onClick={()=>setSidebarVisible(!isSidebarVisible)}/>
                 </div>
 
-                <div className="card">
+                <div className="card mt-4">
                     <div className="space-between">
                         <span className="card-title mb-2">Enter your Reference No.:</span>
                     </div>
@@ -76,7 +76,7 @@ function SearchRefNo() {
                     </div>
                     <div className="text-center mt-3">
                         <button type="button" className="btn btn-success btn-w" onClick={handleSubmit}>
-                            {loading ? <><i className="spinner-border spinner-border-sm"></i> Searching</> : <><i className="bi bi-search"></i> View Status</>}
+                            {loading ? <><i className="spinner-border spinner-border-sm"></i> Checking...</> : <><i className="bi bi-search"></i> View Status</>}
                         </button>
                     </div>
                 </div>

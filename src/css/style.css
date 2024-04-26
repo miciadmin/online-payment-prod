@@ -229,6 +229,9 @@ body {
     min-height: 100vh;
 }
 .tac {
+    font-size: 1rem;
+}
+.tac p {
     font-size: .9rem;
 }
 .title {
@@ -363,10 +366,17 @@ label {
     .main-container {
       margin: 0;
     }
+    .company-header {
+        justify-items: center;
+    }
     .action-container2 {     
+        position: sticky;
+        top: 0;
+        z-index: 999;
+        background-color: white;
         margin: 0;
         padding: .2rem 1rem;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);    
     }
     .steps {
         margin: 1.5rem 1rem;  

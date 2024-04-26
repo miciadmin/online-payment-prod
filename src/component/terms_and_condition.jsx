@@ -22,7 +22,7 @@ function TermsAndCondition() {
                     </div>
                     <i className="bi bi-list ico-btn" onClick={()=>setSidebarVisible(!isSidebarVisible)}/>
                 </div>
-                <div className="card tac">
+                <div className="card tac mt-4">
                     <p className='title'>MICI Online Payment Terms and Conditions</p>
                     <p>Welcome to MICI Online Payment, provided by The Mercantile Insurance Company, Inc. (hereinafter referred to as "MICI"). MICI Online Payment is an online payment platform that allows you to conveniently pay for your non-life insurance policies issued by The Mercantile Insurance Company, Inc.</p>
 
