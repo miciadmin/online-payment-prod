@@ -23,7 +23,12 @@ export default function() {
             // Check if the user is leaving the PWA
             if (prevLocation.current  === "/search-policy") {
                 console.log('goback');
-                history.pushState(null, null, document.URL);
+                /*while (window.history.state === null && window.history.length > 1) {
+                    history.back();
+                }*/
+                for (let i = 0; i < window.history.length; i++) {
+                    history.back();
+                }
             }
         };
         prevLocation.current = location.pathname;
