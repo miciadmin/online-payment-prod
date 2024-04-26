@@ -1,36 +1,18 @@
 import React from 'react';
 import { goHome } from '../js/utils';
 import MiciLogo from '../assets/mici_logo.svg'
+import { useNavigate } from 'react-router-dom';
 
 function Sidebar({ isVisible, onClose }) {
+    const navigate = useNavigate();
 
-    const handleCreatePaymentMenuClick = () => {
-    removeCookies();
-    window.location.href = 'payment-step1';
-    };
-    const handleCheckPaymentStatMenuClick = () => {
-    removeCookies();
-    window.location.href = 'payment-step1';
-    };
-    const handleCancelPaymentMenuClick = () => {
-    removeCookies();
-    window.location.href = 'payment-step1';
-    };
-    const handleTACMenuClick = () => {
-    removeCookies();
-    window.location.href = 'payment-step1';
-    };
-    const handlePPMenuClick = () => {
-    removeCookies();
-    window.location.href = 'payment-step1';
-    };
+    const createPayment = () => {
+        removeCookies();
+        navigate('/search-policy');
+    }
 
     const removeCookies = () => {
-    sessionStorage.removeItem('policyDtls');
-    sessionStorage.removeItem('contactDtls');
-    sessionStorage.removeItem('bankDtls');
-    sessionStorage.removeItem('creditDtls');
-    sessionStorage.removeItem('paymentType');
+        sessionStorage.clear();
     };
 
     return(
@@ -44,26 +26,26 @@ function Sidebar({ isVisible, onClose }) {
             </div>
             <div className="company-header">
                 <img src={MiciLogo} alt=""/>
-                <span>MICI Policy Online Payment</span>
+                <span>MICI Online Payment</span>
             </div>
             <div className="menus">
-                <div className="menu-item" onClick={handleCreatePaymentMenuClick}>
+                <div className="menu-item" onClick={() => createPayment()}>
                     <span>Create Payment</span>
                     <i className="bi bi-chevron-right fs-12 mr-2"></i>
                 </div>
-                <div className="menu-item" onClick={handleCheckPaymentStatMenuClick}>
-                    <span>Check Payment Status</span>
+                <div className="menu-item" onClick={() => navigate('/search-refno')}>
+                    <span>Payment Status</span>
                     <i className="bi bi-chevron-right fs-12 mr-2"></i>
                 </div>
-                <div className="menu-item" onClick={handleCancelPaymentMenuClick}>
+                <div className="menu-item" onClick={() => navigate('/search-policy')}>
                     <span>Cancel Payment</span>
                     <i className="bi bi-chevron-right fs-12 mr-2"></i>
                 </div>
-                <div className="menu-item" onClick={handleTACMenuClick}>
+                <div className="menu-item" onClick={() => navigate('/terms-and-condition')}>
                     <span>Terms and Conditions</span>
                     <i className="bi bi-chevron-right fs-12 mr-2"></i>
                 </div>
-                <div className="menu-item" onClick={handlePPMenuClick}>
+                <div className="menu-item" onClick={() => navigate('search-policy')}>
                     <span>Privacy Policy</span>
                     <i className="bi bi-chevron-right fs-12 mr-2"></i>
                 </div>

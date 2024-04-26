@@ -5,6 +5,8 @@ import PaymentStep1 from './pages/payment_step1'
 import PaymentStep2 from './pages/payment_step2'
 import PaymentStep3 from './pages/payment_step3'
 import PaymentResult from './pages/payment_result'
+import SearchRefNo from './component/search_refno'
+import TermsAndCondition from './component/terms_and_condition'
 import ErrorPage from './pages/error_page'
 
 function App() {
@@ -24,6 +26,13 @@ function App() {
 
           <Route path="payment-result" element={<PaymentResult/>}></Route>
           <Route path="/payment-result" element={<PaymentResult/>}></Route>
+
+          <Route path="search-refno" element={<SearchRefNo/>}></Route>
+          <Route path="/search-refno" element={<SearchRefNo/>}></Route>
+
+          <Route path="terms-and-condition" element={<TermsAndCondition/>}></Route>
+          <Route path="/terms-and-condition" element={<TermsAndCondition/>}></Route>
+          
           <Route path="*" element={<ErrorPage/>}></Route>
         </Routes>
       </BrowserRouter>

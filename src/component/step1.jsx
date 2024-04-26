@@ -15,7 +15,18 @@ function Step1() {
     const [loading, setLoading] = useState(false);
     const [errorPolicy, setErrorPolicy] = useState(null);
     const [errorContact, setErrorContact] = useState(null);
-
+    const [policyFormData, setPolicyFormData] = useState({
+        lineCd: 'PA',
+        sublineCd: 'GPA',
+        issCd: 'HO',
+        issYy: '17',
+        seqNo: '5',
+        renewNo: '0'
+    });
+    const [contactFormData, setContactFormData] = useState({
+        email: '',
+        mobileNo: ''
+    });
     const inputRef = useRef(null);
 
     useEffect(() => {
@@ -31,14 +42,6 @@ function Step1() {
         }
     }, [policyDetails]);
 
-    const [policyFormData, setPolicyFormData] = useState({
-        lineCd: '',
-        sublineCd: '',
-        issCd: '',
-        issYy: '',
-        seqNo: '',
-        renewNo: ''
-    });
     const handlePolicyFormDataChange = (e) => {
         const { name, value } = e.target;
         setPolicyFormData({
@@ -48,10 +51,6 @@ function Step1() {
         setErrorPolicy(null);
     };
 
-    const [contactFormData, setContactFormData] = useState({
-        email: '',
-        mobileNo: ''
-    });
     const handleContactFormDataChange = (e) => {
         const { name, value } = e.target;
         setContactFormData({
@@ -102,8 +101,8 @@ function Step1() {
                 }
             });
             const data = await response.json();
-            if(data.length > 0) {
-                setPolicyDetails(data[0])
+            if(data.isExist) {
+                setPolicyDetails(data.policyDetails[0]);
                 setIsSearchingPolicy(false);
             } else {
                 setErrorPolicy('(Policy not found!)');
@@ -183,9 +182,9 @@ function Step1() {
 
                 <div className="note-box">
                     <p className="note-title">Please note the following guidelines for processing payments:</p>
-                    <p>1. Policy Status: Payments can only be processed for policies that are not overdue.</p>
-                    <p>2. Claim Status: Ensure that there are no outstanding claims on your policy before proceeding with the payment.</p>
-                    <p>3. Payment Type: Only full payments for main policies are accepted. Endorsements are excluded from online payment processing.</p>
+                    <p>1. Payment Type: Only full payment for main policy is accepted.</p>
+                    <p>2. Policy Status: Payments can only be processed for policies that are not overdue.</p>
+                    <p>3. Claim Status: Ensure that there are no outstanding claims on your policy before proceeding with the payment.</p>
                 </div>
 
             {isSearchingPolicy && (

@@ -173,7 +173,7 @@ function Step3() {
                 </div>
 
                 <div className="divider" />
-                <div className="card">
+                <div className="card mt-0">
                     <span className="card-title">Policy Details</span>
                     <div className="row">
                         <div className="space-between col-md-12 my-1">
@@ -203,7 +203,7 @@ function Step3() {
                 </div>
                 <div className="divider" />
 
-                <div className="card">
+                <div className="card mt-0">
                     <span className="card-title">Contact Details</span>
                     <div className="row">
                         <div className="space-between col-md-12 my-1">
@@ -219,7 +219,7 @@ function Step3() {
 
                 <div className="divider" />
 
-                <div className="card">
+                <div className="card mt-0">
                     <span className="card-title">Payment Method</span>
                     {selectedMethod == 2 ? (
                         <div className="row">
