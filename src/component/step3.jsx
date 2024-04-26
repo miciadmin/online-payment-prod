@@ -1,9 +1,10 @@
 import React, { useState, useRef, useEffect} from 'react';
 import Sidebar from './sidebar';
 import { endpoint, currencyFormat, lpad, goBack, getCurrentDateTime } from '../utils';
-
+import { useNavigate } from 'react-router-dom';
 
 function Step3() {
+    const navigate = useNavigate();
     const [isSidebarVisible, setSidebarVisible] = useState(false);
 
     const [policyDetails, setPolicyDetails] = useState(JSON.parse(sessionStorage.getItem('policyDtls')));
@@ -101,7 +102,7 @@ function Step3() {
             window.location.href = tendoPayUrl;
         } else {
             sessionStorage.setItem('resultDtls', JSON.stringify(res));
-            window.location.href = '/payment-result';
+            navigate('/payment-result');
         }
         sessionStorage.removeItem('policyDtls');
         sessionStorage.removeItem('contactDtls');

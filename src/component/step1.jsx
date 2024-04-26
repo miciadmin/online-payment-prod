@@ -1,8 +1,10 @@
 import React, { useState, useRef, useEffect} from 'react';
 import Sidebar from './sidebar';
 import { endpoint, currencyFormat, isValidEmail, isValidMobileNo, lpad, goBack} from '../utils';
+import { useNavigate } from 'react-router-dom';
 
 function Step1() {
+    const navigate = useNavigate();
     const [isSidebarVisible, setSidebarVisible] = useState(false);
     
     const [policyDetails, setPolicyDetails] = useState(JSON.parse(sessionStorage.getItem('policyDtls')));
@@ -14,6 +16,7 @@ function Step1() {
     const [errorContact, setErrorContact] = useState(null);
 
     const inputRef = useRef(null);
+
     useEffect(() => {
         //inputRef.current.focus();
         if (policyDetails) {
@@ -139,7 +142,7 @@ function Step1() {
             if(validMobile) {
                 sessionStorage.setItem('contactDtls', JSON.stringify(contactFormData));
                 sessionStorage.setItem('policyDtls', JSON.stringify(policyDetails));
-                window.location.href = '/payment-step2';
+                navigate('/choose-method');
             } else {
                 setErrorContact('(Invalid mobile number)');
             }

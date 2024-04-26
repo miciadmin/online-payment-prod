@@ -2,8 +2,10 @@ import React, { useState, useRef, useEffect} from 'react';
 import Sidebar from './sidebar';
 import DragonPayLogo from '../assets/dragonpay.png'
 import { endpoint, currencyFormat, goBack } from '../utils';
+import { useNavigate } from 'react-router-dom';
 
 function Step2() {
+    const navigate = useNavigate();
     const [isSidebarVisible, setSidebarVisible] = useState(false);
 
     const [policyDetails, setPolicyDetails] = useState(JSON.parse(sessionStorage.getItem('policyDtls')));
@@ -91,7 +93,7 @@ function Step2() {
             && creditFormData.country) {
                 sessionStorage.setItem('paymentMethod', selectedMethod);
                 sessionStorage.setItem('creditDtls', JSON.stringify(creditFormData));
-                window.location.href = '/payment-step3';
+                navigate('/review-payment');
             } else {
                 setErrorCredit('(Fill empty fields first)');
             }
@@ -103,7 +105,7 @@ function Step2() {
                     longName: selectedOption.longName,
                     logo: selectedOption.logo
                 }));
-                window.location.href = '/payment-step3';
+                navigate('/review-payment');
             } else {
                 setErrorBank('(Select payment method first)');
             }

@@ -1,6 +1,8 @@
 import React, { useState, useRef, useEffect} from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function ResultPage() {
+    const navigate = useNavigate();
     const [resultDetails, setResultDetails] = useState(JSON.parse(sessionStorage.getItem('resultDtls')));
 
     const viewInstructions = () => {
@@ -28,7 +30,7 @@ function ResultPage() {
                     </p>
                     <div className="result-buttons">
                         <button type="button" className="btn btn-success" onClick={viewInstructions}>View Instructions online</button>
-                        <button type="button" className="btn btn-outline-success mt-3" onClick={gotoHome}>Go to homepage</button>
+                        <button type="button" className="btn btn-outline-success mt-3" onClick={() => navigate('/search-policy')}>Go to homepage</button>
                     </div>
                 </div>
             </div>
