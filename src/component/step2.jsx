@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect} from 'react';
 import Sidebar from './sidebar';
 import DragonPayLogo from '../assets/dragonpay.png'
-import { endpoint, currencyFormat, goBack } from '../utils';
+import { endpoint, currencyFormat, goBack } from '../js/utils';
 import { useNavigate } from 'react-router-dom';
 
 function Step2() {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { goHome } from '../utils';
+import { goHome } from '../js/utils';
 import MiciLogo from '../assets/mici_logo.svg'
 
 function Sidebar({ isVisible, onClose }) {

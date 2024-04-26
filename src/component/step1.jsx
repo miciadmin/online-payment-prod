@@ -1,7 +1,8 @@
 import React, { useState, useRef, useEffect} from 'react';
 import Sidebar from './sidebar';
-import { endpoint, currencyFormat, isValidEmail, isValidMobileNo, lpad, goBack} from '../utils';
+import { endpoint, currencyFormat, isValidEmail, isValidMobileNo, lpad, goBack} from '../js/utils';
 import { useNavigate } from 'react-router-dom';
+import MiciLogo from '../assets/mici_logo.svg'
 
 function Step1() {
     const navigate = useNavigate();
@@ -158,8 +159,9 @@ function Step1() {
 
             <div className="right-container">
                 <div className="action-container2">
-                    <div className="back-container2" onClick={goBack}>
-                        <i className="bi bi-arrow-left-short ico-btn" />
+                    <div className="back-container2">
+                        <img src={MiciLogo} alt=""/>
+                        <span>MICI Online Payment</span>
                     </div>
                     <i className="bi bi-list ico-btn" onClick={()=>setSidebarVisible(!isSidebarVisible)}/>
                 </div>
