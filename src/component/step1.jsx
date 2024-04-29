@@ -135,7 +135,7 @@ function Step1() {
     const handleTextInputOnly = (e) => {
         e.target.value = e.target.value.replace(/[^a-zA-Z]/g, '').toUpperCase();
     };
-    const goNextPage= (e) => {
+    const goNextPage = (e) => {
         let validEmail = isValidEmail(contactFormData.email);
         let validMobile = isValidMobileNo(contactFormData.mobileNo);
         if(validEmail) {

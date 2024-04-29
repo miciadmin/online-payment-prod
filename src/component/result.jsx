@@ -21,7 +21,9 @@ function ResultPage() {
                     <span>Payment request has been initiated!</span>
                 </div>
                 <div className="body">
+                {resultDetails && (
                     <span>Reference No: {resultDetails.RefNo}</span>
+                )}  
                     <p>
                         An email has been sent to you with payment instructions.
                         For over-the-counter payments, you will need the link contained in the
