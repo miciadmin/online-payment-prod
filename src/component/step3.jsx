@@ -1,5 +1,6 @@
 import React, { useState, useEffect} from 'react';
 import Sidebar from './sidebar';
+import CCLogo from '../assets/credit_card_icon.png'
 import { endpoint, currencyFormat, lpad, goBack, getCurrentDateTime } from '../js/utils';
 import { useNavigate } from 'react-router-dom';
 
@@ -9,12 +10,32 @@ function Step3() {
 
     const [policyDetails, setPolicyDetails] = useState(JSON.parse(sessionStorage.getItem('policyDtls')));
     const [contactDetails, setContactDetails] = useState(JSON.parse(sessionStorage.getItem('contactDtls')));
-    const [bankDetails, setBankDetails] = useState(JSON.parse(sessionStorage.getItem('bankDtls')));
     const [creditDetails, setCreditDetails] = useState(JSON.parse(sessionStorage.getItem('creditDtls')));
     const [selectedMethod, setSelectedMethod] = useState(sessionStorage.getItem('paymentMethod'));
 
     const [ipAddress, setIpAddress] = useState(null);
     const [userAgent, setUserAgent] = useState(null);
+
+    const bankDetails = [
+        { procId: "BPIA",
+          longName: "BPI Online/Mobile",
+          logo: "https://test.dragonpay.ph/Bank/images/bpilogo.jpg" },
+        { procId: "CBDD",
+          longName: "China Bank Online Direct Debit",
+          logo: "https://test.dragonpay.ph/Bank/images/cbclogo.jpg" },
+        { procId: "RCDD",
+          longName: "RCBC Online Direct Debit",
+          logo: "https://test.dragonpay.ph/Bank/images/rcbclogo.jpg" },
+        { procId: "UBDD",
+          longName: "Unionbank Online Direct Debit",
+          logo: "https://test.dragonpay.ph/Bank/images/ubplogo.jpg" },
+        { procId: "GCSH",
+          longName: "Globe GCash",
+          logo: "https://test.dragonpay.ph/Bank/images/gcashlogo.jpg" },
+        { procId: "PYMY",
+          longName: "PayMaya",
+          logo: "https://test.dragonpay.ph/Bank/images/paymayalogo.jpg" }
+    ];
 
     useEffect(() => {
         getUserIpAddress();
@@ -36,7 +57,7 @@ function Step3() {
                             'Due Date: ' + policyDetails.due_date + '\n' +
                             'Total Amount Due: ' + currencyFormat(policyDetails.total_amount_due);
 
-            if(selectedMethod == 2) {
+            if(selectedMethod == 7) {
                 requestBody = {
                     Amount: policyDetails.total_amount_due,
                     Currency: "PHP",
@@ -66,12 +87,13 @@ function Step3() {
                     Currency: "PHP",
                     Description: policyDescription,
                     Email: contactDetails.email,
-                    ProcId: bankDetails.procId,
+                    ProcId: bankDetails[selectedMethod-1].procId,
                     TnxId: policyDetails.invoice_no + '-' + getCurrentDateTime(),
                     IpAddress: ipAddress,
                     UserAgent: userAgent
                 };
             }
+            console.log(requestBody);
             processPayment(requestBody);
         }
     }
@@ -97,19 +119,13 @@ function Step3() {
     };
     const gotoResultPage = (res) => {
 
-        if(selectedMethod == 2) {
+        //if(selectedMethod == 7) {
             const tendoPayUrl = res.Url;
             window.location.href = tendoPayUrl;
-        } else {
+        /*} else {
             sessionStorage.setItem('resultDtls', JSON.stringify(res));
             navigate('/payment-result');
-        }
-        sessionStorage.removeItem('policyDtls');
-        sessionStorage.removeItem('contactDtls');
-        sessionStorage.removeItem('bankDtls');
-        sessionStorage.removeItem('creditDtls');
-        sessionStorage.removeItem('paymentMethod');        
-        window.history.pushState({}, '', '/');
+        }*/
     }
     const getUserIpAddress = async () => {
         try {
@@ -130,7 +146,8 @@ function Step3() {
     return(
         <div className="main-container">
 
-            <Sidebar isVisible={isSidebarVisible}  onClose={()=>setSidebarVisible(false)}/>
+            <Sidebar isContainerVisible={isSidebarVisible} onClose={()=>setSidebarVisible(false)}/>
+
             <div className="right-container">
                 
             <div className="action-container2">
@@ -183,7 +200,7 @@ function Step3() {
                                 {policyDetails.subline_cd}-
                                 {policyDetails.iss_cd}-
                                 {policyDetails.issue_yy}-
-                                {lpad(policyDetails.pol_seq_no, 6)}-
+                                {lpad(policyDetails.pol_seq_no, 7)}-
                                 {lpad(policyDetails.renew_no, 2)}
                             </span>
                         </div>
@@ -221,11 +238,14 @@ function Step3() {
 
                 <div className="card mt-0">
                     <span className="card-title">Payment Method</span>
-                    {selectedMethod == 2 ? (
+                    {selectedMethod == 7 ? (
                         <div className="row">
                             <div className="space-between col-md-12 my-1">
                             <span className="text-gray mt-1">Source:</span>
-                            <span>Credit Card</span>
+                            <div>
+                                <span>Credit Card</span>
+                                <img className="bank-img ml-2" src={CCLogo} />
+                            </div>
                             </div>
                             <div className="space-between col-md-12 my-1">
                                 <span className="text-gray">Full Name:</span>
@@ -241,8 +261,8 @@ function Step3() {
                             <div className="space-between col-md-12">
                             <span className="text-gray mt-1">Source:</span>
                             <div>
-                                <span>{bankDetails.longName}</span>
-                                <img className="bank-img" src={bankDetails.logo} alt="" />
+                                <span>{bankDetails[selectedMethod-1].longName}</span>
+                                <img className="bank-img ml-2" src={bankDetails[selectedMethod-1].logo} alt="" />
                             </div>
                             </div>
                         </div>

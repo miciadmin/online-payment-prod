@@ -1,9 +1,8 @@
 import React from 'react';
-import { goHome } from '../js/utils';
 import MiciLogo from '../assets/mici_logo.svg'
 import { useNavigate } from 'react-router-dom';
 
-function Sidebar({ isVisible, onClose }) {
+function Sidebar({ isContainerVisible, isBackVisible, onClose }) {
     const navigate = useNavigate();
 
     const createPayment = () => {
@@ -16,14 +15,11 @@ function Sidebar({ isVisible, onClose }) {
     };
 
     return(
-        <div className={`left-container ${isVisible ? 'slide-toggle' : ''}`}>
-            <div className="action-container1">
-                <div className="back-container1" onClick={goHome}>
-                    <i className="bi bi-arrow-left-short ico-btn mr-2"></i>
-                    <span className="cursor-pointer">Back to home</span>
-                </div>
-                <i className="bi bi-x ico-btn close-menu" onClick={onClose}></i>
+        <div className={`left-container ${isContainerVisible ? 'slide-toggle' : ''}`}>
+            <div className="close-menu">
+                <i className="bi bi-x ico-btn" onClick={onClose}></i>
             </div>
+
             <div className="company-header">
                 <img src={MiciLogo} alt=""/>
                 <span>MICI Online Payment</span>

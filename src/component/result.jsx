@@ -12,23 +12,25 @@ function ResultPage() {
     const gotoHome = () => {
         window.location.href = 'home';
     }
-    
+
+    sessionStorage.clear();     
+    window.history.pushState({}, '', '/');
+
     return(
         <div className="center-div">
             <div className="result-container">
                 <div className="header">
                     <i className="bi bi-check-circle text-medium" />
-                    <span>Payment request has been initiated!</span>
+                    <span>Payment Successful</span>
                 </div>
                 <div className="body">
                 {resultDetails && (
                     <span>Reference No: {resultDetails.RefNo}</span>
                 )}  
                     <p>
-                        An email has been sent to you with payment instructions.
-                        For over-the-counter payments, you will need the link contained in the
-                        instruction to validate your payment. You may also view the instruction
-                        online but save/print/bookmark it for future reference.
+                        Thank you for your payment! Your policy has been successfully paid, 
+                        and an email containing the details has been sent to you. 
+                        If you have any questions, feel free to contact us @ www.mercantile.ph
                     </p>
                     <div className="result-buttons">
                         <button type="button" className="btn btn-success" onClick={viewInstructions}>View Instructions online</button>

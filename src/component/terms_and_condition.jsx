@@ -12,7 +12,7 @@ function TermsAndCondition() {
     return (
         <div className="main-container">
             
-            <Sidebar isVisible={isSidebarVisible}  onClose={()=>setSidebarVisible(false)}/>
+            <Sidebar isContainerVisible={isSidebarVisible} onClose={()=>setSidebarVisible(false)}/>
 
             <div className="right-container">
                 <div className="action-container2">

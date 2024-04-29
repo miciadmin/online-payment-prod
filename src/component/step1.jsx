@@ -114,7 +114,7 @@ function Step1() {
         }
     };
     const handleSeqNoFocusOut = (e) => {
-        const paddedValue = lpad(e.target.value, 6);
+        const paddedValue = lpad(e.target.value, 7);
         e.target.value = paddedValue
         setPolicyFormData({
             ...policyFormData,
@@ -154,7 +154,7 @@ function Step1() {
     return(
         <div className="main-container">
             
-            <Sidebar isVisible={isSidebarVisible}  onClose={()=>setSidebarVisible(false)}/>
+            <Sidebar isContainerVisible={isSidebarVisible} onClose={()=>setSidebarVisible(false)}/>
 
             <div className="right-container">
                 <div className="action-container2">
@@ -200,10 +200,10 @@ function Step1() {
                         <input type="text" className="form-control text-center" name="sublineCd" value={policyFormData.sublineCd} onChange={handlePolicyFormDataChange} onInput={handleTextInputOnly} maxLength={5} required/>
                         <input type="text" className="form-control text-center" name="issCd" value={policyFormData.issCd} onChange={handlePolicyFormDataChange} onInput={handleTextInputOnly} maxLength={2} required/>
                         <input type="text" className="form-control text-center" name="issYy" value={policyFormData.issYy} onChange={handlePolicyFormDataChange} onInput={handleNumInputOnly} maxLength={2} required/>
-                        <input type="text" className="form-control text-center" name="seqNo" value={policyFormData.seqNo} onChange={handlePolicyFormDataChange} onInput={handleNumInputOnly} onBlur={handleSeqNoFocusOut} maxLength={6} required/>
+                        <input type="text" className="form-control text-center" name="seqNo" value={policyFormData.seqNo} onChange={handlePolicyFormDataChange} onInput={handleNumInputOnly} onBlur={handleSeqNoFocusOut} maxLength={7} required/>
                         <input type="text" className="form-control text-center" name="renewNo" value={policyFormData.renewNo} onChange={handlePolicyFormDataChange} onInput={handleNumInputOnly} onBlur={handleRenewNoFocusOut} maxLength={2} required/>
                     </div>
-                    <span className="text-gray my-2">(Example: PA-SPA-HO-24-000123-00)</span>
+                    <span className="text-gray my-2">(Example: PA-SPA-HO-24-0000123-00)</span>
                     <div className="text-center">
                         <button type="button" className="btn btn-success btn-w" onClick={handleSubmit}>
                             {loading ? <><i className="spinner-border spinner-border-sm"></i> Searching</> : <><i className="bi bi-search"></i> Search</>}
@@ -225,7 +225,7 @@ function Step1() {
                                         {policyDetails.subline_cd}-
                                         {policyDetails.iss_cd}-
                                         {policyDetails.issue_yy}-
-                                        {lpad(policyDetails.pol_seq_no, 6)}-
+                                        {lpad(policyDetails.pol_seq_no, 7)}-
                                         {lpad(policyDetails.renew_no, 2)}
                                     </span>
                                 </div>
