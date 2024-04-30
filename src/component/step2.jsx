@@ -154,6 +154,12 @@ function Step2() {
                                 <span>Credit Card</span>
                             </div>
                         </div>
+                        <div className="col-xl-6 my-2">
+                            <div className={`radio-card radio-card-8 ${selectedMethod == 8 ? 'selected' : ''}`} onClick={() => selectRadioCard(8)}>
+                                <img className="bank-img mr-4" src="https://test.dragonpay.ph/Bank/images/boguslogo.jpg"/>
+                                <span>Test Bank Online</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
 

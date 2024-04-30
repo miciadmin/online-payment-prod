@@ -33,7 +33,6 @@ function ResultPage() {
                         If you have any questions, feel free to contact us @ www.mercantile.ph
                     </p>
                     <div className="result-buttons">
-                        <button type="button" className="btn btn-success" onClick={viewInstructions}>View Instructions online</button>
                         <button type="button" className="btn btn-outline-success mt-3" onClick={() => navigate('/search-policy')}>Go to homepage</button>
                     </div>
                 </div>

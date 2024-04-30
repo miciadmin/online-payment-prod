@@ -34,7 +34,13 @@ function Step3() {
           logo: "https://test.dragonpay.ph/Bank/images/gcashlogo.jpg" },
         { procId: "PYMY",
           longName: "PayMaya",
-          logo: "https://test.dragonpay.ph/Bank/images/paymayalogo.jpg" }
+          logo: "https://test.dragonpay.ph/Bank/images/paymayalogo.jpg" },
+        { procId: "CC",
+          longName: "Credit Card",
+          logo: "../assets/credit_card_icon.pn" },
+        { procId: "BOG",
+          longName: "Test Bank Online",
+          logo: "https://test.dragonpay.ph/Bank/images/boguslogo.jpg" }
     ];
 
     useEffect(() => {
