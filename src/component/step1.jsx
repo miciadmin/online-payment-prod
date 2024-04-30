@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import MiciLogo from '../assets/mici_logo.svg'
 
 function Step1() {
+    const inputRef = useRef(null);
     const navigate = useNavigate();
     const [isSidebarVisible, setSidebarVisible] = useState(false);
     
@@ -27,7 +28,6 @@ function Step1() {
         email: '',
         mobileNo: ''
     });
-    const inputRef = useRef(null);
 
     useEffect(() => {
         //inputRef.current.focus();
@@ -76,7 +76,7 @@ function Step1() {
             email: '',
             mobileNo: ''
         });
-        inputRef.current.focus();
+        //inputRef.current.focus();
     }
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -91,13 +91,23 @@ function Step1() {
             setErrorPolicy('(Fill empty fields first)');
         }
     };
-    const proceedPolicySearch = async () =>  {
+    const proceedPolicySearch = () => {
+        fetchToken()
+            .then(token => {
+                fetchProcessors(token);
+            })
+            .catch(error => {
+                console.error('Failed to fetch token: ' + error);
+            });
+    }
+    const fetchProcessors = async (token) =>  {
         try {
             setLoading(true);
             const response = await fetch(`${endpoint()}/inquire?lineCd=${policyFormData.lineCd}&sublineCd=${policyFormData.sublineCd}&issCd=${policyFormData.issCd}&issYy=${policyFormData.issYy}&seqNo=${policyFormData.seqNo}&renewNo=${policyFormData.renewNo}`, {
                 method: 'GET',
                 headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
                 }
             });
             const data = await response.json();
@@ -113,21 +123,37 @@ function Step1() {
             setLoading(false);
         }
     };
+    const fetchToken = () => {
+        return fetch(`${endpoint()}/generateToken`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to fetch token');
+                }
+                return response.text();
+            });
+    }
     const handleSeqNoFocusOut = (e) => {
-        const paddedValue = lpad(e.target.value, 7);
-        e.target.value = paddedValue
+        let newValue;
+        if(Number(e.target.value) > 0) {
+            newValue = lpad(e.target.value, 7);
+        } else {
+            newValue = '';
+        }
+        e.target.value = newValue;
         setPolicyFormData({
             ...policyFormData,
-            seqNo: paddedValue
+            seqNo: newValue
         });
     };
     const handleRenewNoFocusOut = (e) => {
-        const paddedValue = lpad(e.target.value, 2);
-        e.target.value = paddedValue
-        setPolicyFormData({
-            ...policyFormData,
-            renewNo: paddedValue
-        });
+        if(e.target.value) {
+            let newValue = lpad(e.target.value, 2);
+            e.target.value = newValue;
+            setPolicyFormData({
+                ...policyFormData,
+                renewNo: newValue
+            });
+        }
     };
     const handleNumInputOnly = (e) => {
         e.target.value = e.target.value.replace(/[^0-9]/g, '').toUpperCase();
@@ -196,7 +222,7 @@ function Step1() {
                         )}
                     </div>
                     <div className="policy-no-fields">
-                        <input type="text" className="form-control text-center" name="lineCd" value={policyFormData.lineCd} onChange={handlePolicyFormDataChange} onInput={handleTextInputOnly} maxLength={2} required ref={inputRef}/>
+                        <input type="text" ref={inputRef} className="form-control text-center" name="lineCd" value={policyFormData.lineCd} onChange={handlePolicyFormDataChange} onInput={handleTextInputOnly} maxLength={2} required/>
                         <input type="text" className="form-control text-center" name="sublineCd" value={policyFormData.sublineCd} onChange={handlePolicyFormDataChange} onInput={handleTextInputOnly} maxLength={5} required/>
                         <input type="text" className="form-control text-center" name="issCd" value={policyFormData.issCd} onChange={handlePolicyFormDataChange} onInput={handleTextInputOnly} maxLength={2} required/>
                         <input type="text" className="form-control text-center" name="issYy" value={policyFormData.issYy} onChange={handlePolicyFormDataChange} onInput={handleNumInputOnly} maxLength={2} required/>
@@ -261,11 +287,11 @@ function Step1() {
                             <div className="row">
                                 <div className="col-xl-6 my-2">
                                     <label htmlFor="inputPassword5" className="form-label text-gray">Email*</label>
-                                    <input type="text" className="form-control" name="email" value={contactFormData.email} onChange={handleContactFormDataChange} />
+                                    <input type="text" className="form-control" name="email" value={contactFormData.email} onChange={handleContactFormDataChange} required/>
                                 </div>
                                 <div className="col-xl-6 my-2">
                                     <label htmlFor="inputAddress5" className="form-label text-gray">Mobile No*</label>
-                                    <input type="text" className="form-control" name="mobileNo" value={contactFormData.mobileNo} onChange={handleContactFormDataChange} />
+                                    <input type="text" className="form-control" name="mobileNo" value={contactFormData.mobileNo} onChange={handleContactFormDataChange} required/>
                                 </div>
                             </div>
                             {errorContact &&(
