@@ -94,16 +94,16 @@ function Step1() {
     const proceedPolicySearch = () => {
         fetchToken()
             .then(token => {
-                fetchProcessors(token);
+                fetchPolicy(token);
             })
             .catch(error => {
                 console.error('Failed to fetch token: ' + error);
             });
     }
-    const fetchProcessors = async (token) =>  {
+    const fetchPolicy = async (token) =>  {
         try {
             setLoading(true);
-            const response = await fetch(`${endpoint()}/inquire?lineCd=${policyFormData.lineCd}&sublineCd=${policyFormData.sublineCd}&issCd=${policyFormData.issCd}&issYy=${policyFormData.issYy}&seqNo=${policyFormData.seqNo}&renewNo=${policyFormData.renewNo}`, {
+            const response = await fetch(`/online-payment/api/v1/inquire?lineCd=${policyFormData.lineCd}&sublineCd=${policyFormData.sublineCd}&issCd=${policyFormData.issCd}&issYy=${policyFormData.issYy}&seqNo=${policyFormData.seqNo}&renewNo=${policyFormData.renewNo}`, {
                 method: 'GET',
                 headers: {
                 'Content-Type': 'application/json',
@@ -124,7 +124,7 @@ function Step1() {
         }
     };
     const fetchToken = () => {
-        return fetch(`${endpoint()}/generateToken`)
+        return fetch('/online-payment/api/v1/generateToken')
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Failed to fetch token');
