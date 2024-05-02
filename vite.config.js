@@ -14,7 +14,6 @@ export default defineConfig({
         "choose-method": './src/pages/payment_step2.jsx',
         "review-payment": './src/pages/payment_step3.jsx',
         "payment-result": './src/pages/payment_result.jsx',
-        "search-refno": './src/pages/search_refno.jsx',
         "terms-and-condition": './src/component/terms_and_condition.jsx',
       }
     }
