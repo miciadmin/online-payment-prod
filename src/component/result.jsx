@@ -5,14 +5,6 @@ function ResultPage() {
     const navigate = useNavigate();
     const [resultDetails, setResultDetails] = useState(JSON.parse(sessionStorage.getItem('resultDtls')));
 
-    const viewInstructions = () => {
-        const newWindow = window.open(resultDetails.Url, '_blank', 'noopener,noreferrer');
-        if (newWindow) newWindow.opener = null;
-    }
-    const gotoHome = () => {
-        window.location.href = 'home';
-    }
-
     sessionStorage.clear();     
     window.history.pushState({}, '', '/');
 

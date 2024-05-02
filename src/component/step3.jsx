@@ -1,8 +1,11 @@
 import React, { useState, useEffect} from 'react';
 import Sidebar from './sidebar';
+import Modal from './invalid_token_modal';
 import CCLogo from '../assets/credit_card_icon.png'
 import { endpoint, currencyFormat, lpad, goBack, getCurrentDateTime } from '../js/utils';
 import { useNavigate } from 'react-router-dom';
+import InvalidTokenModal from './invalid_token_modal';
+import ErrorModal from './error_modal';
 
 function Step3() {
     const navigate = useNavigate();
@@ -13,6 +16,8 @@ function Step3() {
     const [creditDetails, setCreditDetails] = useState(JSON.parse(sessionStorage.getItem('creditDtls')));
     const [selectedMethod, setSelectedMethod] = useState(sessionStorage.getItem('paymentMethod'));
 
+    const [showInvalidTokenModal, setShowInvalidTokenModal] = useState(false);
+    const [showErrorModal, setShowErrorModal] = useState(false);
     const [ipAddress, setIpAddress] = useState(null);
     const [userAgent, setUserAgent] = useState(null);
 
@@ -104,11 +109,13 @@ function Step3() {
         }
     }
     const processPayment = async (requestBody) =>  {
+        const token = sessionStorage.getItem('token');
         try {
             const response = await fetch(`${endpoint()}/payment`, {
                 method: 'POST',
-                headers: {  
-                    'Content-Type': 'application/json'
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
                 },
                 body: JSON.stringify(requestBody)
             });
@@ -116,11 +123,14 @@ function Step3() {
             console.log(data);
             if(data.Status === 'S') {
                 gotoResultPage(data);
+            } else if(data.Status === 'invalid_or_expired_token')  {
+                setShowInvalidTokenModal(true);
             } else {
-                console.log('error!!');
+                setShowErrorModal(true);
+                console.log(data.ErrorType);
             }
         } catch (error) {
-            console.error('Error:', error);
+            setShowErrorModal(true);
         }
     };
     const gotoResultPage = (res) => {
@@ -153,10 +163,12 @@ function Step3() {
         <div className="main-container">
 
             <Sidebar isContainerVisible={isSidebarVisible} onClose={()=>setSidebarVisible(false)}/>
-
+            <InvalidTokenModal show={showInvalidTokenModal} handleClose={() => setShowInvalidTokenModal(false)} />
+            <ErrorModal show={showErrorModal} handleClose={() => setShowErrorModal(false)} />
+                
             <div className="right-container">
                 
-            <div className="action-container2">
+                <div className="action-container2">
                     <div className="back-container2" onClick={goBack}>
                         <i className="bi bi-arrow-left-short ico-btn" />
                     </div>

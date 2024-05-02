@@ -262,6 +262,9 @@ body {
 .btn-w {
     width: 200px;
 }
+.btn-w-sm {
+    width: 100px;
+}
 .text-normal {
     font-size: 1rem;
     font-weight: 400;
@@ -412,7 +415,8 @@ label {
         margin: .7rem;
         color: var(--light-gray);
     }
-    .btn-w {
+    .btn-w,
+    .btn-w-sm {
         width: 100%;
     }
     .form-control {
@@ -534,3 +538,50 @@ label {
     -moz-appearance: none;
     appearance: none;
 }
+
+
+
+/* Modal Style*/
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    font-size: .9rem;  
+    z-index: 99999 !important;
+}
+.modal-dialog {
+    padding: 1rem;
+}
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    border: 1px solid #888;
+    width: 80%;
+}
+.modal-header {
+    padding: 10px;
+    background-color: #f44336;
+    color: white;
+}
+.modal-body {
+    padding: 10px;
+}
+.modal-footer {
+    padding: 10px;
+    background-color: #f44336;
+    color: white;
+}
+.display-block {
+    display: block !important;
+}
+.display-none {
+    display: none;
+}
+.show {
+    display: block !important;
+}
+  

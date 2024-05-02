@@ -94,6 +94,7 @@ function Step1() {
     const proceedPolicySearch = () => {
         fetchToken()
             .then(token => {
+                sessionStorage.setItem('token', token);
                 fetchPolicy(token);
             })
             .catch(error => {
