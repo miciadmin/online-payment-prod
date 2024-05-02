@@ -56,11 +56,11 @@ function Step3() {
                              policyDetails.subline_cd + '-' +
                              policyDetails.iss_cd + '-' +
                              policyDetails.issue_yy + '-' +
-                             policyDetails.pol_seq_no + '-' +
-                             policyDetails.renew_no;
-            const policyDescription = 'Policy No: ' + policyNo + '\n' +
-                            'Invoice No: ' + policyDetails.invoice_no + '\n' +
-                            'Due Date: ' + policyDetails.due_date + '\n' +
+                             lpad(policyDetails.pol_seq_no, 7) + '-' +
+                             lpad(policyDetails.renew_no, 2);
+            const policyDescription = 'Policy No: ' + policyNo + ', \n' +
+                            'Invoice No: ' + policyDetails.invoice_no + ', \n' +
+                            'Due Date: ' + policyDetails.due_date + ', \n' +
                             'Total Amount Due: ' + currencyFormat(policyDetails.total_amount_due);
 
             if(selectedMethod == 7) {

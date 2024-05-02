@@ -21,8 +21,8 @@ function Step1() {
         sublineCd: 'GPA',
         issCd: 'HO',
         issYy: '17',
-        seqNo: '5',
-        renewNo: '0'
+        seqNo: '0000005',
+        renewNo: '00'
     });
     const [contactFormData, setContactFormData] = useState({
         email: '',
