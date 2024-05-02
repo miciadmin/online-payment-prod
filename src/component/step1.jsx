@@ -103,7 +103,7 @@ function Step1() {
     const fetchPolicy = async (token) =>  {
         try {
             setLoading(true);
-            const response = await fetch(`/online-payment/api/v1/inquire?lineCd=${policyFormData.lineCd}&sublineCd=${policyFormData.sublineCd}&issCd=${policyFormData.issCd}&issYy=${policyFormData.issYy}&seqNo=${policyFormData.seqNo}&renewNo=${policyFormData.renewNo}`, {
+            const response = await fetch(`${endpoint()}/inquire?lineCd=${policyFormData.lineCd}&sublineCd=${policyFormData.sublineCd}&issCd=${policyFormData.issCd}&issYy=${policyFormData.issYy}&seqNo=${policyFormData.seqNo}&renewNo=${policyFormData.renewNo}`, {
                 method: 'GET',
                 headers: {
                 'Content-Type': 'application/json',
@@ -124,7 +124,7 @@ function Step1() {
         }
     };
     const fetchToken = () => {
-        return fetch('/online-payment/api/v1/generateToken')
+        return fetch(`${endpoint()}/generateToken`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Failed to fetch token');
