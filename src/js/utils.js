@@ -25,7 +25,7 @@ export function lpad(str, length) {
 export const endpoint = () => {
     //return 'http://192.168.0.254:8080/online-payment/api/v1';
     //return 'http://localhost:8080/api/v1';
-    return 'http://120.28.153.210:8080/online-payment/api/v1/generateToken';
+    return 'http://120.28.153.210:8080/online-payment/api/v1';
 }
 export function goBack() {
     window.history.back();
