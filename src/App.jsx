@@ -12,7 +12,7 @@ import ErrorPage from './pages/error_page'
 function App() {
 
   return(
-    <BrowserRouter basename="/micpayuat.mici.com.ph">
+    <BrowserRouter>
         <Routes>
           <Route path="/" element={<PaymentStep1/>}></Route>
           <Route path="search-policy" element={<PaymentStep1/>}></Route>
