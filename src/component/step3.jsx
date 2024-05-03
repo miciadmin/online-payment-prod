@@ -17,25 +17,28 @@ function Step3() {
 
     const [showInvalidTokenModal, setShowInvalidTokenModal] = useState(false);
     const [showErrorModal, setShowErrorModal] = useState(false);
+    const [errorType, setErrorType] = useState('');
+    const [errorMsg, setErrorMsg] = useState('');
+
     const [ipAddress, setIpAddress] = useState(null);
     const [userAgent, setUserAgent] = useState(null);
 
     const bankDetails = [
         { procId: "BPIA",
           longName: "BPI Online/Mobile",
-          logo: "https://micpayuat.mici.com.ph/assets/bpilogo-4R__otNg.png" },
+          logo: "https://payment.mercantile.ph/assets/bpilogo-4R__otNg.png" },
         { procId: "CBDD",
           longName: "China Bank Online Direct Debit",
           logo: "https://test.dragonpay.ph/Bank/images/cbclogo.jpg" },
         { procId: "RCDD",
           longName: "RCBC Online Direct Debit",
-          logo: "https://micpayuat.mici.com.ph/assets/rcbclogo-CohoZ5V9.png" },
+          logo: "https://payment.mercantile.ph/assets/rcbclogo-CohoZ5V9.png" },
         { procId: "UBDD",
           longName: "Unionbank Online Direct Debit",
           logo: "https://test.dragonpay.ph/Bank/images/ubplogo.jpg" },
         { procId: "GCSH",
           longName: "Globe GCash",
-          logo: "https://micpayuat.mici.com.ph/assets/gcashlogo-B6RLVrgK.png" },
+          logo: "https://payment.mercantile.ph/assets/gcashlogo-B6RLVrgK.png" },
         { procId: "PYMY",
           longName: "PayMaya",
           logo: "https://test.dragonpay.ph/Bank/images/paymayalogo.jpg" },
@@ -125,10 +128,18 @@ function Step3() {
             } else if(data.Status === 'invalid_or_expired_token')  {
                 setShowInvalidTokenModal(true);
             } else {
+                if(data.ErrorType.includes('Invalid procid')) {
+                    setErrorType('invalid_procid');
+                    setErrorMsg(bankDetails[selectedMethod-1].longName + ' is unavailable right now. Please try another payment method.');
+                } else {
+                    setErrorType('fatal_error');
+                    setErrorMsg('Oops, something went wrong. Please try again later.');
+                }
                 setShowErrorModal(true);
-                console.log(data.ErrorType);
             }
         } catch (error) {
+            setErrorType('fatal_error');
+            setErrorMsg('Oops, something went wrong. Please try again later.');
             setShowErrorModal(true);
         }
     };
@@ -163,7 +174,7 @@ function Step3() {
 
             <Sidebar isContainerVisible={isSidebarVisible} onClose={()=>setSidebarVisible(false)}/>
             <InvalidTokenModal show={showInvalidTokenModal} handleClose={() => setShowInvalidTokenModal(false)} />
-            <ErrorModal show={showErrorModal} handleClose={() => setShowErrorModal(false)} />
+            <ErrorModal show={showErrorModal} handleClose={() => setShowErrorModal(false)} errType= {errorType} errMsg={errorMsg}/>
                 
             <div className="right-container">
                 

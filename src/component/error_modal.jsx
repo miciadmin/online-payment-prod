@@ -1,15 +1,16 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function ErrorModal({ show, handleClose }) {
+function ErrorModal({ show, handleClose, errType, errMsg }) {
     const navigate = useNavigate();
     const showHideClassName = show ? "modal display-block" : "modal display-none";
 
     const handleCloseModal = () => {
         handleClose();
-        sessionStorage.clear();     
-        window.history.pushState({}, '', '/');
-        navigate('/search-policy');
+        if(errType == 'fatal_error') {
+            sessionStorage.clear();     
+            navigate('/');
+        }
     }
 
     return (
@@ -22,7 +23,7 @@ function ErrorModal({ show, handleClose }) {
                             <button type="button" className="btn-close" onClick={handleClose} aria-label="Close"/>
                         </div>
                         <div className="modal-body">
-                            <p>Oops, something went wrong. Please try again later.</p>
+                            <p>{errMsg}</p>
                         </div>
                         <div className="modal-footer">
                             <button className="btn btn-primary btn-sm btn-w-sm" type="button" onClick={() => handleCloseModal()}>OK</button>
