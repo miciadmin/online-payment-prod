@@ -322,10 +322,10 @@ label {
     display: flex;
     justify-content: space-between;
 }
-.bank-img {
+/*.bank-img {
     width: 100px;  
     margin-bottom: 5px;
-}
+}*/
 
 
 @media (max-width: 1300px) {

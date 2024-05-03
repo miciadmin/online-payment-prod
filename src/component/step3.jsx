@@ -1,6 +1,5 @@
 import React, { useState, useEffect} from 'react';
 import Sidebar from './sidebar';
-import Modal from './invalid_token_modal';
 import CCLogo from '../assets/credit_card_icon.png'
 import { endpoint, currencyFormat, lpad, goBack, getCurrentDateTime } from '../js/utils';
 import { useNavigate } from 'react-router-dom';
@@ -42,7 +41,7 @@ function Step3() {
           logo: "https://test.dragonpay.ph/Bank/images/paymayalogo.jpg" },
         { procId: "CC",
           longName: "Credit Card",
-          logo: "../assets/credit_card_icon.pn" },
+          logo: "../assets/credit_card_icon.png" },
         { procId: "BOG",
           longName: "Test Bank Online",
           logo: "https://test.dragonpay.ph/Bank/images/boguslogo.jpg" }

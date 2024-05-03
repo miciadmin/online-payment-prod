@@ -2,6 +2,9 @@ import React, { useState, useRef, useEffect} from 'react';
 import Sidebar from './sidebar';
 import DragonPayLogo from '../assets/dragonpay.png'
 import CCLogo from '../assets/credit_card_icon.png'
+import BPILogo from '../assets/bpilogo.png';
+import RCBCLogo from '../assets/rcbclogo.png';
+import GCASHLogo from '../assets/gcashlogo.png';
 import { endpoint, currencyFormat, goBack } from '../js/utils';
 import { useNavigate } from 'react-router-dom';
 
@@ -106,7 +109,7 @@ function Step2() {
                     <div className="row mb-3">
                         <div className="col-xl-6 my-2">
                             <div className={`radio-card radio-card-1 ${selectedMethod == 1 ? 'selected' : ''}`} onClick={() => selectRadioCard(1)}>
-                                <img className="bank-img mr-4" src="https://test.dragonpay.ph/Bank/images/bpilogo.jpg"/>
+                                <img className="bank-img mr-4" src={BPILogo}/>
                                 <span>BPI Online/Mobile</span>
                             </div>
                         </div>
@@ -118,7 +121,7 @@ function Step2() {
                         </div>
                         <div className="col-xl-6 my-2">
                             <div className={`radio-card radio-card-3 ${selectedMethod == 3 ? 'selected' : ''}`} onClick={() => selectRadioCard(3)}>
-                                <img className="bank-img mr-4" src="https://test.dragonpay.ph/Bank/images/rcbclogo.jpg"/>
+                                <img className="bank-img mr-4" src={RCBCLogo}/>
                                 <span>RCBC Online Direct Debit</span>
                             </div>
                         </div>
@@ -134,7 +137,7 @@ function Step2() {
                     <div className="row mb-3">
                         <div className="col-xl-6 my-2">
                             <div className={`radio-card radio-card-5 ${selectedMethod == 5 ? 'selected' : ''}`} onClick={() => selectRadioCard(5)}>
-                                <img className="bank-img mr-4" src="https://test.dragonpay.ph/Bank/images/gcashlogo.jpg"/>
+                                <img className="bank-img mr-4" src={GCASHLogo}/>
                                 <span>Globe GCash</span>
                             </div>
                         </div>
