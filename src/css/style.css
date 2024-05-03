@@ -28,7 +28,8 @@ body {
     display: flex;  
     height: 100%;
 }
-.left-container {
+.left-container {  
+    position: fixed;
     display:block;
     width: 30%;    
     z-index: 9999;
@@ -40,7 +41,8 @@ body {
 .right-container {
     width: 70%;
     padding: 40px 100px 0 20px;
-    font-size: .9rem;
+    font-size: .9rem;  
+    margin-left: 30%;
 }
 .action-container1,
 .action-container2 {
@@ -339,6 +341,9 @@ label {
         box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         transition: top 0.3s ease-in-out;
         padding: 0;
+    }
+    .right-container {
+        margin-left: unset;
     }
     .slide-toggle {
         display: block;
