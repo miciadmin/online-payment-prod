@@ -187,7 +187,7 @@ function Step1() {
                 <div className="action-container2">
                     <div className="back-container2">
                         <img src={MiciLogo} alt=""/>
-                        <span>MICI Online Payment</span>
+                        <b>MICI Online Payment</b>
                     </div>
                     <i className="bi bi-list ico-btn" onClick={()=>setSidebarVisible(!isSidebarVisible)}/>
                 </div>

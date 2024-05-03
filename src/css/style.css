@@ -49,7 +49,7 @@ body {
     display: flex;
     justify-content: space-between;
     gap: 10px;
-    color: var(--primary);    
+    /*color: var(--primary);*/
     margin: .2rem .5rem;
 }
 .action-container2 {

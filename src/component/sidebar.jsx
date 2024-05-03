@@ -22,7 +22,7 @@ function Sidebar({ isContainerVisible, isBackVisible, onClose }) {
 
             <div className="company-header">
                 <img src={MiciLogo} alt=""/>
-                <span>MICI Online Payment</span>
+                <b>MICI Online Payment</b>
             </div>
             <div className="menus">
                 <div className="menu-item" onClick={() => createPayment()}>
