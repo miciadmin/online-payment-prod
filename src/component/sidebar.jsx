@@ -37,11 +37,12 @@ function Sidebar({ isContainerVisible, isBackVisible, onClose }) {
                     <span>Terms and Conditions</span>
                     <i className="bi bi-chevron-right fs-12 mr-2"></i>
                 </div>
-                <div className="menu-item" onClick={() => navigate('search-policy')}>
+                <div className="menu-item" onClick={() => navigate('/privacy-policy')}>
                     <span>Privacy Policy</span>
                     <i className="bi bi-chevron-right fs-12 mr-2"></i>
                 </div>
             </div>
+            <span className="copyright-text">Copyright © The Mercantile Insurance Company, Inc. 2024</span>
         </div>
     )
 }

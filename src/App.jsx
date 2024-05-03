@@ -7,6 +7,7 @@ import PaymentStep3 from './pages/payment_step3'
 import PaymentResult from './pages/payment_result'
 import SearchRefNo from './component/search_refno'
 import TermsAndCondition from './component/terms_and_condition'
+import PrivacyPolicy from './component/privacy_policy'
 import ErrorPage from './pages/error_page'
 
 function App() {
@@ -32,6 +33,9 @@ function App() {
 
           <Route path="terms-and-condition" element={<TermsAndCondition/>}></Route>
           <Route path="/terms-and-condition" element={<TermsAndCondition/>}></Route>
+
+          <Route path="privacy-policy" element={<PrivacyPolicy/>}></Route>
+          <Route path="/privacy-policy" element={<PrivacyPolicy/>}></Route>
           
           <Route path="*" element={<ErrorPage/>}></Route>
         </Routes>

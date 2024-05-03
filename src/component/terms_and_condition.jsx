@@ -23,7 +23,8 @@ function TermsAndCondition() {
                     <i className="bi bi-list ico-btn" onClick={()=>setSidebarVisible(!isSidebarVisible)}/>
                 </div>
                 <div className="card tac mt-4">
-                    <p className='title'>MICI Online Payment Terms and Conditions</p>
+                    <p className='title'>Terms and Conditions</p>
+
                     <p>Welcome to MICI Online Payment, provided by The Mercantile Insurance Company, Inc. (hereinafter referred to as "MICI"). MICI Online Payment is an online payment platform that allows you to conveniently pay for your non-life insurance policies issued by The Mercantile Insurance Company, Inc.</p>
 
                     <p className='subtitle'>1. Acceptance of Terms</p>
@@ -49,7 +50,7 @@ function TermsAndCondition() {
 
                     <p className='subtitle'>8. Contact Us</p>
                     <p>If you have any questions about these Terms and Conditions, please contact us at:</p>
-                    <p>The Mercantile Insurance Company, Inc. <br />
+                    <p><b>The Mercantile Insurance Company, Inc.</b><br />
                     Mercantile Insurance Building Cor. General Luna & Beaterio Sts., Brgy. 655 Zone 69, Intramuros, Manila <br />
                     (632) 85277701 to 20 <br />
                     gen_info@mici.com.ph <br />

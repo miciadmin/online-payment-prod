@@ -33,13 +33,13 @@ body {
     width: 30%;    
     z-index: 9999;
     border-right: 1px solid var(--light-gray);
-    padding: 100px 0 0 100px;
+    padding: 40px 0 0 100px;
     background-color: var(--light-gray2);
     min-height: 100vh;
 }
 .right-container {
     width: 70%;
-    padding: 100px 100px 0 20px;
+    padding: 40px 100px 0 20px;
     font-size: .9rem;
 }
 .action-container1,
@@ -241,6 +241,7 @@ body {
 }
 .subtitle {
     font-weight: bold;
+    margin-bottom: 0;
 }
 
 @keyframes blink-animation {
@@ -588,3 +589,11 @@ label {
     display: block !important;
 }
   
+
+
+.copyright-text {
+    font-size:9.5px;
+    bottom:5%;
+    position:fixed;  
+    margin: 0 1rem;
+}

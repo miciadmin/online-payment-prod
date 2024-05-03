@@ -67,6 +67,12 @@ function SearchRefNo() {
                     <i className="bi bi-list ico-btn" onClick={()=>setSidebarVisible(!isSidebarVisible)}/>
                 </div>
 
+                <div className="note-box">
+                    <p className="note-title">Where to get my Reference No?</p>
+                    <p>After completing a payment transaction, a reference number will be emailed to the client. 
+                        This reference number is used to verify the payment status.</p>
+                </div>
+
                 <div className="card mt-4">
                     <div className="space-between">
                         <span className="card-title mb-2">Enter your Reference No.:</span>
