@@ -468,7 +468,10 @@ label {
     color: #016787;
 }
 .radio-card.selected {
-    border: 2px solid var(--primary);
+    border: 1px solid var(--primary);  
+    background: #4d924d;
+    color: white;  
+    box-shadow: 0 3px 5px rgba(0,0,0,0.5);
 }
 .radio-card.selected .radio-card-check {
     display: inline-flex;

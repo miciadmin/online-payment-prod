@@ -65,8 +65,8 @@ function Step3() {
                              lpad(policyDetails.renew_no, 2);
             const policyDescription = 'Policy No: ' + policyNo + ', \n' +
                             'Invoice No: ' + policyDetails.invoice_no + ', \n' +
-                            'Due Date: ' + policyDetails.due_date + ', \n' +
-                            'Total Amount Due: ' + currencyFormat(policyDetails.total_amount_due);
+                            'Assured Name: ' + policyDetails.assd_name + ', \n' +
+                            'Amount: ' + currencyFormat(policyDetails.total_amount_due);
 
             if(selectedMethod == 7) {
                 requestBody = {
@@ -181,11 +181,11 @@ function Step3() {
                         <div className="step-title">Search Policy</div>
                     </div>
                     <div className="step-items">
-                        <button className="step-button" type="button">2</button>
+                        <button className="step-button done" type="button">2</button>
                         <div className="step-title">Choose Method</div>
                     </div>
                         <div className="step-items">
-                        <button className="step-button" type="button">3</button>
+                        <button className="step-button done" type="button">3</button>
                         <div className="step-title">Review Payment</div>
                     </div>
                 </div>
@@ -194,15 +194,15 @@ function Step3() {
                     <div className="row">
                         <div className="space-between col-md-12">
                             <span className="text-gray">Premium Amount:</span>
-                            <span>{currencyFormat(policyDetails.prem_amt)}</span>
+                            <span className="text-right">{currencyFormat(policyDetails.prem_amt)}</span>
                         </div>
                         <div className="space-between col-md-12 my-1">
                             <span className="text-gray">Tax Amount:</span>
-                            <span>{currencyFormat(policyDetails.tax_amt)}</span>
+                            <span className="text-right">{currencyFormat(policyDetails.tax_amt)}</span>
                         </div>
                         <div className="space-between col-md-12 mt-2 align-center">
                             <span>Total Amount Due:</span>
-                            <span className="text-medium">Php {currencyFormat(policyDetails.total_amount_due)}</span>
+                            <span className="text-medium text-right">Php {currencyFormat(policyDetails.total_amount_due)}</span>
                         </div>
                     </div>
                 </div>
@@ -213,7 +213,7 @@ function Step3() {
                     <div className="row">
                         <div className="space-between col-md-12 my-1">
                             <span className="text-gray">Policy No.:</span>
-                            <span>
+                            <span className="text-right">
                                 {policyDetails.line_cd}-
                                 {policyDetails.subline_cd}-
                                 {policyDetails.iss_cd}-
@@ -224,15 +224,15 @@ function Step3() {
                         </div>
                         <div className="space-between col-md-12 my-1">
                             <span className="text-gray">Assured:</span>
-                            <span>{policyDetails.assd_name}</span>
+                            <span className="text-right">{policyDetails.assd_name}</span>
                         </div>
                         <div className="space-between col-md-12 my-1">
                             <span className="text-gray">Invoice No.:</span>
-                            <span>{policyDetails.invoice_no}</span>
+                            <span className="text-right">{policyDetails.invoice_no}</span>
                         </div>
                         <div className="space-between col-md-12 my-1">
                             <span className="text-gray">Due Date:</span>
-                            <span>{policyDetails.due_date}</span>
+                            <span className="text-right">{policyDetails.due_date}</span>
                         </div>
                     </div>
                 </div>
@@ -243,11 +243,11 @@ function Step3() {
                     <div className="row">
                         <div className="space-between col-md-12 my-1">
                             <span className="text-gray">Email:</span>
-                            <span>{contactDetails.email}</span>
+                            <span className="text-right">{contactDetails.email}</span>
                         </div>
                         <div className="space-between col-md-12 my-1">
                             <span className="text-gray">Mobile No:</span>
-                            <span>{contactDetails.mobileNo}</span>
+                            <span className="text-right">{contactDetails.mobileNo}</span>
                         </div>
                     </div>
                 </div>
@@ -267,18 +267,18 @@ function Step3() {
                             </div>
                             <div className="space-between col-md-12 my-1">
                                 <span className="text-gray">Full Name:</span>
-                                <span>{creditDetails.fname} {creditDetails.mname} {creditDetails.lname}</span>
+                                <span className="text-right">{creditDetails.fname} {creditDetails.mname} {creditDetails.lname}</span>
                             </div>
                             <div className="space-between col-md-12 my-1">
                                 <span className="text-gray">Complete Address:</span>
-                                <span>{creditDetails.street}, {creditDetails.brgy}, {creditDetails.city}, {creditDetails.province}, {creditDetails.country} {creditDetails.zipcode}</span>
+                                <span className="text-right">{creditDetails.street}, {creditDetails.brgy}, {creditDetails.city}, {creditDetails.province}, {creditDetails.country} {creditDetails.zipcode}</span>
                             </div>
                         </div>
                     ) : (
                         <div className="row">
                             <div className="space-between col-md-12">
-                            <span className="text-gray mt-1">Source:</span>
-                            <div>
+                            <span className="text-gray">Source:</span>
+                            <div className="text-right">
                                 <span>{bankDetails[selectedMethod-1].longName}</span>
                                 <img className="bank-img ml-2" src={bankDetails[selectedMethod-1].logo} alt="" />
                             </div>

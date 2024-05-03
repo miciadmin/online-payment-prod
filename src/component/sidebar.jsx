@@ -30,11 +30,7 @@ function Sidebar({ isContainerVisible, isBackVisible, onClose }) {
                     <i className="bi bi-chevron-right fs-12 mr-2"></i>
                 </div>
                 <div className="menu-item" onClick={() => navigate('/search-refno')}>
-                    <span>Payment Status</span>
-                    <i className="bi bi-chevron-right fs-12 mr-2"></i>
-                </div>
-                <div className="menu-item" onClick={() => navigate('/search-policy')}>
-                    <span>Cancel Payment</span>
+                    <span>Check Reference No.</span>
                     <i className="bi bi-chevron-right fs-12 mr-2"></i>
                 </div>
                 <div className="menu-item" onClick={() => navigate('/terms-and-condition')}>

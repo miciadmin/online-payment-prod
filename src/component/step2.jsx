@@ -85,7 +85,7 @@ function Step2() {
                         <div className="step-title">Search Policy</div>
                     </div>
                     <div className="step-items">
-                        <button className="step-button" type="button">2</button>
+                        <button className="step-button done" type="button">2</button>
                         <div className="step-title">Choose Method</div>
                     </div>
                         <div className="step-items">
