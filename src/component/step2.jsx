@@ -99,8 +99,8 @@ function Step2() {
 
                 <div className="card">
                     <div className="premium-container">
-                    <p>Php {currencyFormat(policyDetails.total_amount_due)}</p> 
-                    <p className="text-gray">Total amount due</p>
+                    <p>Php {currencyFormat(policyDetails.balance_amt_due)}</p> 
+                    <p className="text-gray">Payable Amount</p>
                     </div>
                 </div>
 

@@ -31,18 +31,18 @@ body {
 .left-container {  
     position: fixed;
     display:block;
-    width: 30%;    
+    width: 25%;    
     z-index: 9999;
     border-right: 1px solid var(--light-gray);
-    padding: 40px 0 0 100px;
+    padding: 40px 0 0 80px;
     background-color: var(--light-gray2);
     min-height: 100vh;
 }
 .right-container {
-    width: 70%;
-    padding: 40px 100px 0 20px;
+    width: 75%;
+    padding: 40px 80px 0 20px;
     font-size: .9rem;  
-    margin-left: 30%;
+    margin-left: 25%;
 }
 .action-container1,
 .action-container2 {
@@ -194,7 +194,6 @@ body {
     flex-direction: column;
     color: white;
     padding: 25px ;
-    background-color: var(--success);
     border-radius: 5px 5px 0 0;
 }
 .result-container .header i {
@@ -572,8 +571,8 @@ label {
     width: 80%;
 }
 .modal-header {
-    padding: 10px;
-    background-color: #f44336;
+    /*padding: 10px;
+    background-color: #f44336;*/
     color: white;
 }
 .modal-body {
@@ -597,7 +596,7 @@ label {
 
 
 .copyright-text {
-    font-size:9.5px;
+    font-size:.7rem;
     bottom:5%;
     position:fixed;  
     margin: 0 1rem;

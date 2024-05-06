@@ -42,30 +42,11 @@ export default function() {
         && params.digest
         && params.message
         && params.txnid
-        && params.status === 'S') {
+        && params.status) {
             console.log('Has successfull transaction:' + params.refno);
-            navigate('/payment-result');
-            sendSuccessEmail();
+            navigate(`/payment-result/${params.status}`);
         } 
     }, [params]);
-
-    const sendSuccessEmail = async () => {
-        try {
-            //setLoading(true);
-            const response = await fetch(`${endpoint()}/sendSuccessEmail?refNo=${params.refno}`, {
-                method: 'GET',
-                headers: {
-                'Content-Type': 'application/json'
-                }
-            });
-            const data = await response.json();
-            console.log(data);
-        } catch (error) {
-            console.error('Error:', error);
-        } finally {
-            //setLoading(false);
-        }
-    }
         
     return(
         <Step1/>

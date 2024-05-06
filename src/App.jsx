@@ -25,8 +25,7 @@ function App() {
           <Route path="review-payment" element={<PaymentStep3/>}></Route>
           <Route path="/review-payment" element={<PaymentStep3/>}></Route>
 
-          <Route path="payment-result" element={<PaymentResult/>}></Route>
-          <Route path="/payment-result" element={<PaymentResult/>}></Route>
+          <Route path="/payment-result/:status" element={<PaymentResult/>} />
 
           <Route path="search-refno" element={<SearchRefNo/>}></Route>
           <Route path="/search-refno" element={<SearchRefNo/>}></Route>
@@ -36,7 +35,7 @@ function App() {
 
           <Route path="privacy-policy" element={<PrivacyPolicy/>}></Route>
           <Route path="/privacy-policy" element={<PrivacyPolicy/>}></Route>
-          
+
           <Route path="*" element={<ErrorPage/>}></Route>
         </Routes>
       </BrowserRouter>

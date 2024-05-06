@@ -1,15 +1,12 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function InvalidTokenModal({ show, handleClose }) {
+function PartiallyPaidModal({ show, handleClose }) {
     const navigate = useNavigate();
     const showHideClassName = show ? "modal display-block" : "modal display-none";
 
     const handleCloseModal = () => {
         handleClose();
-        sessionStorage.clear();     
-        window.history.pushState({}, '', '/');
-        navigate('/search-policy');
     }
 
     return (
@@ -17,13 +14,12 @@ function InvalidTokenModal({ show, handleClose }) {
             <div className="modal show">
                 <div className="modal-dialog modal-dialog-centered">
                     <div className="modal-content">
-                        <div className="modal-header error-modal">
-                            <h5 className="modal-title">Invalid or Expired Token</h5>
+                        <div className="modal-header bg-primary">
+                            <h5 className="modal-title">Partially Paid</h5>
                             <button type="button" className="btn-close" onClick={handleClose} aria-label="Close"/>
                         </div>
                         <div className="modal-body">
-                            <p>Sorry, the token provided is invalid or expired.</p>
-                            <p>Please try again with a valid token. If the problem persists, contact support for assistance.</p>
+                            <p>Partial payment has already been made on this policy. You will now pay the remaining balance.</p>
                         </div>
                         <div className="modal-footer">
                             <button className="btn btn-primary btn-sm btn-w-sm" type="button" onClick={() => handleCloseModal()}>OK</button>
@@ -35,4 +31,4 @@ function InvalidTokenModal({ show, handleClose }) {
     )
 }
 
-export default InvalidTokenModal
+export default PartiallyPaidModal

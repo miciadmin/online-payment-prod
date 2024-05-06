@@ -3,8 +3,8 @@ import Sidebar from './sidebar';
 import CCLogo from '../assets/credit_card_icon.png'
 import { endpoint, currencyFormat, lpad, goBack, getCurrentDateTime } from '../js/utils';
 import { useNavigate } from 'react-router-dom';
-import InvalidTokenModal from './invalid_token_modal';
-import ErrorModal from './error_modal';
+import InvalidTokenModal from './invalid_session_modal';
+import ErrorModal from './fatal_error_modal';
 
 function Step3() {
     const navigate = useNavigate();
@@ -14,6 +14,7 @@ function Step3() {
     const [contactDetails, setContactDetails] = useState(JSON.parse(sessionStorage.getItem('contactDtls')));
     const [creditDetails, setCreditDetails] = useState(JSON.parse(sessionStorage.getItem('creditDtls')));
     const [selectedMethod, setSelectedMethod] = useState(sessionStorage.getItem('paymentMethod'));
+    const [amountDueType, setAmountDueType] = useState(sessionStorage.getItem('amountDueType'));
 
     const [showInvalidTokenModal, setShowInvalidTokenModal] = useState(false);
     const [showErrorModal, setShowErrorModal] = useState(false);
@@ -53,7 +54,7 @@ function Step3() {
     useEffect(() => {
         getUserIpAddress();
         setUserAgent(getUserAgent);
-    }, []);
+    }, [policyDetails]);
     
     const proceedPayment = async (e) => {
         let requestBody = {};
@@ -65,14 +66,14 @@ function Step3() {
                              policyDetails.issue_yy + '-' +
                              lpad(policyDetails.pol_seq_no, 7) + '-' +
                              lpad(policyDetails.renew_no, 2);
-            const policyDescription = 'Policy No: ' + policyNo + ', \n' +
-                            'Invoice No: ' + policyDetails.invoice_no + ', \n' +
-                            'Assured Name: ' + policyDetails.assd_name + ', \n' +
-                            'Amount: ' + currencyFormat(policyDetails.total_amount_due);
+            const policyDescription = 'Policy No: ' + policyNo + '; \n' +
+                            'Invoice No: ' + policyDetails.invoice_no_formatted + '; \n' +
+                            'Assured Name: ' + policyDetails.assd_name + '; \n' +
+                            'Amount: ' + currencyFormat(policyDetails.balance_amt_due);
 
             if(selectedMethod == 7) {
                 requestBody = {
-                    Amount: policyDetails.total_amount_due,
+                    Amount: policyDetails.balance_amt_due,
                     Currency: "PHP",
                     Description: policyDescription,
                     Email: contactDetails.email,
@@ -96,7 +97,7 @@ function Step3() {
                 };
             } else {
                 requestBody = {
-                    Amount: policyDetails.total_amount_due,
+                    Amount: policyDetails.balance_amt_due,
                     Currency: "PHP",
                     Description: policyDescription,
                     Email: contactDetails.email,
@@ -168,7 +169,6 @@ function Step3() {
         return navigator.userAgent;
     };
       
-
     return(
         <div className="main-container">
 
@@ -200,22 +200,33 @@ function Step3() {
                     </div>
                 </div>
 
-                <div className="card">
-                    <div className="row">
-                        <div className="space-between col-md-12">
-                            <span className="text-gray">Premium Amount:</span>
-                            <span className="text-right">{currencyFormat(policyDetails.prem_amt)}</span>
-                        </div>
-                        <div className="space-between col-md-12 my-1">
-                            <span className="text-gray">Tax Amount:</span>
-                            <span className="text-right">{currencyFormat(policyDetails.tax_amt)}</span>
-                        </div>
-                        <div className="space-between col-md-12 mt-2 align-center">
-                            <span>Total Amount Due:</span>
-                            <span className="text-medium text-right">Php {currencyFormat(policyDetails.total_amount_due)}</span>
+                {amountDueType === 'Total' ? (
+                    <div className="card">
+                        <div className="row">
+                            <div className="space-between col-md-12">
+                                <span className="text-gray">Premium Amount:</span>
+                                <span className="text-right">{currencyFormat(policyDetails.prem_amt)}</span>
+                            </div>
+                            <div className="space-between col-md-12 my-1">
+                                <span className="text-gray">Tax Amount:</span>
+                                <span className="text-right">{currencyFormat(policyDetails.tax_amt)}</span>
+                            </div>
+                            <div className="space-between col-md-12 mt-2 align-center">
+                                <span>Total Amount Due:</span>
+                                <span className="text-medium text-right">Php {currencyFormat(policyDetails.total_amt_due)}</span>
+                            </div>
                         </div>
                     </div>
-                </div>
+                ) : (
+                    <div className="card">
+                        <div className="row">
+                            <div className="space-between col-md-12 mt-2 align-center">
+                                <span>Balance Amount Due:</span>
+                                <span className="text-medium text-right">Php {currencyFormat(policyDetails.balance_amt_due)}</span>
+                            </div>
+                        </div>
+                    </div>
+                )}
 
                 <div className="divider" />
                 <div className="card mt-0">
@@ -238,7 +249,7 @@ function Step3() {
                         </div>
                         <div className="space-between col-md-12 my-1">
                             <span className="text-gray">Invoice No.:</span>
-                            <span className="text-right">{policyDetails.invoice_no}</span>
+                            <span className="text-right">{policyDetails.invoice_no_formatted}</span>
                         </div>
                         <div className="space-between col-md-12 my-1">
                             <span className="text-gray">Due Date:</span>

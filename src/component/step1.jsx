@@ -3,30 +3,33 @@ import Sidebar from './sidebar';
 import { endpoint, currencyFormat, isValidEmail, isValidMobileNo, lpad, goBack} from '../js/utils';
 import { useNavigate } from 'react-router-dom';
 import MiciLogo from '../assets/mici_logo.svg'
+import PartiallyPaidModal from './partially_paid_modal';
 
 function Step1() {
     const inputRef = useRef(null);
     const navigate = useNavigate();
     const [isSidebarVisible, setSidebarVisible] = useState(false);
+    const [loading, setLoading] = useState(false);
     
     const [policyDetails, setPolicyDetails] = useState(JSON.parse(sessionStorage.getItem('policyDtls')));
     const [contactDetails, setContactDetails] = useState(JSON.parse(sessionStorage.getItem('contactDtls')));
+    const [amountDueType, setAmountDueType] = useState(sessionStorage.getItem('amountDueType'));
 
+    const [showPartiallyPaidModal, setShowPartiallyPaidModal] = useState(false);
     const [isSearchingPolicy, setIsSearchingPolicy] = useState(true);
-    const [loading, setLoading] = useState(false);
-    const [errorPolicy, setErrorPolicy] = useState(null);
     const [errorContact, setErrorContact] = useState(null);
+    const [errorPolicy, setErrorPolicy] = useState(null);
     const [policyFormData, setPolicyFormData] = useState({
-        lineCd: 'PA',
-        sublineCd: 'GPA',
-        issCd: 'HO',
-        issYy: '17',
-        seqNo: '0000005',
-        renewNo: '00'
+        lineCd: 'MC',
+        sublineCd: 'PVSPL',
+        issCd: 'SF',
+        issYy: '22',
+        seqNo: '854',
+        renewNo: '1'
     });
     const [contactFormData, setContactFormData] = useState({
-        email: '',
-        mobileNo: ''
+        email: 'llsalomon@mici.com.ph',
+        mobileNo: '09123305767'
     });
 
     useEffect(() => {
@@ -112,14 +115,26 @@ function Step1() {
                 }
             });
             const data = await response.json();
+            console.log(data);
             if(data.isExist) {
-                setPolicyDetails(data.policyDetails[0]);
+                setAmountDueType('Total');
+                sessionStorage.setItem('amountDueType', 'Total');
+                if (data.policyDetails[0].payment_stat === 'FULLY PAID') {
+                    setErrorPolicy('(Policy already paid)');
+                } else if (data.policyDetails[0].payment_stat === 'PARTIALLY PAID') {
+                    setAmountDueType('Balance');
+                    sessionStorage.setItem('amountDueType', 'Balance');
+                    setShowPartiallyPaidModal(true);
+                    setPolicyDetails(data.policyDetails[0]);
+                } else {
+                    setPolicyDetails(data.policyDetails[0]);
+                }
                 setIsSearchingPolicy(false);
             } else {
-                setErrorPolicy('(Policy not found!)');
+                setErrorPolicy('(Policy not found)');
             }
         } catch (error) {
-            console.error('Error:', error);
+            setErrorPolicy('(Server connection error)');
         } finally {
             setLoading(false);
         }
@@ -128,7 +143,7 @@ function Step1() {
         return fetch(`${endpoint()}/generateToken`)
             .then(response => {
                 if (!response.ok) {
-                    throw new Error('Failed to fetch token');
+                    setErrorPolicy('(Server connection error)');
                 }
                 return response.text();
             });
@@ -182,6 +197,7 @@ function Step1() {
         <div className="main-container">
             
             <Sidebar isContainerVisible={isSidebarVisible} onClose={()=>setSidebarVisible(false)}/>
+            <PartiallyPaidModal show={showPartiallyPaidModal} handleClose={() => setShowPartiallyPaidModal(false)} />
 
             <div className="right-container">
                 <div className="action-container2">
@@ -258,19 +274,19 @@ function Step1() {
                                 </div>
                                 <div className="space-between col-md-12 my-1">
                                     <span className="text-gray">Invoice No.:</span>
-                                    <span className="text-right" id="invoice-no">{policyDetails.invoice_no}</span>
+                                    <span className="text-right">{policyDetails.invoice_no_formatted}</span>
                                 </div>
                                 <div className="space-between col-md-12 my-1">
                                     <span className="text-gray">Assured:</span>
-                                    <span className="text-right" id="assured">{policyDetails.assd_name}</span>
+                                    <span className="text-right">{policyDetails.assd_name}</span>
                                 </div>
                                 <div className="space-between col-md-12 my-1">
                                     <span className="text-gray">Due Date:</span>
-                                    <span className="text-right" id="due-date">{policyDetails.due_date}</span>
+                                    <span className="text-right">{policyDetails.due_date}</span>
                                 </div>
                                 <div className="space-between col-md-12 my-2">
-                                    <span className="text-gray">Total Amount Due:</span>
-                                    <span className="text-right fw-bold" id="total-amount">Php {currencyFormat(policyDetails.total_amount_due)}</span>
+                                    <span className="text-gray">{amountDueType === 'Balance' ? 'Balance Amount Due:' : 'Total Amount Due:' }</span>
+                                    <span className="text-right fw-bold">Php {currencyFormat(policyDetails.balance_amt_due)}</span>
                                 </div>
                             </div>
                             <div className="text-center mt-3">
