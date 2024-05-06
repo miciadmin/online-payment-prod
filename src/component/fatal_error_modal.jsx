@@ -18,7 +18,7 @@ function FatalErrorModal({ show, handleClose, errType, errMsg }) {
             <div className="modal show">
                 <div className="modal-dialog modal-dialog-centered">
                     <div className="modal-content">
-                        <div className="modal-header bg-danger">
+                        <div className="modal-header m-error">
                             <h5 className="modal-title">Error</h5>
                             <button type="button" className="btn-close" onClick={handleClose} aria-label="Close"/>
                         </div>
@@ -26,7 +26,7 @@ function FatalErrorModal({ show, handleClose, errType, errMsg }) {
                             <p>{errMsg}</p>
                         </div>
                         <div className="modal-footer">
-                            <button className="btn btn-primary btn-sm btn-w-sm" type="button" onClick={() => handleCloseModal()}>OK</button>
+                            <button className="btn btn-success btn-sm btn-w-sm" type="button" onClick={() => handleCloseModal()}>OK</button>
                         </div>
                     </div>
                 </div>

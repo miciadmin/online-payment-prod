@@ -570,10 +570,15 @@ label {
     border: 1px solid #888;
     width: 80%;
 }
-.modal-header {
-    /*padding: 10px;
-    background-color: #f44336;*/
-    color: white;
+.m-error {
+    color: #842029;
+    background-color: #f8d7da;
+    border-color: #f5c2c7 !important;
+}
+.m-info {
+    color: #084298;
+    background-color: #cfe2ff;
+    border-color: #b6d4fe !important;
 }
 .modal-body {
     padding: 10px;
