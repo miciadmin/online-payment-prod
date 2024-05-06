@@ -7,7 +7,7 @@ import PaymentResult from './pages/payment_result'
 import SearchRefNo from './component/search_refno'
 import TermsAndCondition from './component/terms_and_condition'
 import PrivacyPolicy from './component/privacy_policy'
-import ErrorPage from './pages/error_page'
+import ErrorPage from './component/error_page'
 
 function App() {
 

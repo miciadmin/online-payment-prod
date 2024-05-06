@@ -605,3 +605,25 @@ label {
     position:fixed;  
     margin: 0 1rem;
 }
+
+.error-container {
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    margin: 50px 1rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.error-container .header {
+    display: flex;
+    flex-direction: column;
+    color: white;
+    padding: 25px;
+    border-radius: 5px 5px 0 0;
+  }
+.error-container .header span {  
+    font-size: 4rem;
+    font-weight: bold;
+}
+.error-container .body {
+    padding: 1rem;
+}
