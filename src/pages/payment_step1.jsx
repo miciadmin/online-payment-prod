@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import Step1 from "../component/step1";
 import { useLocation, useNavigate } from "react-router-dom";
-import { endpoint } from '../js/utils';
 
 export default function() {
     const location = useLocation();
@@ -43,7 +42,6 @@ export default function() {
         && params.message
         && params.txnid
         && params.status) {
-            console.log('Has successfull transaction:' + params.refno);
             navigate(`/payment-result/${params.status}`);
         } 
     }, [params]);
