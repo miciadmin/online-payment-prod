@@ -42,9 +42,7 @@ function ResultPage() {
                             <span>Payment Successful</span>
                         </div>
                         <div className="body">
-                            {resultDetails && (
-                                <span>Reference No: {refno}</span>
-                            )}  
+                            <span>Reference No: {refno}</span>
                             <p>
                                 Thank you for your payment! Your policy has been successfully paid, 
                                 and an email containing the details has been sent to you. 
