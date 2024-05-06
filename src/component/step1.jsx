@@ -6,7 +6,7 @@ import MiciLogo from '../assets/mici_logo.svg'
 import PartiallyPaidModal from './partially_paid_modal';
 
 function Step1() {
-    const inputRef = useRef(null);
+    const inputRef = useRef();
     const navigate = useNavigate();
     const [isSidebarVisible, setSidebarVisible] = useState(false);
     const [loading, setLoading] = useState(false);
@@ -33,7 +33,12 @@ function Step1() {
     });
 
     useEffect(() => {
-        //inputRef.current.focus();
+    });
+
+    useEffect(() => {
+        try {
+            inputRef.current.focus();
+        } catch(e){}
         if (policyDetails) {
             setIsSearchingPolicy(false);
         }
@@ -79,7 +84,9 @@ function Step1() {
             email: '',
             mobileNo: ''
         });
-        //inputRef.current.focus();
+        try {
+            inputRef.current.focus();
+        } catch(e){}
     }
     const handleSubmit = async (e) => {
         e.preventDefault();
