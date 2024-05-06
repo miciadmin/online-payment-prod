@@ -3,17 +3,13 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { endpoint } from '../js/utils';
 
 function ResultPage() {
-    const { status } = useParams();
     const navigate = useNavigate();
-    const [resultDetails, setResultDetails] = useState(JSON.parse(sessionStorage.getItem('resultDtls')));
+    const { status, refno } = useParams();
 
     useEffect(() => {
-        console.log(status);
         if (status === 'S') {
             console.log('Payment successfull: sending email.');
             sendSuccessEmail();
-        } else {
-            console.log('Payment failed.');
         }
         sessionStorage.clear();     
         window.history.pushState({}, '', '/');
@@ -22,8 +18,7 @@ function ResultPage() {
     const sendSuccessEmail = async () => {
         const token = sessionStorage.getItem('token');
         try {
-            //setLoading(true);
-            const response = await fetch(`${endpoint()}/sendSuccessEmail?refNo=${params.refno}`, {
+            const response = await fetch(`${endpoint()}/sendSuccessEmail?refNo=${refno}`, {
                 method: 'GET',
                 headers: {
                 'Content-Type': 'application/json',
@@ -34,8 +29,6 @@ function ResultPage() {
             console.log(data);
         } catch (error) {
             console.error('Error:', error);
-        } finally {
-            //setLoading(false);
         }
     }
 
@@ -50,12 +43,12 @@ function ResultPage() {
                         </div>
                         <div className="body">
                             {resultDetails && (
-                                <span>Reference No: {resultDetails.RefNo}</span>
+                                <span>Reference No: {refno}</span>
                             )}  
                             <p>
                                 Thank you for your payment! Your policy has been successfully paid, 
                                 and an email containing the details has been sent to you. 
-                                If you have any questions, feel free to contact us @ www.mercantile.ph
+                                If you have any questions, feel free to contact us at www.mercantile.ph
                             </p>
                             <div className="result-buttons">
                                 <button type="button" className="btn btn-outline-success mt-3" onClick={() => navigate('/')}>Go to homepage</button>
@@ -79,7 +72,6 @@ function ResultPage() {
                 )}                
             </div>
         </div>
-
     )
 }
 

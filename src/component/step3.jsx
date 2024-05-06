@@ -123,9 +123,8 @@ function Step3() {
                 body: JSON.stringify(requestBody)
             });
             const data = await response.json();
-            console.log(data);
-            if(data.Status === 'S') {
-                gotoResultPage(data);
+            if (data.Status === 'S') {
+                window.location.href = data.Url;
             } else if(data.Status === 'invalid_or_expired_token')  {
                 setShowInvalidTokenModal(true);
             } else {
@@ -144,16 +143,6 @@ function Step3() {
             setShowErrorModal(true);
         }
     };
-    const gotoResultPage = (res) => {
-
-        //if(selectedMethod == 7) {
-            const tendoPayUrl = res.Url;
-            window.location.href = tendoPayUrl;
-        /*} else {
-            sessionStorage.setItem('resultDtls', JSON.stringify(res));
-            navigate('/payment-result');
-        }*/
-    }
     const getUserIpAddress = async () => {
         try {
           const response = await fetch('https://api64.ipify.org?format=json');

@@ -22,27 +22,24 @@ export default function() {
         };
         prevLocation.current = location.pathname;
         window.addEventListener("popstate", handlePopstate);
-    }, [location, history]);
+    }, [prevLocation]);
 
     useEffect(() => {
         const urlParams = new URLSearchParams(window.location.search);
         const paramsObject = {};
-    
         for (const [key, value] of urlParams) {
           paramsObject[key] = value;
         }
-    
         setParams(paramsObject);
     }, []);
     
     useEffect(() => {
-        console.log(params);
         if (params.refno
         && params.digest
         && params.message
         && params.txnid
         && params.status) {
-            navigate(`/payment-result/${params.status}`);
+            navigate(`/payment-result/${params.status}/${params.refno}`);
         } 
     }, [params]);
         
