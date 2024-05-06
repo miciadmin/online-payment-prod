@@ -305,7 +305,6 @@ label {
 
 .premium-container {
     display: grid;
-    gap: 10px;
     text-align: center;
 }
 .premium-container > :first-child {

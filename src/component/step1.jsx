@@ -117,8 +117,6 @@ function Step1() {
             const data = await response.json();
             console.log(data);
             if(data.isExist) {
-                setAmountDueType('Total');
-                sessionStorage.setItem('amountDueType', 'Total');
                 if (data.policyDetails[0].payment_stat === 'FULLY PAID') {
                     setErrorPolicy('(Policy already paid)');
                 } else if (data.policyDetails[0].payment_stat === 'PARTIALLY PAID') {
@@ -126,10 +124,13 @@ function Step1() {
                     sessionStorage.setItem('amountDueType', 'Balance');
                     setShowPartiallyPaidModal(true);
                     setPolicyDetails(data.policyDetails[0]);
+                    setIsSearchingPolicy(false);
                 } else {
+                    setAmountDueType('Total');
+                    sessionStorage.setItem('amountDueType', 'Total');
                     setPolicyDetails(data.policyDetails[0]);
+                    setIsSearchingPolicy(false);
                 }
-                setIsSearchingPolicy(false);
             } else {
                 setErrorPolicy('(Policy not found)');
             }
@@ -261,7 +262,7 @@ function Step1() {
                         <div className="card">
                             <span className="card-title">Policy Details</span>
                             <div className="row">
-                                <div className="space-between col-md-12 my-1">
+                                <div className="space-between col-md-12">
                                     <span className="text-gray">Policy No.:</span>
                                     <span className="text-right" id="policy-no">
                                         {policyDetails.line_cd}-
@@ -272,19 +273,19 @@ function Step1() {
                                         {lpad(policyDetails.renew_no, 2)}
                                     </span>
                                 </div>
-                                <div className="space-between col-md-12 my-1">
+                                <div className="space-between col-md-12 mt-1">
                                     <span className="text-gray">Invoice No.:</span>
                                     <span className="text-right">{policyDetails.invoice_no_formatted}</span>
                                 </div>
-                                <div className="space-between col-md-12 my-1">
+                                <div className="space-between col-md-12 mt-1">
                                     <span className="text-gray">Assured:</span>
                                     <span className="text-right">{policyDetails.assd_name}</span>
                                 </div>
-                                <div className="space-between col-md-12 my-1">
+                                <div className="space-between col-md-12 mt-1">
                                     <span className="text-gray">Due Date:</span>
                                     <span className="text-right">{policyDetails.due_date}</span>
                                 </div>
-                                <div className="space-between col-md-12 my-2">
+                                <div className="space-between col-md-12 mt-2">
                                     <span className="text-gray">{amountDueType === 'Balance' ? 'Balance Amount Due:' : 'Total Amount Due:' }</span>
                                     <span className="text-right fw-bold">Php {currencyFormat(policyDetails.balance_amt_due)}</span>
                                 </div>
@@ -302,11 +303,11 @@ function Step1() {
                         <div className="card">
                             <span className="card-title">Add Contact Details</span>
                             <div className="row">
-                                <div className="col-xl-6 my-2">
+                                <div className="col-xl-6">
                                     <label htmlFor="inputPassword5" className="form-label text-gray">Email*</label>
                                     <input type="text" className="form-control" name="email" value={contactFormData.email} onChange={handleContactFormDataChange} required/>
                                 </div>
-                                <div className="col-xl-6 my-2">
+                                <div className="col-xl-6 mt-1">
                                     <label htmlFor="inputAddress5" className="form-label text-gray">Mobile No*</label>
                                     <input type="text" className="form-control" name="mobileNo" value={contactFormData.mobileNo} onChange={handleContactFormDataChange} required/>
                                 </div>

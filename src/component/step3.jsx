@@ -189,39 +189,10 @@ function Step3() {
                     </div>
                 </div>
 
-                {amountDueType === 'Total' ? (
-                    <div className="card">
-                        <div className="row">
-                            <div className="space-between col-md-12">
-                                <span className="text-gray">Premium Amount:</span>
-                                <span className="text-right">{currencyFormat(policyDetails.prem_amt)}</span>
-                            </div>
-                            <div className="space-between col-md-12 my-1">
-                                <span className="text-gray">Tax Amount:</span>
-                                <span className="text-right">{currencyFormat(policyDetails.tax_amt)}</span>
-                            </div>
-                            <div className="space-between col-md-12 mt-2 align-center">
-                                <span>Total Amount Due:</span>
-                                <span className="text-medium text-right">Php {currencyFormat(policyDetails.total_amt_due)}</span>
-                            </div>
-                        </div>
-                    </div>
-                ) : (
-                    <div className="card">
-                        <div className="row">
-                            <div className="space-between col-md-12 mt-2 align-center">
-                                <span>Balance Amount Due:</span>
-                                <span className="text-medium text-right">Php {currencyFormat(policyDetails.balance_amt_due)}</span>
-                            </div>
-                        </div>
-                    </div>
-                )}
-
-                <div className="divider" />
-                <div className="card mt-0">
+                <div className="card mt-3 mb-0">
                     <span className="card-title">Policy Details</span>
                     <div className="row">
-                        <div className="space-between col-md-12 my-1">
+                        <div className="space-between col-md-12">
                             <span className="text-gray">Policy No.:</span>
                             <span className="text-right">
                                 {policyDetails.line_cd}-
@@ -232,15 +203,15 @@ function Step3() {
                                 {lpad(policyDetails.renew_no, 2)}
                             </span>
                         </div>
-                        <div className="space-between col-md-12 my-1">
+                        <div className="space-between col-md-12 mt-1">
                             <span className="text-gray">Assured:</span>
                             <span className="text-right">{policyDetails.assd_name}</span>
                         </div>
-                        <div className="space-between col-md-12 my-1">
+                        <div className="space-between col-md-12 mt-1">
                             <span className="text-gray">Invoice No.:</span>
                             <span className="text-right">{policyDetails.invoice_no_formatted}</span>
                         </div>
-                        <div className="space-between col-md-12 my-1">
+                        <div className="space-between col-md-12 mt-1">
                             <span className="text-gray">Due Date:</span>
                             <span className="text-right">{policyDetails.due_date}</span>
                         </div>
@@ -248,14 +219,14 @@ function Step3() {
                 </div>
                 <div className="divider" />
 
-                <div className="card mt-0">
+                <div className="card my-0">
                     <span className="card-title">Contact Details</span>
                     <div className="row">
-                        <div className="space-between col-md-12 my-1">
+                        <div className="space-between col-md-12">
                             <span className="text-gray">Email:</span>
                             <span className="text-right">{contactDetails.email}</span>
                         </div>
-                        <div className="space-between col-md-12 my-1">
+                        <div className="space-between col-md-12 mt-1">
                             <span className="text-gray">Mobile No:</span>
                             <span className="text-right">{contactDetails.mobileNo}</span>
                         </div>
@@ -264,22 +235,54 @@ function Step3() {
 
                 <div className="divider" />
 
-                <div className="card mt-0">
+                {amountDueType === 'Total' ? (
+                    <div className="card my-0">
+                        <span className="card-title">Amount</span>
+                        <div className="row">
+                            <div className="space-between col-md-12">
+                                <span className="text-gray">Premium Amount:</span>
+                                <span className="text-right">{currencyFormat(policyDetails.prem_amt)}</span>
+                            </div>
+                            <div className="space-between col-md-12 mt-1">
+                                <span className="text-gray">Tax Amount:</span>
+                                <span className="text-right">{currencyFormat(policyDetails.tax_amt)}</span>
+                            </div>
+                            <div className="space-between col-md-12 mt-1">
+                                <span>Total Amount:</span>
+                                <span className="text-right fw-bold">Php {currencyFormat(policyDetails.total_amt_due)}</span>
+                            </div>
+                        </div>
+                    </div>
+                ) : (
+                    <div className="card my-0">
+                        <span className="card-title">Amount</span>
+                        <div className="row">
+                            <div className="space-between col-md-12">
+                                <span>Payable Amount:</span>
+                                <span className="text-right fw-bold">Php {currencyFormat(policyDetails.balance_amt_due)}</span>
+                            </div>
+                        </div>
+                    </div>
+                )}
+
+                <div className="divider" />
+
+                <div className="card my-0">
                     <span className="card-title">Payment Method</span>
                     {selectedMethod == 7 ? (
                         <div className="row">
-                            <div className="space-between col-md-12 my-1">
+                            <div className="space-between col-md-12 mt-1">
                             <span className="text-gray mt-1">Source:</span>
                             <div>
                                 <span>Credit Card</span>
                                 <img className="bank-img ml-2" src={CCLogo} />
                             </div>
                             </div>
-                            <div className="space-between col-md-12 my-1">
+                            <div className="space-between col-md-12 mt-1">
                                 <span className="text-gray">Full Name:</span>
                                 <span className="text-right">{creditDetails.fname} {creditDetails.mname} {creditDetails.lname}</span>
                             </div>
-                            <div className="space-between col-md-12 my-1">
+                            <div className="space-between col-md-12 mt-1">
                                 <span className="text-gray">Complete Address:</span>
                                 <span className="text-right">{creditDetails.street}, {creditDetails.brgy}, {creditDetails.city}, {creditDetails.province}, {creditDetails.country} {creditDetails.zipcode}</span>
                             </div>

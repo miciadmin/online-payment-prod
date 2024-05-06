@@ -99,33 +99,33 @@ function Step2() {
 
                 <div className="card">
                     <div className="premium-container">
-                    <p>Php {currencyFormat(policyDetails.balance_amt_due)}</p> 
-                    <p className="text-gray">Payable Amount</p>
+                    <span>Php {currencyFormat(policyDetails.balance_amt_due)}</span> 
+                    <span className="text-gray">Payable Amount</span>
                     </div>
                 </div>
 
                 <div className="payment-method-container">
                     <span className="card-title">Online Banking</span>
                     <div className="row mb-3">
-                        <div className="col-xl-6 my-2">
+                        <div className="col-xl-6 my-1">
                             <div className={`radio-card radio-card-1 ${selectedMethod == 1 ? 'selected' : ''}`} onClick={() => selectRadioCard(1)}>
                                 <img className="bank-img mr-4" src={BPILogo}/>
                                 <span>BPI Online/Mobile</span>
                             </div>
                         </div>
-                        <div className="col-xl-6 my-2">
+                        <div className="col-xl-6 my-1">
                             <div className={`radio-card radio-card-2 ${selectedMethod == 2 ? 'selected' : ''}`} onClick={() => selectRadioCard(2)}>
                                 <img className="bank-img mr-4" src="https://test.dragonpay.ph/Bank/images/cbclogo.jpg"/>
                                 <span>China Bank Online Direct Debit</span>
                             </div>
                         </div>
-                        <div className="col-xl-6 my-2">
+                        <div className="col-xl-6 my-1">
                             <div className={`radio-card radio-card-3 ${selectedMethod == 3 ? 'selected' : ''}`} onClick={() => selectRadioCard(3)}>
                                 <img className="bank-img mr-4" src={RCBCLogo}/>
                                 <span>RCBC Online Direct Debit</span>
                             </div>
                         </div>
-                        <div className="col-xl-6 my-2">
+                        <div className="col-xl-6 my-1">
                             <div className={`radio-card radio-card-4 ${selectedMethod == 4 ? 'selected' : ''}`} onClick={() => selectRadioCard(4)}>
                                 <img className="bank-img mr-4" src="https://test.dragonpay.ph/Bank/images/ubplogo.jpg"/>
                                 <span>Unionbank Online Direct Debit</span>
@@ -135,13 +135,13 @@ function Step2() {
                     
                     <span className="card-title">E-Wallet</span>
                     <div className="row mb-3">
-                        <div className="col-xl-6 my-2">
+                        <div className="col-xl-6 my-1">
                             <div className={`radio-card radio-card-5 ${selectedMethod == 5 ? 'selected' : ''}`} onClick={() => selectRadioCard(5)}>
                                 <img className="bank-img mr-4" src={GCASHLogo}/>
                                 <span>Globe GCash</span>
                             </div>
                         </div>
-                        <div className="col-xl-6 my-2">
+                        <div className="col-xl-6 my-1">
                             <div className={`radio-card radio-card-6 ${selectedMethod == 6 ? 'selected' : ''}`} onClick={() => selectRadioCard(6)}>
                                 <img className="bank-img mr-4" src="https://test.dragonpay.ph/Bank/images/paymayalogo.jpg"/>
                                 <span>PayMaya</span>
@@ -151,13 +151,13 @@ function Step2() {
 
                     <span className="card-title">Credit Card</span>
                     <div className="row">
-                        <div className="col-xl-6 my-2">
+                        <div className="col-xl-6 my-1">
                             <div className={`radio-card radio-card-7 ${selectedMethod == 7 ? 'selected' : ''}`} onClick={() => selectRadioCard(7)}>
                                 <img className="bank-img mr-4" src={CCLogo}/>
                                 <span>Credit Card</span>
                             </div>
                         </div>
-                        <div className="col-xl-6 my-2">
+                        <div className="col-xl-6 my-1">
                             <div className={`radio-card radio-card-8 ${selectedMethod == 8 ? 'selected' : ''}`} onClick={() => selectRadioCard(8)}>
                                 <img className="bank-img mr-4" src="https://test.dragonpay.ph/Bank/images/boguslogo.jpg"/>
                                 <span>Test Bank Online</span>
@@ -178,35 +178,35 @@ function Step2() {
                         <div id="credit-card-dtls" className="card">
                             <span className="card-title">Credit Card Details</span>
                             <div className="row">
-                                <div className="col-xl-4 my-2">
+                                <div className="col-xl-4 mt-1">
                                     <label htmlFor="inputPassword5" className="form-label text-gray">FirstName*</label>
                                     <input type="text" className="form-control" name="fname" value={creditFormData.fname} onChange={handleCreditFormDataChange} required/>
                                 </div>
-                                <div className="col-xl-4 my-2">
+                                <div className="col-xl-4 mt-1">
                                     <label htmlFor="inputAddress5" className="form-label text-gray">MiddleName*</label>
                                     <input type="text" className="form-control" name="mname" value={creditFormData.mname} onChange={handleCreditFormDataChange} required/>
                                 </div>
-                                <div className="col-xl-4 my-2">
+                                <div className="col-xl-4 mt-1">
                                     <label htmlFor="inputAddress5" className="form-label text-gray">LastName*</label>
                                     <input type="text" className="form-control" name="lname" value={creditFormData.lname} onChange={handleCreditFormDataChange} required/>
                                 </div>
-                                <div className="col-xl-6 my-2">
+                                <div className="col-xl-6 mt-1">
                                     <label htmlFor="inputAddress5" className="form-label text-gray">Street*</label>
                                     <input type="text" className="form-control" name="street" value={creditFormData.street} onChange={handleCreditFormDataChange} required/>
                                 </div>
-                                <div className="col-xl-6 my-2">
+                                <div className="col-xl-6 mt-1">
                                     <label htmlFor="inputAddress5" className="form-label text-gray">Barangay*</label>
                                     <input type="text" className="form-control" name="brgy" value={creditFormData.brgy} onChange={handleCreditFormDataChange} required/>
                                 </div>
-                                <div className="col-xl-6 my-2">
+                                <div className="col-xl-6 mt-1">
                                     <label htmlFor="inputAddress5" className="form-label text-gray">City*</label>
                                     <input type="text" className="form-control" name="city" value={creditFormData.city} onChange={handleCreditFormDataChange} required/>
                                 </div>
-                                <div className="col-xl-6 my-2">
+                                <div className="col-xl-6 mt-1">
                                     <label htmlFor="inputAddress5" className="form-label text-gray">Province*</label>
                                     <input type="text" className="form-control" name="province" value={creditFormData.province} onChange={handleCreditFormDataChange} required/>
                                 </div>
-                                <div className="col-xl-6 my-2">
+                                <div className="col-xl-6 mt-1">
                                     <label htmlFor="inputAddress5" className="form-label text-gray">Country*</label>
                                     <select className="form-select" name="country" value={creditFormData ? creditFormData.country : 'PH'} onChange={handleCreditFormDataChange}>
                                         <option value="PH">Philippines</option>
@@ -214,7 +214,7 @@ function Step2() {
                                         <option value="CA">Canada</option>
                                     </select>
                                 </div>
-                                <div className="col-xl-6 my-2">
+                                <div className="col-xl-6 mt-1">
                                     <label htmlFor="inputAddress5" className="form-label text-gray">Zipcode (Optional)</label>
                                     <input type="text" className="form-control" name="zipcode" value={creditFormData.zipcode} onChange={handleCreditFormDataChange}/>
                                 </div>

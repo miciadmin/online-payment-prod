@@ -7,7 +7,7 @@ function Sidebar({ isContainerVisible, isBackVisible, onClose }) {
 
     const createPayment = () => {
         removeCookies();
-        navigate('/search-policy');
+        navigate('/');
     }
 
     const removeCookies = () => {
