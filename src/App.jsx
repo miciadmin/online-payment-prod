@@ -36,6 +36,7 @@ function App() {
           <Route path="/privacy-policy" element={<PrivacyPolicy/>}></Route>
 
           <Route path="*" element={<ErrorPage/>}></Route>
+          <Route component={<ErrorPage/>} />
         </Routes>
       </BrowserRouter>
   )
