@@ -20,16 +20,16 @@ function Step1() {
     const [errorContact, setErrorContact] = useState(null);
     const [errorPolicy, setErrorPolicy] = useState(null);
     const [policyFormData, setPolicyFormData] = useState({
-        lineCd: 'MC',
-        sublineCd: 'PVSPL',
-        issCd: 'SF',
-        issYy: '22',
-        seqNo: '854',
-        renewNo: '1'
+        lineCd: '',
+        sublineCd: '',
+        issCd: '',
+        issYy: '',
+        seqNo: '',
+        renewNo: ''
     });
     const [contactFormData, setContactFormData] = useState({
-        email: 'llsalomon@mici.com.ph',
-        mobileNo: '09123305767'
+        email: '',
+        mobileNo: ''
     });
 
     useEffect(() => {
