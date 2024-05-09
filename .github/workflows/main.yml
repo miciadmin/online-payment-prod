@@ -8,9 +8,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
-    env:
-      VITE_API_URL: ${{ env.uat.VITE_API_URL }}
       
     steps:
       - name: Checkout code
@@ -30,12 +27,10 @@ jobs:
       - name: Deploy to UAT
         env:
           REACT_APP_API_ENDPOINT: ${{ secrets.API_ENDPOINT }}
-          API_ENDPOINT: ${{ secrets.API_ENDPOINT }}
+          VITE_API_URL: ${{ env.uat.VITE_API_URL }}
         run: |
           echo "REACT_APP_API_ENDPOINT=${REACT_APP_API_ENDPOINT}" > .env.production
-          echo "API_ENDPOINT=${API_ENDPOINT}" >> .env.production
           echo "VITE_API_URL=${VITE_API_URL}" >> .env.production
-          echo $VITE_API_URL
       - name: Run one-line script
         run: echo $VITE_API_URL
         env: 
