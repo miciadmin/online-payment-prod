@@ -34,4 +34,4 @@ jobs:
           echo "API_ENDPOINT=${API_ENDPOINT}" >> .env.production
           echo "VITE_API_URL=${VITE_API_URL}" >> .env.production
           npm run build
-          npm run vite -- build
+          npm run preview
