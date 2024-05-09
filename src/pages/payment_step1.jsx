@@ -42,10 +42,6 @@ export default function() {
             navigate(`/payment-result/${params.status}/${params.refno}`);
         } 
     }, [params]);
-
-    console.log('>>>>>> REACT_APP_API_ENDPOINT: ' + import.meta.env.REACT_APP_API_ENDPOINT);
-    console.log('>>>>>> API_ENDPOINT: ' + import.meta.env.API_ENDPOINT);
-    console.log('>>>>>> VITE_API_URL: ' + import.meta.env.VITE_API_URL);
     
     return(
         <Step1/>
