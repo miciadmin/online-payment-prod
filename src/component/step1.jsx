@@ -121,29 +121,33 @@ function Step1() {
                 'Authorization': `Bearer ${token}`
                 }
             });
-            const data = await response.json();
-            console.log(data);
-            if(data.isExist) {
-                 if (data.policyDetails[0].payment_stat === 'PARTIALLY PAID') {
-                    setAmountDueType('Balance');
-                    sessionStorage.setItem('amountDueType', 'Balance');
-                    setShowPartiallyPaidModal(true);
-                    setPolicyDetails(data.policyDetails[0]);
-                    setIsSearchingPolicy(false);
-                } else if (data.policyDetails[0].payment_stat === 'FULLY PAID') {
-                    setErrorPolicy('(Policy is already settled)');
-                } else if (data.policyDetails[0].payment_stat === 'CANCELLED') {
-                    setErrorPolicy('(Policy is cancelled)');
-                } else if (data.policyDetails[0].payment_stat === 'OVERDUE') {
-                    setErrorPolicy('(Policy is overdue)');
+            if (response.ok) {
+                const data = await response.json();
+                console.log(data);
+                if(data.isExist) {
+                    if (data.policyDetails[0].payment_stat === 'PARTIALLY PAID') {
+                        setAmountDueType('Balance');
+                        sessionStorage.setItem('amountDueType', 'Balance');
+                        setShowPartiallyPaidModal(true);
+                        setPolicyDetails(data.policyDetails[0]);
+                        setIsSearchingPolicy(false);
+                    } else if (data.policyDetails[0].payment_stat === 'FULLY PAID') {
+                        setErrorPolicy('(Policy is already settled)');
+                    } else if (data.policyDetails[0].payment_stat === 'CANCELLED') {
+                        setErrorPolicy('(Policy is cancelled)');
+                    } else if (data.policyDetails[0].payment_stat === 'OVERDUE') {
+                        setErrorPolicy('(Policy is overdue)');
+                    } else {
+                        setAmountDueType('Total');
+                        sessionStorage.setItem('amountDueType', 'Total');
+                        setPolicyDetails(data.policyDetails[0]);
+                        setIsSearchingPolicy(false);
+                    }
                 } else {
-                    setAmountDueType('Total');
-                    sessionStorage.setItem('amountDueType', 'Total');
-                    setPolicyDetails(data.policyDetails[0]);
-                    setIsSearchingPolicy(false);
+                    setErrorPolicy('(Policy not found)');
                 }
             } else {
-                setErrorPolicy('(Policy not found)');
+                setErrorPolicy('(Server connection error)');
             }
         } catch (error) {
             setErrorPolicy('(Server connection error)');
