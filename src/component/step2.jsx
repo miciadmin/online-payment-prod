@@ -5,7 +5,7 @@ import CCLogo from '../assets/credit_card_icon.png'
 import BPILogo from '../assets/bpilogo.png';
 import RCBCLogo from '../assets/rcbclogo.png';
 import GCASHLogo from '../assets/gcashlogo.png';
-import { endpoint, currencyFormat, goBack } from '../js/utils';
+import { currencyFormat, goBack, textInputOnly, addressInput, numInputOnly } from '../js/utils';
 import { useNavigate } from 'react-router-dom';
 
 function Step2() {
@@ -180,31 +180,31 @@ function Step2() {
                             <div className="row">
                                 <div className="col-xl-4 mt-1">
                                     <label htmlFor="inputPassword5" className="form-label text-gray">FirstName*</label>
-                                    <input type="text" className="form-control" name="fname" value={creditFormData.fname} onChange={handleCreditFormDataChange} required/>
+                                    <input type="text" className="form-control" name="fname" value={creditFormData.fname} onChange={handleCreditFormDataChange} onInput={textInputOnly} required/>
                                 </div>
                                 <div className="col-xl-4 mt-1">
                                     <label htmlFor="inputAddress5" className="form-label text-gray">MiddleName*</label>
-                                    <input type="text" className="form-control" name="mname" value={creditFormData.mname} onChange={handleCreditFormDataChange} required/>
+                                    <input type="text" className="form-control" name="mname" value={creditFormData.mname} onChange={handleCreditFormDataChange} onInput={textInputOnly} required/>
                                 </div>
                                 <div className="col-xl-4 mt-1">
                                     <label htmlFor="inputAddress5" className="form-label text-gray">LastName*</label>
-                                    <input type="text" className="form-control" name="lname" value={creditFormData.lname} onChange={handleCreditFormDataChange} required/>
+                                    <input type="text" className="form-control" name="lname" value={creditFormData.lname} onChange={handleCreditFormDataChange} onInput={textInputOnly} required/>
                                 </div>
                                 <div className="col-xl-6 mt-1">
                                     <label htmlFor="inputAddress5" className="form-label text-gray">Street*</label>
-                                    <input type="text" className="form-control" name="street" value={creditFormData.street} onChange={handleCreditFormDataChange} required/>
+                                    <input type="text" className="form-control" name="street" value={creditFormData.street} onChange={handleCreditFormDataChange} onInput={addressInput} required/>
                                 </div>
                                 <div className="col-xl-6 mt-1">
                                     <label htmlFor="inputAddress5" className="form-label text-gray">Barangay*</label>
-                                    <input type="text" className="form-control" name="brgy" value={creditFormData.brgy} onChange={handleCreditFormDataChange} required/>
+                                    <input type="text" className="form-control" name="brgy" value={creditFormData.brgy} onChange={handleCreditFormDataChange} onInput={addressInput} required/>
                                 </div>
                                 <div className="col-xl-6 mt-1">
                                     <label htmlFor="inputAddress5" className="form-label text-gray">City*</label>
-                                    <input type="text" className="form-control" name="city" value={creditFormData.city} onChange={handleCreditFormDataChange} required/>
+                                    <input type="text" className="form-control" name="city" value={creditFormData.city} onChange={handleCreditFormDataChange} onInput={addressInput} required/>
                                 </div>
                                 <div className="col-xl-6 mt-1">
                                     <label htmlFor="inputAddress5" className="form-label text-gray">Province*</label>
-                                    <input type="text" className="form-control" name="province" value={creditFormData.province} onChange={handleCreditFormDataChange} required/>
+                                    <input type="text" className="form-control" name="province" value={creditFormData.province} onChange={handleCreditFormDataChange} onInput={addressInput} required/>
                                 </div>
                                 <div className="col-xl-6 mt-1">
                                     <label htmlFor="inputAddress5" className="form-label text-gray">Country*</label>
@@ -216,7 +216,7 @@ function Step2() {
                                 </div>
                                 <div className="col-xl-6 mt-1">
                                     <label htmlFor="inputAddress5" className="form-label text-gray">Zipcode (Optional)</label>
-                                    <input type="text" className="form-control" name="zipcode" value={creditFormData.zipcode} onChange={handleCreditFormDataChange}/>
+                                    <input type="text" className="form-control" name="zipcode" value={creditFormData.zipcode} onChange={handleCreditFormDataChange} onInput={numInputOnly}/>
                                 </div>
                             </div>
                             {errorCredit &&(

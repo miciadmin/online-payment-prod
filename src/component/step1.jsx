@@ -1,15 +1,15 @@
 import React, { useState, useRef, useEffect} from 'react';
 import Sidebar from './sidebar';
-import { endpoint, currencyFormat, isValidEmail, isValidMobileNo, lpad, goBack} from '../js/utils';
+import { endpoint, currencyFormat, isValidEmail, isValidMobileNo, lpad, numInputOnly, textInputOnly, numAndTextInput} from '../js/utils';
 import { useNavigate } from 'react-router-dom';
 import MiciLogo from '../assets/mici_logo.svg'
 import PartiallyPaidModal from './partially_paid_modal';
 
 function Step1() {
-    const inputRef = useRef();
     const navigate = useNavigate();
     const [isSidebarVisible, setSidebarVisible] = useState(false);
     const [loading, setLoading] = useState(false);
+    const inputRef = useRef();
     
     const [policyDetails, setPolicyDetails] = useState(JSON.parse(sessionStorage.getItem('policyDtls')));
     const [contactDetails, setContactDetails] = useState(JSON.parse(sessionStorage.getItem('contactDtls')));
@@ -33,12 +33,9 @@ function Step1() {
     });
 
     useEffect(() => {
-    });
-
-    useEffect(() => {
         try {
             inputRef.current.focus();
-        } catch(e){}
+        } catch(e) {}
         if (policyDetails) {
             setIsSearchingPolicy(false);
         }
@@ -86,7 +83,7 @@ function Step1() {
         });
         try {
             inputRef.current.focus();
-        } catch(e){}
+        } catch(e) {}
     }
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -125,18 +122,19 @@ function Step1() {
                 const data = await response.json();
                 console.log(data);
                 if(data.isExist) {
-                    if (data.policyDetails[0].payment_stat === 'PARTIALLY PAID') {
+                    let status = data.policyDetails[0].payment_stat;
+                    if (status === 'FULLY PAID') {
+                        setErrorPolicy('(Policy is already settled)');
+                    } else if (status === 'CANCELLED') {
+                        setErrorPolicy('(Policy is cancelled)');
+                    } else if (status === 'OVERDUE') {
+                        setErrorPolicy('(Policy is overdue)');
+                    } else if (status === 'PARTIALLY PAID') {
                         setAmountDueType('Balance');
                         sessionStorage.setItem('amountDueType', 'Balance');
                         setShowPartiallyPaidModal(true);
                         setPolicyDetails(data.policyDetails[0]);
                         setIsSearchingPolicy(false);
-                    } else if (data.policyDetails[0].payment_stat === 'FULLY PAID') {
-                        setErrorPolicy('(Policy is already settled)');
-                    } else if (data.policyDetails[0].payment_stat === 'CANCELLED') {
-                        setErrorPolicy('(Policy is cancelled)');
-                    } else if (data.policyDetails[0].payment_stat === 'OVERDUE') {
-                        setErrorPolicy('(Policy is overdue)');
                     } else {
                         setAmountDueType('Total');
                         sessionStorage.setItem('amountDueType', 'Total');
@@ -155,14 +153,12 @@ function Step1() {
             setLoading(false);
         }
     };
-    const fetchToken = () => {
-        return fetch(`${endpoint()}/generateToken`)
-            .then(response => {
-                if (!response.ok) {
-                    setErrorPolicy('(Server connection error)');
-                }
-                return response.text();
-            });
+    const fetchToken = async () => {
+        const response = await fetch(`${endpoint()}/generateToken`);
+        if (!response.ok) {
+            setErrorPolicy('(Server connection error)');
+        }
+        return await response.text();
     }
     const handleSeqNoFocusOut = (e) => {
         let newValue;
@@ -186,12 +182,6 @@ function Step1() {
                 renewNo: newValue
             });
         }
-    };
-    const handleNumInputOnly = (e) => {
-        e.target.value = e.target.value.replace(/[^0-9]/g, '').toUpperCase();
-    };
-    const handleTextInputOnly = (e) => {
-        e.target.value = e.target.value.replace(/[^a-zA-Z]/g, '').toUpperCase();
     };
     const goNextPage = (e) => {
         let validEmail = isValidEmail(contactFormData.email);
@@ -255,12 +245,12 @@ function Step1() {
                         )}
                     </div>
                     <div className="policy-no-fields">
-                        <input type="text" ref={inputRef} className="form-control text-center" name="lineCd" value={policyFormData.lineCd} onChange={handlePolicyFormDataChange} onInput={handleTextInputOnly} maxLength={2} required/>
-                        <input type="text" className="form-control text-center" name="sublineCd" value={policyFormData.sublineCd} onChange={handlePolicyFormDataChange} onInput={handleTextInputOnly} maxLength={5} required/>
-                        <input type="text" className="form-control text-center" name="issCd" value={policyFormData.issCd} onChange={handlePolicyFormDataChange} /*onInput={handleTextInputOnly}*/ maxLength={2} required/>
-                        <input type="text" className="form-control text-center" name="issYy" value={policyFormData.issYy} onChange={handlePolicyFormDataChange} onInput={handleNumInputOnly} maxLength={2} required/>
-                        <input type="text" className="form-control text-center" name="seqNo" value={policyFormData.seqNo} onChange={handlePolicyFormDataChange} onInput={handleNumInputOnly} onBlur={handleSeqNoFocusOut} maxLength={7} required/>
-                        <input type="text" className="form-control text-center" name="renewNo" value={policyFormData.renewNo} onChange={handlePolicyFormDataChange} onInput={handleNumInputOnly} onBlur={handleRenewNoFocusOut} maxLength={2} required/>
+                        <input type="text" ref={inputRef} className="form-control text-center" name="lineCd" value={policyFormData.lineCd} onChange={handlePolicyFormDataChange} onInput={textInputOnly} maxLength={2} required/>
+                        <input type="text" className="form-control text-center" name="sublineCd" value={policyFormData.sublineCd} onChange={handlePolicyFormDataChange} onInput={textInputOnly} maxLength={5} required/>
+                        <input type="text" className="form-control text-center" name="issCd" value={policyFormData.issCd} onChange={handlePolicyFormDataChange} onInput={numAndTextInput} maxLength={2} required/>
+                        <input type="text" className="form-control text-center" name="issYy" value={policyFormData.issYy} onChange={handlePolicyFormDataChange} onInput={numInputOnly} maxLength={2} required/>
+                        <input type="text" className="form-control text-center" name="seqNo" value={policyFormData.seqNo} onChange={handlePolicyFormDataChange} onInput={numInputOnly} onBlur={handleSeqNoFocusOut} maxLength={7} required/>
+                        <input type="text" className="form-control text-center" name="renewNo" value={policyFormData.renewNo} onChange={handlePolicyFormDataChange} onInput={numInputOnly} onBlur={handleRenewNoFocusOut} maxLength={2} required/>
                     </div>
                     <span className="text-gray my-2">(Example: PA-SPA-HO-24-0000123-00)</span>
                     <div className="text-center">

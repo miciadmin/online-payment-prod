@@ -22,6 +22,18 @@ export function lpad(str, length) {
     }
     return str;
 }
+export const numInputOnly = (e) => {
+    e.target.value = e.target.value.replace(/[^0-9]/g, '').toUpperCase();
+};
+export const textInputOnly = (e) => {
+    e.target.value = e.target.value.replace(/[^a-zA-Z]/g, '').toUpperCase();
+};
+export const numAndTextInput = (e) => {
+    e.target.value = e.target.value.replace(/[^0-9a-zA-Z]/g, '').toUpperCase();
+};
+export const addressInput = (e) => {
+    e.target.value = e.target.value.replace(/[^0-9a-zA-Z.\-&]/g, '').toUpperCase();
+};
 export const endpoint = () => {
     if (process.env.NODE_ENV === 'production') {
         if (window.location.hostname === 'payment.mercantile.ph') {
