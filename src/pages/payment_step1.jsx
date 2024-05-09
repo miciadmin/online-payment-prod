@@ -42,7 +42,10 @@ export default function() {
             navigate(`/payment-result/${params.status}/${params.refno}`);
         } 
     }, [params]);
-        
+
+    
+    console.log('>>>>>>' + process.env.VITE_API_URL);
+    
     return(
         <Step1/>
     )
