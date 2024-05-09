@@ -124,14 +124,18 @@ function Step1() {
             const data = await response.json();
             console.log(data);
             if(data.isExist) {
-                if (data.policyDetails[0].payment_stat === 'FULLY PAID') {
-                    setErrorPolicy('(Policy already paid)');
-                } else if (data.policyDetails[0].payment_stat === 'PARTIALLY PAID') {
+                 if (data.policyDetails[0].payment_stat === 'PARTIALLY PAID') {
                     setAmountDueType('Balance');
                     sessionStorage.setItem('amountDueType', 'Balance');
                     setShowPartiallyPaidModal(true);
                     setPolicyDetails(data.policyDetails[0]);
                     setIsSearchingPolicy(false);
+                } else if (data.policyDetails[0].payment_stat === 'FULLY PAID') {
+                    setErrorPolicy('(Policy is already settled)');
+                } else if (data.policyDetails[0].payment_stat === 'CANCELLED') {
+                    setErrorPolicy('(Policy is cancelled)');
+                } else if (data.policyDetails[0].payment_stat === 'OVERDUE') {
+                    setErrorPolicy('(Policy is overdue)');
                 } else {
                     setAmountDueType('Total');
                     sessionStorage.setItem('amountDueType', 'Total');
