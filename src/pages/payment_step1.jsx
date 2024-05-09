@@ -43,8 +43,9 @@ export default function() {
         } 
     }, [params]);
 
-    
-    console.log('>>>>>>' + import.meta.env.VITE_API_URL);
+    console.log('>>>>>> REACT_APP_API_ENDPOINT: ' + import.meta.env.REACT_APP_API_ENDPOINT);
+    console.log('>>>>>> API_ENDPOINT: ' + import.meta.env.API_ENDPOINT);
+    console.log('>>>>>> VITE_API_URL: ' + import.meta.env.VITE_API_URL);
     
     return(
         <Step1/>
