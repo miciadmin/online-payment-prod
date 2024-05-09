@@ -25,13 +25,14 @@ export function lpad(str, length) {
 export const endpoint = () => {
     if (process.env.NODE_ENV === 'production') {
         if (window.location.hostname === 'payment.mercantile.ph') {
-            console.log('LIVE');
+            console.log('LIVE:'+import.meta.env.VITE_LIVE_API_URL);
             return import.meta.env.VITE_LIVE_API_URL;
         } else {
-            console.log('UAT');
+            console.log('UAT:'+import.meta.env.VITE_UAT_API_URL);
             return import.meta.env.VITE_UAT_API_URL;
         }
     } else {
+        console.log('LOCAL:'+import.meta.env.VITE_LOCAL_API_URL);
         return import.meta.env.VITE_LOCAL_API_URL;
     }      
 }
