@@ -9,6 +9,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
       
+    env:
+      # Setting an environment variable with the value of a configuration variable
+      env_var: ${{ vars.uat }}
+  
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -27,7 +31,7 @@ jobs:
       - name: Deploy to UAT
         env:
           REACT_APP_API_ENDPOINT: ${{ secrets.API_ENDPOINT }}
-          VITE_API_URL: ${{ env.uat.VITE_API_URL }}
+          VITE_API_URL: ${{ vars.VITE_API_URL }}
         run: |
           echo "REACT_APP_API_ENDPOINT=${REACT_APP_API_ENDPOINT}" > .env.production
           echo "VITE_API_URL=${VITE_API_URL}" >> .env.production
