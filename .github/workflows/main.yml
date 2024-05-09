@@ -1,4 +1,4 @@
-name: UAT
+name: uat
 
 on:
   push:
@@ -26,7 +26,11 @@ jobs:
 
       - name: Deploy to UAT
         env:
-          VITE_API_URL: ${{ env.VITE_API_URL }}
+          REACT_APP_API_ENDPOINT: ${{ secrets.API_ENDPOINT }}
+          API_ENDPOINT: ${{ secrets.API_ENDPOINT }}
+          VITE_API_URL: ${{ secrets.VITE_API_URL }}
         run: |
-          echo "VITE_API_URL=${VITE_API_URL}" > .env.production
+          echo "REACT_APP_API_ENDPOINT=${REACT_APP_API_ENDPOINT}" > .env.production
+          echo "API_ENDPOINT=${API_ENDPOINT}" >> .env.production
+          echo "VITE_API_URL=${VITE_API_URL}" >> .env.production
           npm run deploy
