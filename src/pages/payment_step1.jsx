@@ -14,7 +14,8 @@ export default function() {
 
     useEffect(() => {
         const handlePopstate = () => {
-            if (prevLocation.current  === "/search-policy") {
+            if (prevLocation.current  === "/search-policy"
+            || prevLocation.current  === "/") {
                 for (let i = 0; i < window.history.length; i++) {
                     history.go(-1);
                 }

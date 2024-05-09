@@ -1,9 +1,9 @@
 {
   "name": "MICI Online Payment",
-  "short_name": "Online Payment",
+  "short_name": "MICI Online Payment",
   "start_url": ".",
   "background_color": "#fff",
-  "theme_color": "#4c924c",
+  "theme_color": "#198754",
   "display": "standalone",
   "icons": [
     {
