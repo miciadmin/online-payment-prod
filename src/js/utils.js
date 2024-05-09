@@ -26,14 +26,14 @@ export const endpoint = () => {
     if (process.env.NODE_ENV === 'production') {
         if (window.location.hostname === 'payment.mercantile.ph') {
             console.log('LIVE');
-            return 'https://micolpayuat.mici.com.ph/online-payment/api/v1';
+            return import.meta.env.VITE_LIVE_API_URL;
         } else {
             console.log('UAT');
-            return 'https://micolpayuat.mici.com.ph/online-payment/api/v1';
+            return import.meta.env.VITE_UAT_API_URL;
         }
     } else {
         console.log('LOCALHOST');
-        return 'http://localhost:8080/api/v1';
+        return import.meta.env.VITE_LOCAL_API_URL;
     }      
 }
 export function goBack() {
