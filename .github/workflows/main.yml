@@ -33,3 +33,7 @@ jobs:
           echo "REACT_APP_API_ENDPOINT=${REACT_APP_API_ENDPOINT}" > .env.production
           echo "API_ENDPOINT=${API_ENDPOINT}" >> .env.production
           echo "VITE_API_URL=${VITE_API_URL}" >> .env.production
+      - name: Run one-line script
+        run: echo $CONTENT
+        env: 
+            CONTENT: Sample value here
