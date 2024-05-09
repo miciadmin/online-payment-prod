@@ -23,11 +23,18 @@ export function lpad(str, length) {
     return str;
 }
 export const endpoint = () => {
-    if (process.env.NODE_ENV === 'development') {
-      return 'http://localhost:8080/api/v1';
-    } else if (process.env.NODE_ENV === 'production') {
-      return 'https://120.28.153.210/online-payment/api/v1';
-    }
+    if (process.env.NODE_ENV === 'production') {
+        if (window.location.hostname === 'payment.mercantile.ph') {
+            console.log('LIVE');
+            return 'https://micolpayuat.mici.com.ph/online-payment/api/v1';
+        } else {
+            console.log('UAT');
+            return 'https://micolpayuat.mici.com.ph/online-payment/api/v1';
+        }
+    } else {
+        console.log('LOCALHOST');
+        return 'http://localhost:8080/api/v1';
+    }      
 }
 export function goBack() {
     window.history.go(-1);

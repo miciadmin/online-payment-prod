@@ -29,7 +29,7 @@ self.addEventListener('activate', evt => {
 
 // Event: Fetch
 self.addEventListener('fetch', evt => {
-    console.log('Intercepting fetch request for: ' + evt.request.url);
+    //console.log('Intercepting fetch request for: ' + evt.request.url);
     evt.respondWith(
         caches.match(evt.request).then(cacheRes => {
             return cacheRes || fetch(evt.request);
