@@ -253,7 +253,7 @@ function Step1() {
                     <div className="policy-no-fields">
                         <input type="text" ref={inputRef} className="form-control text-center" name="lineCd" value={policyFormData.lineCd} onChange={handlePolicyFormDataChange} onInput={handleTextInputOnly} maxLength={2} required/>
                         <input type="text" className="form-control text-center" name="sublineCd" value={policyFormData.sublineCd} onChange={handlePolicyFormDataChange} onInput={handleTextInputOnly} maxLength={5} required/>
-                        <input type="text" className="form-control text-center" name="issCd" value={policyFormData.issCd} onChange={handlePolicyFormDataChange} onInput={handleTextInputOnly} maxLength={2} required/>
+                        <input type="text" className="form-control text-center" name="issCd" value={policyFormData.issCd} onChange={handlePolicyFormDataChange} /*onInput={handleTextInputOnly}*/ maxLength={2} required/>
                         <input type="text" className="form-control text-center" name="issYy" value={policyFormData.issYy} onChange={handlePolicyFormDataChange} onInput={handleNumInputOnly} maxLength={2} required/>
                         <input type="text" className="form-control text-center" name="seqNo" value={policyFormData.seqNo} onChange={handlePolicyFormDataChange} onInput={handleNumInputOnly} onBlur={handleSeqNoFocusOut} maxLength={7} required/>
                         <input type="text" className="form-control text-center" name="renewNo" value={policyFormData.renewNo} onChange={handlePolicyFormDataChange} onInput={handleNumInputOnly} onBlur={handleRenewNoFocusOut} maxLength={2} required/>
