@@ -25,15 +25,15 @@ export function lpad(str, length) {
 export const endpoint = () => {
     if (process.env.NODE_ENV === 'production') {
         if (window.location.hostname === 'payment.mercantile.ph') {
-            console.log('LIVE:'+import.meta.env.VITE_LIVE_API_URL);
-            return import.meta.env.VITE_LIVE_API_URL;
+            console.log('LIVE');
+            return 'https://micolpayuat.mici.com.ph/online-payment/api/v1';
         } else {
-            console.log('UAT:'+import.meta.env.VITE_UAT_API_URL);
-            return import.meta.env.VITE_UAT_API_URL;
+            console.log('UAT');
+            return 'https://micolpayuat.mici.com.ph/online-payment/api/v1';
         }
     } else {
-        console.log('LOCAL:'+import.meta.env.VITE_LOCAL_API_URL);
-        return import.meta.env.VITE_LOCAL_API_URL;
+        console.log('LOCALHOST');
+        return 'http://localhost:8080/api/v1';
     }      
 }
 export function goBack() {
