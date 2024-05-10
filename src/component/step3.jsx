@@ -124,6 +124,7 @@ function Step3() {
                 body: JSON.stringify(requestBody)
             });
             const data = await response.json();
+            console.log(data);
             if (data.Status === 'S') {
                 window.location.href = data.Url;
             } else if(data.Status === 'invalid_or_expired_token')  {
