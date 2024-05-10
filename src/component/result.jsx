@@ -56,15 +56,13 @@ function ResultPage(status, refno) {
     const sendSuccessEmail = async () => {
         const token = sessionStorage.getItem('token');
         try {
-            const response = await fetch(`${endpoint()}/sendSuccessEmail?refNo=${params.refno}`, {
+            fetch(`${endpoint()}/sendSuccessEmail?refNo=${params.refno}`, {
                 method: 'GET',
                 headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`
                 }
             });
-            const data = response;
-            console.log(data);
         } catch (error) {
             console.error('Error:', error);
         } finally {
