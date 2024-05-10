@@ -325,10 +325,15 @@ label {
     margin-bottom: 5px;
 }*/
 
+@media (max-width: 1600px) {
+    .step-line {
+        width: 50vw;
+    }
+}
 
 @media (max-width: 1300px) {
     .step-line {
-        width: 60vw;
+        width: 80vw;
     }
     .left-container {
         display: none;
@@ -364,11 +369,7 @@ label {
         display: block;
     }
 }
-@media (max-width: 900px) {
-    .step-line {
-        width: 30vw;
-    }
-}
+
   /* Media query for mobile */
 @media (max-width: 767px) {
     .main-container {
@@ -441,10 +442,15 @@ label {
     }
   }
 
+@media (max-width: 500px) {
+    .step-line {
+        width: 65vw;
+    }
+}
 
 
-  /* Radio Cards CSS */
-  #radio-cards-container {
+/* Radio Cards CSS */
+#radio-cards-container {
     margin-top: 5rem;
     width: 75vw;
     display: flex;
