@@ -2,9 +2,8 @@ import React, { useState, useEffect} from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { endpoint } from '../js/utils';
 
-function ResultPage() {
+function ResultPage(status, refno) {
     const navigate = useNavigate();
-    const [params, setParams] = useState({});
 
     /*useEffect(() => {
         if (status === 'S') {
@@ -32,55 +31,18 @@ function ResultPage() {
         }
     }*/
     
-    useEffect(() => {
-        const urlParams = new URLSearchParams(window.location.search);
-        const paramsObject = {};
-        for (const [key, value] of urlParams) {
-          paramsObject[key] = value;
-        }
-        setParams(paramsObject);
-        
-        if (params.refno
-        && params.digest
-        && params.message
-        && params.txnid
-        && params.status) {
-            console.log('Payment successfull: sending email.');
-            sendSuccessEmail();
-        }
-        console.log('processing params');
-    }, []);
-    
-    const sendSuccessEmail = async () => {
-        const token = sessionStorage.getItem('token');
-        try {
-            const response = await fetch(`${endpoint()}/sendSuccessEmail?refNo=${params.refno}`, {
-                method: 'GET',
-                headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
-                }
-            });
-            const data = response;
-            console.log(data);
-        } catch (error) {
-            console.error('Error:', error);
-        } finally {
-            sessionStorage.clear();     
-        }
-    }
 
     return(
         <div className="center-div">
             <div className="result-container">
-                {params.status === 'S' ? (
+                {status === 'S' ? (
                     <>
                         <div className="header bg-success">
                             <i className="bi bi-check-circle text-medium" />
                             <span>Payment Successful</span>
                         </div>
                         <div className="body">
-                            <span>Reference No: {params.refno}</span>
+                            <span>Reference No: {refno}</span>
                             <p>
                                 Thank you for your payment! Your policy has been successfully paid, 
                                 and an email containing the details has been sent to you. 
