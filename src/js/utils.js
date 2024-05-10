@@ -61,3 +61,30 @@ export const getCurrentDateTime = () => {
     const seconds = date.getSeconds().toString().padStart(2, '0');
     return `${year}${month}${day}${hours}${minutes}${seconds}`;
 }
+export const bpiLogo = () => {
+    return 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhpo9TovofK2uSZKEaAQ_CXQ5KY-qUIQD1OYKOMfS2QSjBEIMF9wQ4qHjBZvNoAxf9Ia_H-GDgQYuLDylnXAXbTKR2UTi0s1tzfsVWzhTCXt8RkHv-1cl9hbbsqWeedMWjI6z6oeAPifXafH1XjBBUFqKesIIOpCxBuK1L8KDMQcnZF74yL8WX-nIQOipvH/s1600/bpilogo%20-%20Copy.png';
+}
+export const cbcLogo = () => {
+    return 'https://test.dragonpay.ph/Bank/images/cbclogo.jpg';
+}
+export const rcbcLogo = () => {
+    return 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEibI-2Utl2OnVw6OAIuKGv7hlCW6bNyj94pbuv8rT6NocpEKxZuvesKYLumvISweAm7EKLU3cXNi27YeGX2Rm8_7rAD91qpUQZ7MJi6TXgT20WJTe5qGLCm7i-7o9XPsPMOCJbVdZjYL03HB7yF1fDX7TIQAG4BJ0rGPvoOabneaJd_-X0Qaxgosw43Q29K/s1600/rcbclogo.png';
+}
+export const ubpLogo = () => {
+    return 'https://test.dragonpay.ph/Bank/images/ubplogo.jpg';
+}
+export const gcashLogo = () => {
+    return 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjwM-N5wCHW8YlixsTjJ-npFHRQ2z__aSlVFesbHZewNQlujh2PS9ARoYzux3kCd1D2DA5d0Qoea9wL2efnCRQtqYjf2by842wtX8KvqPa5xevAFZZPvTZyeJ4HUzaarHUTQUvSKvgaeBerGgnhZLj3e8-JlgcteA6ndvOud2WfSgf0mWgVznHB4Uw35tX0/s1600/gcashlogo.png';
+}
+export const mayaLogo = () => {
+    return 'https://test.dragonpay.ph/Bank/images/paymayalogo.jpg';
+}
+export const ccLogo = () => {
+    return 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhH-VPt7lqPOA5ZB3_TYlh2LN19zTscvf_4sv50NgbdaIWPqXLhpDozV5AEGCDb_YDb_gx6QpW8LRdIzisaYBCgufYBt06Kh5Fo9eHgJJ4A7a4NkP3dFKvP-Y8jRbeZOWWbP_t8Ct4sXKfYawKkwKBaWw8UvXhKNG47Haa_Xc_67hcohyphenhyphenK5-kGJu3zUmIKd/s1600/credit_card_icon.png';
+}
+export const bogusLogo = () => {
+    return 'https://test.dragonpay.ph/Bank/images/boguslogo.jpg';
+}
+export const miciLogo = () => {
+    return 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjhbrY98YwwhSY6TEouZBQb9szl97AVXU4yEZfhFo-4dfX3fr-Inu0poYWn5N-I3W_b58N21Mi_UjXKOtgPfVclLhGMPBekbk9ftEaTUhafn7WE5wKjJhOnPU2mlK_Ie1p-xlLeYTV994PsxwMEBoPYLeN1WzSdyY7pPT8_lBNTEt1tVwnQvKFDDMNyntVe/s1600/mici_logo_s.png';
+}

@@ -1,11 +1,8 @@
 import React, { useState, useRef, useEffect} from 'react';
 import Sidebar from './sidebar';
 import DragonPayLogo from '../assets/dragonpay.png'
-import CCLogo from '../assets/credit_card_icon.png'
-import BPILogo from '../assets/bpilogo.png';
-import RCBCLogo from '../assets/rcbclogo.png';
-import GCASHLogo from '../assets/gcashlogo.png';
-import { currencyFormat, goBack, textInputOnly, addressInput, numInputOnly } from '../js/utils';
+import { currencyFormat, goBack, textInputOnly, addressInput, numInputOnly, 
+        bpiLogo, cbcLogo, rcbcLogo, ubpLogo, gcashLogo, mayaLogo, ccLogo, bogusLogo} from '../js/utils';
 import { useNavigate } from 'react-router-dom';
 
 function Step2() {
@@ -109,25 +106,25 @@ function Step2() {
                     <div className="row mb-3">
                         <div className="col-xl-6 my-1">
                             <div className={`radio-card radio-card-1 ${selectedMethod == 1 ? 'selected' : ''}`} onClick={() => selectRadioCard(1)}>
-                                <img className="bank-img mr-4" src={BPILogo}/>
+                                <img className="bank-img mr-4" src={bpiLogo()}/>
                                 <span>BPI Online/Mobile</span>
                             </div>
                         </div>
                         <div className="col-xl-6 my-1">
                             <div className={`radio-card radio-card-2 ${selectedMethod == 2 ? 'selected' : ''}`} onClick={() => selectRadioCard(2)}>
-                                <img className="bank-img mr-4" src="https://test.dragonpay.ph/Bank/images/cbclogo.jpg"/>
+                                <img className="bank-img mr-4" src={cbcLogo()}/>
                                 <span>China Bank Online Direct Debit</span>
                             </div>
                         </div>
                         <div className="col-xl-6 my-1">
                             <div className={`radio-card radio-card-3 ${selectedMethod == 3 ? 'selected' : ''}`} onClick={() => selectRadioCard(3)}>
-                                <img className="bank-img mr-4" src={RCBCLogo}/>
+                                <img className="bank-img mr-4" src={rcbcLogo()}/>
                                 <span>RCBC Online Direct Debit</span>
                             </div>
                         </div>
                         <div className="col-xl-6 my-1">
                             <div className={`radio-card radio-card-4 ${selectedMethod == 4 ? 'selected' : ''}`} onClick={() => selectRadioCard(4)}>
-                                <img className="bank-img mr-4" src="https://test.dragonpay.ph/Bank/images/ubplogo.jpg"/>
+                                <img className="bank-img mr-4" src={ubpLogo()}/>
                                 <span>Unionbank Online Direct Debit</span>
                             </div>
                         </div>
@@ -137,13 +134,13 @@ function Step2() {
                     <div className="row mb-3">
                         <div className="col-xl-6 my-1">
                             <div className={`radio-card radio-card-5 ${selectedMethod == 5 ? 'selected' : ''}`} onClick={() => selectRadioCard(5)}>
-                                <img className="bank-img mr-4" src={GCASHLogo}/>
+                                <img className="bank-img mr-4" src={gcashLogo()}/>
                                 <span>Globe GCash</span>
                             </div>
                         </div>
                         <div className="col-xl-6 my-1">
                             <div className={`radio-card radio-card-6 ${selectedMethod == 6 ? 'selected' : ''}`} onClick={() => selectRadioCard(6)}>
-                                <img className="bank-img mr-4" src="https://test.dragonpay.ph/Bank/images/paymayalogo.jpg"/>
+                                <img className="bank-img mr-4" src={mayaLogo()}/>
                                 <span>PayMaya</span>
                             </div>
                         </div>
@@ -153,13 +150,13 @@ function Step2() {
                     <div className="row">
                         <div className="col-xl-6 my-1">
                             <div className={`radio-card radio-card-7 ${selectedMethod == 7 ? 'selected' : ''}`} onClick={() => selectRadioCard(7)}>
-                                <img className="bank-img mr-4" src={CCLogo}/>
+                                <img className="bank-img mr-4" src={ccLogo()}/>
                                 <span>Credit Card</span>
                             </div>
                         </div>
                         <div className="col-xl-6 my-1">
                             <div className={`radio-card radio-card-8 ${selectedMethod == 8 ? 'selected' : ''}`} onClick={() => selectRadioCard(8)}>
-                                <img className="bank-img mr-4" src="https://test.dragonpay.ph/Bank/images/boguslogo.jpg"/>
+                                <img className="bank-img mr-4" src={bogusLogo()}/>
                                 <span>Test Bank Online</span>
                             </div>
                         </div>

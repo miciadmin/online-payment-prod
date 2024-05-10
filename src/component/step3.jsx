@@ -1,7 +1,8 @@
 import React, { useState, useEffect} from 'react';
 import Sidebar from './sidebar';
 import CCLogo from '../assets/credit_card_icon.png'
-import { endpoint, currencyFormat, lpad, goBack, getCurrentDateTime } from '../js/utils';
+import { endpoint, currencyFormat, lpad, goBack, getCurrentDateTime, 
+         bpiLogo, cbcLogo, rcbcLogo, ubpLogo, gcashLogo, mayaLogo, ccLogo, bogusLogo } from '../js/utils';
 import { useNavigate } from 'react-router-dom';
 import InvalidTokenModal from './invalid_session_modal';
 import ErrorModal from './fatal_error_modal';
@@ -27,28 +28,28 @@ function Step3() {
     const bankDetails = [
         { procId: "BPIA",
           longName: "BPI Online/Mobile",
-          logo: "https://payment.mercantile.ph/assets/bpilogo-4R__otNg.png" },
+          logo: bpiLogo() },
         { procId: "CBDD",
           longName: "China Bank Online Direct Debit",
-          logo: "https://test.dragonpay.ph/Bank/images/cbclogo.jpg" },
+          logo: cbcLogo() },
         { procId: "RCDD",
           longName: "RCBC Online Direct Debit",
-          logo: "https://payment.mercantile.ph/assets/rcbclogo-CohoZ5V9.png" },
+          logo: rcbcLogo() },
         { procId: "UBDD",
           longName: "Unionbank Online Direct Debit",
-          logo: "https://test.dragonpay.ph/Bank/images/ubplogo.jpg" },
+          logo: ubpLogo() },
         { procId: "GCSH",
           longName: "Globe GCash",
-          logo: "https://payment.mercantile.ph/assets/gcashlogo-B6RLVrgK.png" },
+          logo: gcashLogo() },
         { procId: "PYMY",
           longName: "PayMaya",
-          logo: "https://test.dragonpay.ph/Bank/images/paymayalogo.jpg" },
+          logo: mayaLogo() },
         { procId: "CC",
           longName: "Credit Card",
-          logo: "../assets/credit_card_icon.png" },
+          logo: ccLogo() },
         { procId: "BOG",
           longName: "Test Bank Online",
-          logo: "https://test.dragonpay.ph/Bank/images/boguslogo.jpg" }
+          logo: bogusLogo() }
     ];
 
     useEffect(() => {
