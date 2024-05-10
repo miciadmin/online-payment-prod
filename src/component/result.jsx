@@ -31,18 +31,58 @@ function ResultPage(status, refno) {
         }
     }*/
     
+    const [params, setParams] = useState({});
+    
+    useEffect(() => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const paramsObject = {};
+        for (const [key, value] of urlParams) {
+          paramsObject[key] = value;
+        }
+        setParams(paramsObject);
+    }, []);
+    
+    useEffect(() => {
+        if (params.refno
+        && params.digest
+        && params.message
+        && params.txnid
+        && params.status) {
+            console.log('Payment successfull: sending email.');
+            sendSuccessEmail();
+        } 
+    }, [params]);
+    
+    const sendSuccessEmail = async () => {
+        const token = sessionStorage.getItem('token');
+        try {
+            const response = await fetch(`${endpoint()}/sendSuccessEmail?refNo=${params.refno}`, {
+                method: 'GET',
+                headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+                }
+            });
+            const data = response;
+            console.log(data);
+        } catch (error) {
+            console.error('Error:', error);
+        } finally {
+            sessionStorage.clear();     
+        }
+    }
 
     return(
         <div className="center-div">
             <div className="result-container">
-                {status === 'S' ? (
+                {params.status === 'S' ? (
                     <>
                         <div className="header bg-success">
                             <i className="bi bi-check-circle text-medium" />
                             <span>Payment Successful</span>
                         </div>
                         <div className="body">
-                            <span>Reference No: {refno}</span>
+                            <span>Reference No: {params.refno}</span>
                             <p>
                                 Thank you for your payment! Your policy has been successfully paid, 
                                 and an email containing the details has been sent to you. 

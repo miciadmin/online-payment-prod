@@ -3,48 +3,8 @@ import ResultPage from "../component/result";
 import { endpoint } from '../js/utils';
 
 export default function() {
-    const [params, setParams] = useState({});
-    
-    useEffect(() => {
-        const urlParams = new URLSearchParams(window.location.search);
-        const paramsObject = {};
-        for (const [key, value] of urlParams) {
-          paramsObject[key] = value;
-        }
-        setParams(paramsObject);
-    }, []);
-    
-    useEffect(() => {
-        if (params.refno
-        && params.digest
-        && params.message
-        && params.txnid
-        && params.status) {
-            console.log('Payment successfull: sending email.');
-            sendSuccessEmail();
-        } 
-    }, [params]);
-    
-    const sendSuccessEmail = async () => {
-        const token = sessionStorage.getItem('token');
-        try {
-            const response = await fetch(`${endpoint()}/sendSuccessEmail?refNo=${params.refno}`, {
-                method: 'GET',
-                headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
-                }
-            });
-            const data = response;
-            console.log(data);
-        } catch (error) {
-            console.error('Error:', error);
-        } finally {
-            sessionStorage.clear();     
-        }
-    }
 
     return(
-        <ResultPage status={params.status} refno={params.refno}/>
+        <ResultPage/>
     )
 }
