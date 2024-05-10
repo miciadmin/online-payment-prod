@@ -183,7 +183,7 @@ function Step1() {
             });
         }
     };
-    const goNextPage = (e) => {
+    const gotoNextPage = (e) => {
         let validEmail = isValidEmail(contactFormData.email);
         let validMobile = isValidMobileNo(contactFormData.mobileNo);
         if(validEmail) {
@@ -246,7 +246,7 @@ function Step1() {
                     </div>
                     <div className="policy-no-fields">
                         <input type="text" ref={inputRef} className="form-control text-center" name="lineCd" value={policyFormData.lineCd} onChange={handlePolicyFormDataChange} onInput={textInputOnly} maxLength={2} required/>
-                        <input type="text" className="form-control text-center" name="sublineCd" value={policyFormData.sublineCd} onChange={handlePolicyFormDataChange} onInput={numAndTextInput} maxLength={5} required/>
+                        <input type="text" className="form-control text-center" name="sublineCd" value={policyFormData.sublineCd} onChange={handlePolicyFormDataChange} onInput={numAndTextInput} maxLength={7} required/>
                         <input type="text" className="form-control text-center" name="issCd" value={policyFormData.issCd} onChange={handlePolicyFormDataChange} onInput={numAndTextInput} maxLength={2} required/>
                         <input type="text" className="form-control text-center" name="issYy" value={policyFormData.issYy} onChange={handlePolicyFormDataChange} onInput={numInputOnly} maxLength={2} required/>
                         <input type="text" className="form-control text-center" name="seqNo" value={policyFormData.seqNo} onChange={handlePolicyFormDataChange} onInput={numInputOnly} onBlur={handleSeqNoFocusOut} maxLength={7} required/>
@@ -327,7 +327,7 @@ function Step1() {
                         <div className="row mt-4">
                             <div className="col-sm-6 mb-2"></div>
                             <div className="col-sm-6 text-right">
-                                <button type="button" className="btn btn-success btn-w" onClick={goNextPage}>Next <i className="bi bi-chevron-right fs-12 ml-2"/>
+                                <button type="button" className="btn btn-success btn-w" onClick={gotoNextPage}>Next <i className="bi bi-chevron-right fs-12 ml-2"/>
                                 </button>
                             </div>
                         </div>

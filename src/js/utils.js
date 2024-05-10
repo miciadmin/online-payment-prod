@@ -29,7 +29,7 @@ export const textInputOnly = (e) => {
     e.target.value = e.target.value.replace(/[^a-zA-Z]/g, '').toUpperCase();
 };
 export const numAndTextInput = (e) => {
-    e.target.value = e.target.value.replace(/[^0-9a-zA-Z]/g, '').toUpperCase();
+    e.target.value = e.target.value.replace(/[^0-9a-zA-Z()-]/g, '').toUpperCase();
 };
 export const addressInput = (e) => {
     e.target.value = e.target.value.replace(/[^0-9a-zA-Z.\-&]/g, '').toUpperCase();

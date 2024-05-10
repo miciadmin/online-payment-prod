@@ -6,7 +6,7 @@ function ResultPage() {
     const navigate = useNavigate();
     const { status, refno } = useParams();
 
-    useEffect(() => {
+    /*useEffect(() => {
         if (status === 'S') {
             console.log('Payment successfull: sending email.');
             sendSuccessEmail();
@@ -30,7 +30,20 @@ function ResultPage() {
         } catch (error) {
             console.error('Error:', error);
         }
-    }
+    }*/
+
+    
+    const [params, setParams] = useState({});
+    useEffect(() => {
+        console.log(window.location.search);
+        const urlParams = new URLSearchParams(window.location.search);
+        const paramsObject = {};
+        for (const [key, value] of urlParams) {
+          paramsObject[key] = value;
+        }
+        setParams(paramsObject);
+        console.log(params);
+    }, []);
 
     return(
         <div className="center-div">
