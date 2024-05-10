@@ -11,7 +11,9 @@ export default function() {
           paramsObject[key] = value;
         }
         setParams(paramsObject);
-        
+    }, []);
+    
+    useEffect(() => {
         if (params.refno
         && params.digest
         && params.message
@@ -19,11 +21,8 @@ export default function() {
         && params.status) {
             console.log('Payment successfull: sending email.');
             sendSuccessEmail();
-        }
-        console.log('processing params');
-    }, []);
-    
-    console.log(params);
+        } 
+    }, [params]);
     
     const sendSuccessEmail = async () => {
         const token = sessionStorage.getItem('token');
