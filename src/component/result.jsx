@@ -40,6 +40,7 @@ function ResultPage(status, refno) {
           paramsObject[key] = value;
         }
         setParams(paramsObject);
+        sessionStorage.clear();     
     }, []);
     
     /*useEffect(() => {
