@@ -42,7 +42,7 @@ function ResultPage(status, refno) {
         setParams(paramsObject);
     }, []);
     
-    useEffect(() => {
+    /*useEffect(() => {
         if (params.refno
         && params.digest
         && params.message
@@ -68,7 +68,7 @@ function ResultPage(status, refno) {
         } finally {
             sessionStorage.clear();     
         }
-    }
+    }*/
 
     return(
         <div className="center-div">
