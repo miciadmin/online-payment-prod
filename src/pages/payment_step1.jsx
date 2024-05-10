@@ -25,7 +25,7 @@ export default function() {
         window.addEventListener("popstate", handlePopstate);
     }, [prevLocation]);
 
-    useEffect(() => {
+    /*useEffect(() => {
         const urlParams = new URLSearchParams(window.location.search);
         const paramsObject = {};
         for (const [key, value] of urlParams) {
@@ -42,7 +42,7 @@ export default function() {
         && params.status) {
             navigate(`/payment-result/${params.status}/${params.refno}`);
         } 
-    }, [params]);
+    }, [params]);*/
     
     return(
         <Step1/>
