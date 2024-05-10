@@ -48,6 +48,7 @@ function ResultPage() {
             console.log('Payment successfull: sending email.');
             sendSuccessEmail();
         }
+        console.log('processing params');
     }, []);
     
     const sendSuccessEmail = async () => {
