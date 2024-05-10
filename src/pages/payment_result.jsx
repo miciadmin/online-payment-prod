@@ -23,6 +23,8 @@ export default function() {
         console.log('processing params');
     }, []);
     
+    console.log(params);
+    
     const sendSuccessEmail = async () => {
         const token = sessionStorage.getItem('token');
         try {
