@@ -25,6 +25,7 @@ function App() {
           <Route path="/review-payment" element={<PaymentStep3/>}></Route>
 
           <Route path="/payment-result/:status/:refno" element={<PaymentResult/>} />
+          <Route path="/payment-result" element={<PaymentResult/>} />
 
           <Route path="search-refno" element={<SearchRefNo/>}></Route>
           <Route path="/search-refno" element={<SearchRefNo/>}></Route>
