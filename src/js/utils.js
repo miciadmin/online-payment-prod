@@ -32,7 +32,7 @@ export const numAndTextInput = (e) => {
     e.target.value = e.target.value.replace(/[^0-9a-zA-Z()-]/g, '').toUpperCase();
 };
 export const addressInput = (e) => {
-    e.target.value = e.target.value.replace(/[^0-9a-zA-Z.\-&]/g, '').toUpperCase();
+    e.target.value = e.target.value.replace(/[^0-9a-zA-Z.\-&\s]/g, '').toUpperCase();
 };
 export const endpoint = () => {
     if (process.env.NODE_ENV === 'production') {

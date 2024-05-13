@@ -177,15 +177,15 @@ function Step2() {
                             <div className="row">
                                 <div className="col-xl-4 mt-1">
                                     <label htmlFor="inputPassword5" className="form-label text-gray">FirstName*</label>
-                                    <input type="text" className="form-control" name="fname" value={creditFormData.fname} onChange={handleCreditFormDataChange} onInput={textInputOnly} required/>
+                                    <input type="text" className="form-control" name="fname" value={creditFormData.fname} onChange={handleCreditFormDataChange} onInput={addressInput} required/>
                                 </div>
                                 <div className="col-xl-4 mt-1">
                                     <label htmlFor="inputAddress5" className="form-label text-gray">MiddleName*</label>
-                                    <input type="text" className="form-control" name="mname" value={creditFormData.mname} onChange={handleCreditFormDataChange} onInput={textInputOnly} required/>
+                                    <input type="text" className="form-control" name="mname" value={creditFormData.mname} onChange={handleCreditFormDataChange} onInput={addressInput} required/>
                                 </div>
                                 <div className="col-xl-4 mt-1">
                                     <label htmlFor="inputAddress5" className="form-label text-gray">LastName*</label>
-                                    <input type="text" className="form-control" name="lname" value={creditFormData.lname} onChange={handleCreditFormDataChange} onInput={textInputOnly} required/>
+                                    <input type="text" className="form-control" name="lname" value={creditFormData.lname} onChange={handleCreditFormDataChange} onInput={addressInput} required/>
                                 </div>
                                 <div className="col-xl-6 mt-1">
                                     <label htmlFor="inputAddress5" className="form-label text-gray">Street*</label>
