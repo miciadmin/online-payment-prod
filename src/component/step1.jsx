@@ -209,7 +209,7 @@ function Step1() {
                 <div className="action-container2">
                     <div className="back-container2">
                         <img src={MiciLogo} alt=""/>
-                        <b>MICI Online Payment</b>
+                        <b>Online Payment Facility</b>
                     </div>
                     <i className="bi bi-list ico-btn" onClick={()=>setSidebarVisible(!isSidebarVisible)}/>
                 </div>
@@ -306,7 +306,10 @@ function Step1() {
                         <div className="divider"></div>
 
                         <div className="card">
-                            <span className="card-title">Add Contact Details</span>
+                            <div>
+                                <span className="card-title">Contact Details </span>
+                                <span>(to recieve payment confirmation)</span>
+                            </div>
                             <div className="row">
                                 <div className="col-xl-6">
                                     <label htmlFor="inputPassword5" className="form-label text-gray">Email*</label>

@@ -12,18 +12,19 @@ export default function() {
    
     window.addEventListener('popstate', handlePopstate);
 
-    useEffect(() => {
+    /*useEffect(() => {
         const handlePopstate = () => {
+            console.log('=' + prevLocation.current);
             if (prevLocation.current  === "/search-policy"
             || prevLocation.current  === "/") {
                 for (let i = 0; i < window.history.length; i++) {
-                    history.go(-1);
+                    window.history.go(-1);
                 }
             }
         };
         prevLocation.current = location.pathname;
         window.addEventListener("popstate", handlePopstate);
-    }, [prevLocation]);
+    }, [prevLocation, history, location.pathname]);*/
 
     /*useEffect(() => {
         const urlParams = new URLSearchParams(window.location.search);

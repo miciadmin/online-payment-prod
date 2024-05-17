@@ -78,8 +78,8 @@ body {
     padding: 0 1rem;
 }
 .company-header img {
-    width: 70px;
-    height: 70px;
+    width: 187px;
+    margin-top: 10px;
 }
 .menus {
     display: flex;

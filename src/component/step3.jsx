@@ -49,6 +49,9 @@ function Step3() {
           logo: ccLogo() },
         { procId: "BOG",
           longName: "Test Bank Online",
+          logo: bogusLogo() },
+        { procId: "BOGX",
+          longName: "Test Bank Over-the-Counter",
           logo: bogusLogo() }
     ];
 
@@ -153,7 +156,7 @@ function Step3() {
           return data.ip;
         } catch (error) {
           console.error('Error:', error);
-          return null;
+          return 'null';
         }
     };
     const getUserAgent = () => {

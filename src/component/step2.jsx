@@ -160,6 +160,12 @@ function Step2() {
                                 <span>Test Bank Online</span>
                             </div>
                         </div>
+                        <div className="col-xl-6 my-1">
+                            <div className={`radio-card radio-card-9 ${selectedMethod == 9 ? 'selected' : ''}`} onClick={() => selectRadioCard(9)}>
+                                <img className="bank-img mr-4" src={bogusLogo()}/>
+                                <span>Test Bank Over-the-Counter</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
 

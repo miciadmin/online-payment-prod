@@ -1,5 +1,5 @@
 import React from 'react';
-import MiciLogo from '../assets/mici_logo.svg'
+import MiciLogo from '../assets/mici_logo_s.png'
 import { useNavigate } from 'react-router-dom';
 
 function Sidebar({ isContainerVisible, isBackVisible, onClose }) {
@@ -22,7 +22,7 @@ function Sidebar({ isContainerVisible, isBackVisible, onClose }) {
 
             <div className="company-header">
                 <img src={MiciLogo} alt=""/>
-                <b>MICI Online Payment</b>
+                <b>Online Payment Facility</b>
             </div>
             <div className="menus">
                 <div className="menu-item" onClick={() => createPayment()}>

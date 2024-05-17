@@ -49,7 +49,7 @@ export const endpoint = () => {
     }      
 }
 export function goBack() {
-    window.history.go(-1);
+    window.history.back();
 }
 export const getCurrentDateTime = () => {
     const date = new Date();
