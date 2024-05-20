@@ -15,25 +15,13 @@ function App() {
     <BrowserRouter>
         <Routes>
           <Route path="/" element={<PaymentStep1/>}></Route>
-          <Route path="search-policy" element={<PaymentStep1/>}></Route>
           <Route path="/search-policy" element={<PaymentStep1/>}></Route>
-
-          <Route path="choose-method" element={<PaymentStep2/>}></Route>
           <Route path="/choose-method" element={<PaymentStep2/>}></Route>
-
-          <Route path="review-payment" element={<PaymentStep3/>}></Route>
           <Route path="/review-payment" element={<PaymentStep3/>}></Route>
-
           <Route path="/payment-result/:status/:refno" element={<PaymentResult/>} />
           <Route path="/payment-result" element={<PaymentResult/>} />
-
-          <Route path="search-refno" element={<SearchRefNo/>}></Route>
           <Route path="/search-refno" element={<SearchRefNo/>}></Route>
-
-          <Route path="terms-and-condition" element={<TermsAndCondition/>}></Route>
           <Route path="/terms-and-condition" element={<TermsAndCondition/>}></Route>
-
-          <Route path="privacy-policy" element={<PrivacyPolicy/>}></Route>
           <Route path="/privacy-policy" element={<PrivacyPolicy/>}></Route>
 
           <Route path="*" element={<ErrorPage/>}></Route>
