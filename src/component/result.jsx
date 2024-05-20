@@ -99,8 +99,8 @@ function ResultPage(status, refno) {
                             <span>Payment Failed</span>
                         </div>
                         <div className="body">
-                            <p>Oops! It seems there was an issue with your payment. Unfortunately, we were unable to process your payment for your policy.</p>
-                            <p>Please check your payment details and try again. If you continue to experience issues, feel free to contact us at www.mercantile.ph for further assistance.</p>
+                            <p>Oops! It seems there was an issue with your payment. Either the payment has been cancelled, or the transaction failed.</p>
+                            <p>If you continue to experience issues, feel free to contact us at www.mercantile.ph for further assistance.</p>
                             <div className="result-buttons">
                                 <button type="button" className="btn btn-outline-success mt-3" onClick={() => navigate('/')}>Go to homepage</button>
                             </div>
