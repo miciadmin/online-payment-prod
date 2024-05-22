@@ -9,7 +9,7 @@ function Step2() {
     const navigate = useNavigate();
     const [isSidebarVisible, setSidebarVisible] = useState(false);
 
-    const [policyDetails, setPolicyDetails] = useState(JSON.parse(sessionStorage.getItem('policyDtls')));
+    const [amountDue, setAmountDue] = useState(sessionStorage.getItem('amountDue'));
     const [creditDetails, setCreditDetails] = useState(JSON.parse(sessionStorage.getItem('creditDtls')));
     const [selectedMethod, setSelectedMethod] = useState(sessionStorage.getItem('paymentMethod'));
     const [errorCredit, setErrorCredit] = useState(null);
@@ -96,7 +96,7 @@ function Step2() {
 
                 <div className="card">
                     <div className="premium-container">
-                    <span>Php {currencyFormat(policyDetails.balance_amt_due)}</span> 
+                    <span>Php {currencyFormat(amountDue)}</span> 
                     <span className="text-gray">Payable Amount</span>
                     </div>
                 </div>

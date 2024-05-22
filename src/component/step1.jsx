@@ -111,7 +111,7 @@ function Step1() {
     const fetchPolicy = async (token) =>  {
         try {
             setLoading(true);
-            const response = await fetch(`${endpoint()}/inquire?lineCd=${policyFormData.lineCd}&sublineCd=${policyFormData.sublineCd}&issCd=${policyFormData.issCd}&issYy=${policyFormData.issYy}&seqNo=${policyFormData.seqNo}&renewNo=${policyFormData.renewNo}`, {
+            const response = await fetch(`${endpoint()}/inquire/policy-details?lineCd=${policyFormData.lineCd}&sublineCd=${policyFormData.sublineCd}&issCd=${policyFormData.issCd}&issYy=${policyFormData.issYy}&seqNo=${policyFormData.seqNo}&renewNo=${policyFormData.renewNo}`, {
                 method: 'GET',
                 headers: {
                 'Content-Type': 'application/json',
@@ -122,7 +122,7 @@ function Step1() {
                 const data = await response.json();
                 console.log(data);
                 if(data.isExist) {
-                    let status = data.policyDetails[0].payment_stat;
+                    let status = data.policyDetails.payment_stat;
                     if (status === 'FULLY PAID') {
                         setErrorPolicy('(Policy is already settled)');
                     } else if (status === 'CANCELLED') {
@@ -133,12 +133,12 @@ function Step1() {
                         setAmountDueType('Balance');
                         sessionStorage.setItem('amountDueType', 'Balance');
                         setShowPartiallyPaidModal(true);
-                        setPolicyDetails(data.policyDetails[0]);
+                        setPolicyDetails(data.policyDetails);
                         setIsSearchingPolicy(false);
                     } else {
                         setAmountDueType('Total');
                         sessionStorage.setItem('amountDueType', 'Total');
-                        setPolicyDetails(data.policyDetails[0]);
+                        setPolicyDetails(data.policyDetails);
                         setIsSearchingPolicy(false);
                     }
                 } else {

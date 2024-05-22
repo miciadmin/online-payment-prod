@@ -11,6 +11,7 @@ function Step3() {
     const navigate = useNavigate();
     const [isSidebarVisible, setSidebarVisible] = useState(false);
 
+    const [policyId, setPolicyId] = useState(JSON.parse(sessionStorage.getItem('policyId')));
     const [policyDetails, setPolicyDetails] = useState(JSON.parse(sessionStorage.getItem('policyDtls')));
     const [contactDetails, setContactDetails] = useState(JSON.parse(sessionStorage.getItem('contactDtls')));
     const [creditDetails, setCreditDetails] = useState(JSON.parse(sessionStorage.getItem('creditDtls')));
@@ -21,6 +22,7 @@ function Step3() {
     const [showErrorModal, setShowErrorModal] = useState(false);
     const [errorType, setErrorType] = useState('');
     const [errorMsg, setErrorMsg] = useState('');
+    const [loading, setLoading] = useState(false);
 
     const [ipAddress, setIpAddress] = useState(null);
     const [userAgent, setUserAgent] = useState(null);
@@ -77,6 +79,7 @@ function Step3() {
 
             if(selectedMethod == 7) {
                 requestBody = {
+                    PolicyId: policyDetails.policy_id,
                     Amount: policyDetails.balance_amt_due,
                     Currency: "PHP",
                     Description: policyDescription,
@@ -101,6 +104,7 @@ function Step3() {
                 };
             } else {
                 requestBody = {
+                    PolicyId: policyDetails.policy_id,
                     Amount: policyDetails.balance_amt_due,
                     Currency: "PHP",
                     Description: policyDescription,
@@ -118,6 +122,7 @@ function Step3() {
     const processPayment = async (requestBody) =>  {
         const token = sessionStorage.getItem('token');
         try {
+            setLoading(true);
             const response = await fetch(`${endpoint()}/payment`, {
                 method: 'POST',
                 headers: {
@@ -132,6 +137,10 @@ function Step3() {
                 window.location.href = data.Url;
             } else if(data.Status === 'invalid_or_expired_token')  {
                 setShowInvalidTokenModal(true);
+            } else if(data.Status === 'amount_mismatch')  {
+                setErrorType('fatal_error');
+                setErrorMsg('Payment processing failed due to an amount mismatch.');
+                setShowErrorModal(true);
             } else {
                 if(data.ErrorType.includes('Invalid procid')) {
                     setErrorType('invalid_procid');
@@ -146,6 +155,8 @@ function Step3() {
             setErrorType('fatal_error');
             setErrorMsg('Oops, something went wrong. Please try again later.');
             setShowErrorModal(true);
+        } finally {
+            setLoading(false);
         }
     };
     const getUserIpAddress = async () => {
@@ -311,7 +322,10 @@ function Step3() {
                         <button id="previous-page-btn" type="button" className="btn btn-outline-success btn-w" onClick={goBack}><i className="bi bi-chevron-left fs-12 mr-2" /> Previous</button>
                     </div>
                     <div className="col-sm-6 text-right">
-                        <button id="next-page-btn"type="button"className="btn btn-success btn-w" onClick={proceedPayment}>Proceed <i className="bi bi-chevron-right fs-12 ml-2" /></button>
+                        <button id="next-page-btn"type="button"className="btn btn-success btn-w" onClick={proceedPayment}>
+                            {loading ? <>Loading... <i className="spinner-border spinner-border-sm"></i></> : <>Proceed <i className="bi bi-chevron-right fs-12 ml-2"></i></>}
+                        </button>
+                        
                     </div>
                     </div>
                 </div>
