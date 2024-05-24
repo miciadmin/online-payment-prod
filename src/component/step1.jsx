@@ -9,7 +9,14 @@ function Step1() {
     const navigate = useNavigate();
     const [isSidebarVisible, setSidebarVisible] = useState(false);
     const [loading, setLoading] = useState(false);
-    const inputRef = useRef();
+    const inputRef = useRef({
+      lineCd: null,
+      sublineCd: null,
+      issCd: null,
+      issYy: null,
+      seqNo: null,
+      renewNo: null,
+    });
     
     const [policyDetails, setPolicyDetails] = useState(JSON.parse(sessionStorage.getItem('policyDtls')));
     const [contactDetails, setContactDetails] = useState(JSON.parse(sessionStorage.getItem('contactDtls')));
@@ -34,7 +41,7 @@ function Step1() {
 
     useEffect(() => {
         try {
-            inputRef.current.focus();
+            inputRef.current['lineCd'].focus();
         } catch(e) {}
         if (policyDetails) {
             setIsSearchingPolicy(false);
@@ -98,6 +105,22 @@ function Step1() {
             setErrorPolicy('(Fill empty fields first)');
         }
     };
+    const handleClear = async (e) => {
+        e.preventDefault();
+        setPolicyFormData({
+            lineCd: '',
+            sublineCd: '',
+            issCd: '',
+            issYy: '',
+            seqNo: '',
+            renewNo: ''
+        });
+        setErrorPolicy(null);
+        setErrorContact(null);
+        try {
+            inputRef.current['lineCd'].focus();
+        } catch(e) {}
+    };
     const proceedPolicySearch = () => {
         fetchToken()
             .then(token => {
@@ -123,13 +146,21 @@ function Step1() {
                 console.log(data);
                 if(data.isExist) {
                     let status = data.policyDetails.payment_stat;
-                    if (status === 'FULLY PAID') {
-                        setErrorPolicy('(Policy is already settled)');
+                    if (status === 'SPOILED') {
+                        setErrorPolicy('(Policy is spoiled)');
                     } else if (status === 'CANCELLED') {
                         setErrorPolicy('(Policy is cancelled)');
+                    } else if (status === 'OTHER_CURRENCY') {
+                        setErrorPolicy('(Policy currency not allowed)');
+                    } else if (status === 'FULLY_PAID') {
+                        setErrorPolicy('(Policy is already settled)');
+                    } else if (status === 'TEMPORARY_PAYMENT') {
+                        setErrorPolicy('(Policy has pending transaction)');
                     } else if (status === 'OVERDUE') {
                         setErrorPolicy('(Policy is overdue)');
-                    } else if (status === 'PARTIALLY PAID') {
+                    } else if (status === 'WITH_CLAIM') {
+                        setErrorPolicy('(Policy has pending claim)');
+                    } else if (status === 'PARTIALLY_PAID') {
                         setAmountDueType('Balance');
                         sessionStorage.setItem('amountDueType', 'Balance');
                         setShowPartiallyPaidModal(true);
@@ -160,7 +191,23 @@ function Step1() {
         }
         return await response.text();
     }
-    const handleSeqNoFocusOut = (e) => {
+    const handleMaxLength = (e) => {
+        const { maxLength, value, name } = e.target;
+        if (value.length >= maxLength) {
+            const nextFieldMap = {
+            lineCd: 'sublineCd',
+            sublineCd: 'issCd',
+            issCd: 'issYy',
+            issYy: 'seqNo',
+            seqNo: 'renewNo',
+            };
+          const nextField = nextFieldMap[name];
+          if (nextField && inputRef.current[nextField]) {
+            inputRef.current[nextField].focus();
+            }
+        }
+    };
+    /*const handleSeqNoFocusOut = (e) => {
         let newValue;
         if(Number(e.target.value) > 0) {
             newValue = lpad(e.target.value, 7);
@@ -182,7 +229,7 @@ function Step1() {
                 renewNo: newValue
             });
         }
-    };
+    };*/
     const gotoNextPage = (e) => {
         let validEmail = isValidEmail(contactFormData.email);
         let validMobile = isValidMobileNo(contactFormData.mobileNo);
@@ -241,21 +288,24 @@ function Step1() {
                     <div className="space-between">
                         <span className="card-title mb-2">Enter your Policy No.:</span>
                         {errorPolicy && (
-                            <span className="text-error" style={{display: 'block'}}>{errorPolicy}</span>
+                            <span className="text-error text-end" style={{display: 'block'}}>{errorPolicy}</span>
                         )}
                     </div>
                     <div className="policy-no-fields">
-                        <input type="text" ref={inputRef} className="form-control text-center" name="lineCd" value={policyFormData.lineCd} onChange={handlePolicyFormDataChange} onInput={textInputOnly} maxLength={2} required/>
-                        <input type="text" className="form-control text-center" name="sublineCd" value={policyFormData.sublineCd} onChange={handlePolicyFormDataChange} onInput={numAndTextInput} maxLength={7} required/>
-                        <input type="text" className="form-control text-center" name="issCd" value={policyFormData.issCd} onChange={handlePolicyFormDataChange} onInput={numAndTextInput} maxLength={2} required/>
-                        <input type="text" className="form-control text-center" name="issYy" value={policyFormData.issYy} onChange={handlePolicyFormDataChange} onInput={numInputOnly} maxLength={2} required/>
-                        <input type="text" className="form-control text-center" name="seqNo" value={policyFormData.seqNo} onChange={handlePolicyFormDataChange} onInput={numInputOnly} onBlur={handleSeqNoFocusOut} maxLength={7} required/>
-                        <input type="text" className="form-control text-center" name="renewNo" value={policyFormData.renewNo} onChange={handlePolicyFormDataChange} onInput={numInputOnly} onBlur={handleRenewNoFocusOut} maxLength={2} required/>
+                        <input type="text" ref={(e) => (inputRef.current.lineCd = e)} className="form-control text-center" name="lineCd" value={policyFormData.lineCd} onChange={handlePolicyFormDataChange} onInput={(e) => {textInputOnly(e);handleMaxLength(e, 0);}} maxLength={2} required/>
+                        <input type="text" ref={(e) => (inputRef.current.sublineCd = e)} className="form-control text-center" name="sublineCd" value={policyFormData.sublineCd} onChange={handlePolicyFormDataChange} onInput={(e) => {numAndTextInput;handleMaxLength(e, 0);}} maxLength={7} required/>
+                        <input type="text" ref={(e) => (inputRef.current.issCd = e)} className="form-control text-center" name="issCd" value={policyFormData.issCd} onChange={handlePolicyFormDataChange} onInput={(e) => {numAndTextInput;handleMaxLength(e, 0);}} maxLength={2} required/>
+                        <input type="text" ref={(e) => (inputRef.current.issYy = e)} className="form-control text-center" name="issYy" value={policyFormData.issYy} onChange={handlePolicyFormDataChange} onInput={(e) => {numInputOnly;handleMaxLength(e, 0);}} maxLength={2} required/>
+                        <input type="text" ref={(e) => (inputRef.current.seqNo = e)} className="form-control text-center" name="seqNo" value={policyFormData.seqNo} onChange={handlePolicyFormDataChange} onInput={(e) => {numInputOnly;handleMaxLength(e, 0);}} /*onBlur={handleSeqNoFocusOut}*/ maxLength={7} required/>
+                        <input type="text" ref={(e) => (inputRef.current.renewNo = e)} className="form-control text-center" name="renewNo" value={policyFormData.renewNo} onChange={handlePolicyFormDataChange} onInput={(e) => {numInputOnly;handleMaxLength(e, 0);}} /*onBlur={handleRenewNoFocusOut}*/ maxLength={2} required/>
                     </div>
                     <span className="text-gray my-2">(Example: PA-SPA-HO-24-0000123-00)</span>
-                    <div className="text-center">
+                    <div className="search-btn-div">
                         <button type="button" className="btn btn-success btn-w" onClick={handleSubmit}>
                             {loading ? <><i className="spinner-border spinner-border-sm"></i> Searching</> : <><i className="bi bi-search"></i> Search</>}
+                        </button>
+                        <button type="button" className="btn btn-outline-success btn-w" onClick={handleClear}>
+                            <i className="bi bi-arrow-left-square"></i> Clear
                         </button>
                     </div>
                 </div>

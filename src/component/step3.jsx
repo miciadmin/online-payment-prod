@@ -74,8 +74,7 @@ function Step3() {
                              lpad(policyDetails.renew_no, 2);
             const policyDescription = 'Policy No: ' + policyNo + '; \n' +
                             'Invoice No: ' + policyDetails.invoice_no_formatted + '; \n' +
-                            'Assured Name: ' + policyDetails.assd_name + '; \n' +
-                            'Amount: ' + currencyFormat(policyDetails.balance_amt_due);
+                            'Assured Name: ' + policyDetails.assd_name;
 
             if(selectedMethod == 7) {
                 requestBody = {

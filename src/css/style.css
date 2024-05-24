@@ -244,6 +244,11 @@ body {
     font-weight: bold;
     margin-bottom: 0;
 }
+.search-btn-div {
+   display: flex;
+   gap: .5rem;
+   justify-content: center;
+}
 
 @keyframes blink-animation {
     0% {
@@ -443,6 +448,9 @@ label {
     .result-buttons {
         margin-top: 100px;
     }
+    .search-btn-div {  
+        flex-direction: column;
+     }
   }
 
 @media (max-width: 500px) {

@@ -47,7 +47,6 @@ function Step2() {
     const goNextPage = (e) => {
         if(selectedMethod === 7) {
             if (creditFormData.fname
-            && creditFormData.mname
             && creditFormData.lname
             && creditFormData.street
             && creditFormData.brgy
@@ -186,7 +185,7 @@ function Step2() {
                                     <input type="text" className="form-control" name="fname" value={creditFormData.fname} onChange={handleCreditFormDataChange} onInput={addressInput} required/>
                                 </div>
                                 <div className="col-xl-4 mt-1">
-                                    <label htmlFor="inputAddress5" className="form-label text-gray">MiddleName*</label>
+                                    <label htmlFor="inputAddress5" className="form-label text-gray">MiddleName</label>
                                     <input type="text" className="form-control" name="mname" value={creditFormData.mname} onChange={handleCreditFormDataChange} onInput={addressInput} required/>
                                 </div>
                                 <div className="col-xl-4 mt-1">
