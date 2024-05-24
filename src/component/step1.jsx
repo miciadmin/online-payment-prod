@@ -152,7 +152,7 @@ function Step1() {
                         setErrorPolicy('(Policy is cancelled)');
                     } else if (status === 'OTHER_CURRENCY') {
                         setErrorPolicy('(Policy currency not allowed)');
-                    } else if (status === 'FULLY_PAID') {
+                    } else if (status === 'FULLY_PAID' || status === 'HAS_SUCCESSFUL_PAYMENT') {
                         setErrorPolicy('(Policy is already settled)');
                     } else if (status === 'TEMPORARY_PAYMENT') {
                         setErrorPolicy('(Policy has pending transaction)');
