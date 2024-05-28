@@ -153,7 +153,7 @@ function Step2() {
                                 <span>Credit Card</span>
                             </div>
                         </div>
-                        {isLive && (
+                        {!isLive && (
                             <>
                             <div className="col-xl-6 my-1">
                                 <div className={`radio-card radio-card-8 ${selectedMethod == 8 ? 'selected' : ''}`} onClick={() => selectRadioCard(8)}>
