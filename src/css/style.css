@@ -50,7 +50,7 @@ body {
     justify-content: space-between;
     gap: 10px;
     /*color: var(--primary);*/
-    margin: .2rem .5rem;
+    margin: .2rem .5rem 0;
 }
 .action-container2 {
     display: none;
@@ -435,7 +435,7 @@ label {
         z-index: 999;
         background-color: white;
         margin: 0;
-        padding: .2rem .5rem;
+        padding: .2rem .5rem 0;
         box-shadow: 0 2px 5px rgba(0,0,0,0.2);    
     }
     .steps {
