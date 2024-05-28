@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect} from 'react';
 import Sidebar from './sidebar';
+import CookiePermission from './cookies_permission';
 import { endpoint, currencyFormat, isValidEmail, isValidMobileNo, lpad, numInputOnly, textInputOnly, numAndTextInput} from '../js/utils';
 import { useNavigate } from 'react-router-dom';
 import MiciLogo from '../assets/mici_logo.svg'
@@ -152,8 +153,10 @@ function Step1() {
                         setErrorPolicy('(Policy is cancelled)');
                     } else if (status === 'OTHER_CURRENCY') {
                         setErrorPolicy('(Policy currency not allowed)');
-                    } else if (status === 'FULLY_PAID' || status === 'HAS_SUCCESSFUL_PAYMENT') {
+                    } else if (status === 'FULLY_PAID') {
                         setErrorPolicy('(Policy is already settled)');
+                    } else if (status === 'HAS_SUCCESSFUL_PAYMENT') {
+                        setErrorPolicy('(Payment successful; policy ready for OR)');
                     } else if (status === 'TEMPORARY_PAYMENT') {
                         setErrorPolicy('(Policy has pending transaction)');
                     } else if (status === 'OVERDUE') {
@@ -389,6 +392,8 @@ function Step1() {
             )}
                 
             </div>
+
+        <CookiePermission/>
         </div>
     )
 }

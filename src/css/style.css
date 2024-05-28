@@ -323,15 +323,54 @@ label {
 .payment-method-container {
     margin: 0 2rem;
 }
-
 .space-between {  
     display: flex;
     justify-content: space-between;
 }
-/*.bank-img {
-    width: 100px;  
-    margin-bottom: 5px;
-}*/
+.cookie-consent {  
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #333333f2;
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    font-size: .9rem;  
+    z-index: 9999;
+}
+.cookie-consent div span {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.cookie-info {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    color: #333;  
+    font-size: .9rem;
+    text-align: justify;
+    padding: 10px 20px;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+}
+.cookie-info-header {  
+    display: flex;
+    justify-content: space-between;
+}
+.cookie-info span {
+    margin-top: 0;
+    font-size: 1rem;
+    font-weight: bold;
+}
+.cookie-info p {
+    margin: 10px 0;
+}
+
+
 
 @media (max-width: 1600px) {
     .step-line {
@@ -615,9 +654,9 @@ label {
 
 
 .copyright-text {
-    font-size:.7rem;
-    bottom:5%;
-    position:fixed;  
+    font-size: .7rem;
+    bottom: 20px;
+    position: fixed;  
     margin: 0 1rem;
 }
 
