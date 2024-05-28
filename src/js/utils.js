@@ -48,6 +48,15 @@ export const endpoint = () => {
         return import.meta.env.VITE_LOCAL_API_URL;
     }      
 }
+export const isLive = () => {
+    var isLive = false;
+    if (process.env.NODE_ENV === 'production') {
+        if (window.location.hostname === 'payment.mercantile.ph') {
+            isLive = true;
+        }
+    }  
+    return isLive; 
+}
 export function goBack() {
     window.history.back();
 }

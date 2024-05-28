@@ -350,8 +350,8 @@ label {
     bottom: 0;
     left: 0;
     width: 100%;
-    background-color: #fff;
-    color: #333;  
+    background-color: #333333f2;
+    color: white;
     font-size: .9rem;
     text-align: justify;
     padding: 10px 20px;

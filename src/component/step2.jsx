@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect} from 'react';
 import Sidebar from './sidebar';
 import DragonPayLogo from '../assets/dragonpay.png'
-import { currencyFormat, goBack, textInputOnly, addressInput, numInputOnly, 
+import { currencyFormat, goBack, textInputOnly, addressInput, numInputOnly, isLive,
         bpiLogo, cbcLogo, rcbcLogo, ubpLogo, gcashLogo, mayaLogo, ccLogo, bogusLogo} from '../js/utils';
 import { useNavigate } from 'react-router-dom';
 
@@ -153,18 +153,23 @@ function Step2() {
                                 <span>Credit Card</span>
                             </div>
                         </div>
-                        <div className="col-xl-6 my-1">
-                            <div className={`radio-card radio-card-8 ${selectedMethod == 8 ? 'selected' : ''}`} onClick={() => selectRadioCard(8)}>
-                                <img className="bank-img mr-4" src={bogusLogo()}/>
-                                <span>Test Bank Online</span>
+                        {isLive && (
+                            <>
+                            <div className="col-xl-6 my-1">
+                                <div className={`radio-card radio-card-8 ${selectedMethod == 8 ? 'selected' : ''}`} onClick={() => selectRadioCard(8)}>
+                                    <img className="bank-img mr-4" src={bogusLogo()}/>
+                                    <span>Test Bank Online</span>
+                                </div>
                             </div>
-                        </div>
-                        <div className="col-xl-6 my-1">
-                            <div className={`radio-card radio-card-9 ${selectedMethod == 9 ? 'selected' : ''}`} onClick={() => selectRadioCard(9)}>
-                                <img className="bank-img mr-4" src={bogusLogo()}/>
-                                <span>Test Bank Over-the-Counter</span>
+                            <div className="col-xl-6 my-1">
+                                <div className={`radio-card radio-card-9 ${selectedMethod == 9 ? 'selected' : ''}`} onClick={() => selectRadioCard(9)}>
+                                    <img className="bank-img mr-4" src={bogusLogo()}/>
+                                    <span>Test Bank Over-the-Counter</span>
+                                </div>
                             </div>
-                        </div>
+                            </>
+                        )}
+
                     </div>
                 </div>
 
