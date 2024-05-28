@@ -52,7 +52,6 @@ export const isLive = () => {
             isLive = true;
         }
     }  
-    console.log('isLive:' + isLive);
     return isLive; 
 }
 export function goBack() {

@@ -340,12 +340,16 @@ label {
     font-size: .9rem;  
     z-index: 9999;
 }
+.cookie-consent div p {
+    margin: 0;
+}
 .cookie-consent div span {
     cursor: pointer;
     text-decoration: underline;  
-    width: 100px;
     display: block;
-    text-align: end;
+}
+.cookie-consent div button {
+    width: 80px;
 }
 
 .cookie-info {

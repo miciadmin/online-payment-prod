@@ -5,7 +5,7 @@ function CookiesPermission() {
   const [showMoreInfo, setShowMoreInfo] = useState(false);
 
   useEffect(() => {
-    const consent = localStorage.getItem('cookieConsent');
+    const consent = localStorage.getItem('cookies');
     if (consent === 'accepted') {
         setShowCookieConsent(false);
     } else {
@@ -13,10 +13,13 @@ function CookiesPermission() {
     }
   }, []);
 
+  const handleGotIt = () => {
+    localStorage.setItem('cookies', 'accepted');
+    setShowCookieConsent(false);
+  }
+
   const handleLearnMore = () => {
     setShowMoreInfo(true);
-    localStorage.setItem('cookieConsent', 'accepted');
-    setShowCookieConsent(false);
   };
 
   const closeLearnMore = () => {
@@ -27,10 +30,13 @@ function CookiesPermission() {
     <div className="App">
       {showCookieConsent && (
         <div className="cookie-consent">
-          <span>This website uses cookies to ensure you get the best experience on our website.</span>
-          <div>
-            <span onClick={handleLearnMore}>Learn more</span>
-          </div>
+            <div>
+                <p>This website uses cookies to ensure you get the best experience on our website.</p>
+                <span onClick={handleLearnMore}>Learn more</span>
+            </div>
+            <div>
+                <button type="button" className="btn btn-light" onClick={handleGotIt}>Got it!</button>
+            </div>
         </div>
       )}
 
