@@ -17,7 +17,7 @@ function CookiesPermission() {
 
   const handleLearnMore = () => {
     setShowMoreInfo(true);
-    //localStorage.setItem('cookieConsent', 'accepted');
+    localStorage.setItem('cookieConsent', 'accepted');
     setShowCookieConsent(false);
   };
 
