@@ -144,7 +144,7 @@ function Step1() {
             });
             if (response.ok) {
                 const data = await response.json();
-                console.log(data);
+                //console.log(data);
                 if(data.isExist) {
                     let status = data.policyDetails.payment_stat;
                     if (status === 'SPOILED') {
