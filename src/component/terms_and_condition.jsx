@@ -34,9 +34,9 @@ function TermsAndCondition() {
 
                     <p className='subtitle'>3. Payment Confirmation</p>
                     <p>Once payment is made through MICI Online Payment Facility, you will receive a confirmation email from MICI confirming the receipt of your payment. Please retain this confirmation for your records.</p>
-
-                    <p className='subtitle'>4. Policy Issuance</p>
-                    <p>Your insurance policy will be issued by The Mercantile Insurance Company, Inc. only after the successful processing of your payment.</p>
+                    
+                    <p className='subtitle'>4. Official Receipt</p>
+                    <p>The Mercantile Insurance Company, Inc. will email the official receipt to the email address provided within 3-5 business days after the successful processing of your payment.</p>
 
                     <p className='subtitle'>5. Refund Policy</p>
                     <p>All payments made through MICI Online Payment Facility are non-refundable.</p>
