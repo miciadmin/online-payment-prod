@@ -5,7 +5,7 @@ function CookiesPermission() {
   const [showMoreInfo, setShowMoreInfo] = useState(false);
 
   useEffect(() => {
-    const consent = localStorage.getItem('cookies');
+    const consent = localStorage.getItem('cookieConsent');
     if (consent === 'accepted') {
         setShowCookieConsent(false);
     } else {
@@ -14,7 +14,7 @@ function CookiesPermission() {
   }, []);
 
   const handleGotIt = () => {
-    localStorage.setItem('cookies', 'accepted');
+    localStorage.setItem('cookieConsent', 'accepted');
     setShowCookieConsent(false);
   }
 
