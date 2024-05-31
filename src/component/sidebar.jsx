@@ -26,19 +26,19 @@ function Sidebar({ isContainerVisible, isBackVisible, onClose }) {
             </div>
             <div className="menus">
                 <div className="menu-item" onClick={() => createPayment()}>
-                    <span><i class="bi bi-credit-card mr-2"></i>Create Payment</span>
+                    <span><i className="bi bi-credit-card mr-2"></i>Create Payment</span>
                     <i className="bi bi-chevron-right fs-12 mr-2"></i>
                 </div>
                 <div className="menu-item" onClick={() => navigate('/search-refno')}>
-                    <span><i class="bi bi-receipt-cutoff mr-2"></i>Check Reference No.</span>
+                    <span><i className="bi bi-receipt-cutoff mr-2"></i>Check Reference No.</span>
                     <i className="bi bi-chevron-right fs-12 mr-2"></i>
                 </div>
                 <div className="menu-item" onClick={() => navigate('/terms-and-condition')}>
-                    <span><i class="bi bi-file-earmark-text mr-2"></i>Terms and Conditions</span>
+                    <span><i className="bi bi-file-earmark-text mr-2"></i>Terms and Conditions</span>
                     <i className="bi bi-chevron-right fs-12 mr-2"></i>
                 </div>
                 <div className="menu-item" onClick={() => navigate('/privacy-policy')}>
-                    <span><i class="bi bi-shield-exclamation mr-2"></i>Privacy Policy</span>
+                    <span><i className="bi bi-shield-exclamation mr-2"></i>Privacy Policy</span>
                     <i className="bi bi-chevron-right fs-12 mr-2"></i>
                 </div>
             </div>
