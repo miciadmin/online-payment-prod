@@ -377,8 +377,25 @@ label {
 .cookie-info p {
     margin: 10px 0;
 }
-
-
+.ref-table {
+    border-collapse: collapse;
+    min-width:70%;
+}
+.ref-table td, .ref-table th {
+border: 1px solid #dddddd;
+text-align: left;
+padding: 8px;
+}
+.ref-table .tr-even {
+background-color: #e6ede7;
+}
+.w-30 {
+    width: 30%;
+}
+.align-left-top {
+    text-align: left;
+    vertical-align: top;
+}
 
 @media (max-width: 1600px) {
     .step-line {

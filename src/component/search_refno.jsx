@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect} from 'react';
 import Sidebar from './sidebar';
-import { endpoint, goBack} from '../js/utils';
+import { endpoint, bankName, statusName, formatDate} from '../js/utils';
 import MiciLogo from '../assets/mici_logo.svg'
 import { useNavigate } from 'react-router-dom';
 
@@ -52,7 +52,14 @@ function SearchRefNo() {
             setLoading(false);
         }
     };
-
+    const formatTextWithLineBreaks = (text) => {
+        return text.split(';').map((item, index) => (
+            <span key={index}>
+                {item}
+                <br />
+            </span>
+        ));
+    }
     return(
         <div className="main-container">
             
@@ -89,9 +96,40 @@ function SearchRefNo() {
                 
                 {paymentDetails && (
                     <>
-                    <div className="divider"></div>
+                    <div className='divider'></div>
                     <div className="card">
-                        <iframe className="payment-details" src={"https://test.dragonpay.ph/Bank/GetEmailInstruction.aspx?refno=" + paymentDetails.RefNo} title="Payment Status"></iframe>
+                        <table className='ref-table'>
+                            <tbody>
+                                <tr className="tr-even">
+                                    <td className='w-30'>Status</td>
+                                    <td>{statusName(paymentDetails.Status)}</td>
+                                </tr>
+                                <tr>
+                                    <td>Reference No.</td>
+                                    <td>{paymentDetails.RefNo}</td>
+                                </tr>
+                                <tr className="tr-even">
+                                    <td>Transaction ID</td>
+                                    <td>{paymentDetails.TxnId}</td>
+                                </tr>
+                                <tr>
+                                    <td>Payment Method</td>
+                                    <td>{bankName(paymentDetails.ProcId)}</td>
+                                </tr>
+                                <tr className="tr-even">
+                                    <td>Amount Paid</td>
+                                    <td>{paymentDetails.Currency} {paymentDetails.Amount}</td>
+                                </tr>
+                                <tr>
+                                    <td>Settle Date</td>
+                                    <td>{formatDate(paymentDetails.SettleDate)}</td>
+                                </tr>
+                                <tr className='tr-even align-left-top'>
+                                    <td>Description</td>
+                                    <td>{formatTextWithLineBreaks(paymentDetails.Description)}</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                     </>
                 )}

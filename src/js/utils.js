@@ -94,3 +94,57 @@ export const bogusLogo = () => {
 export const miciLogo = () => {
     return 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjhbrY98YwwhSY6TEouZBQb9szl97AVXU4yEZfhFo-4dfX3fr-Inu0poYWn5N-I3W_b58N21Mi_UjXKOtgPfVclLhGMPBekbk9ftEaTUhafn7WE5wKjJhOnPU2mlK_Ie1p-xlLeYTV994PsxwMEBoPYLeN1WzSdyY7pPT8_lBNTEt1tVwnQvKFDDMNyntVe/s1600/mici_logo_s.png';
 }
+export const bankName = (procId) => {
+    switch (procId) {
+        case "BPIA":
+            return "BPI Online/Mobile";
+        case "CBDD":
+            return "China Bank Online Direct Debit";
+        case "RCDD":
+            return "RCBC Online Direct Debit";
+        case "UBDD":
+            return "Unionbank Online Direct Debit";
+        case "GCSH":
+            return "Globe GCash";
+        case "PYMY":
+            return "PayMaya";
+        case "CC":
+            return "Credit Card";
+        case "XNDT":
+            return "Credit Card";
+        case "BOG":
+            return "Test Bank Online";
+        case "BOGX":
+            return "Test Bank Over-the-Counter";
+        default:
+            return null;
+    }
+}
+export const statusName = (stat) => {
+    switch (stat) {
+        case "S":
+            return "SUCCESS";
+        case "F":
+            return "FAILED";
+        case "P":
+            return "PENDING";
+        case "U":
+            return "UNKNOWN";
+        case "V":
+            return "VOID";
+        default:
+            return null;
+    }
+}
+export const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const options = {
+        month: 'long',
+        day: '2-digit',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: true
+    };
+    return date.toLocaleString('en-US', options);
+}
