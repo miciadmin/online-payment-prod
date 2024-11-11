@@ -208,7 +208,7 @@ function Step3() {
                     <span className="card-title">Policy Details</span>
                     <div className="row">
                         <div className="space-between col-md-12">
-                            <span className="text-gray">Policy No.:</span>
+                            <span className="text-gray">Policy Number:</span>
                             <span className="text-right">
                                 {policyDetails.line_cd}-
                                 {policyDetails.subline_cd}-
@@ -219,11 +219,11 @@ function Step3() {
                             </span>
                         </div>
                         <div className="space-between col-md-12 mt-1">
-                            <span className="text-gray">Assured:</span>
+                            <span className="text-gray">Assured Name:</span>
                             <span className="text-right">{policyDetails.assd_name}</span>
                         </div>
                         <div className="space-between col-md-12 mt-1">
-                            <span className="text-gray">Invoice No.:</span>
+                            <span className="text-gray">Invoice Number:</span>
                             <span className="text-right">{policyDetails.invoice_no_formatted}</span>
                         </div>
                         <div className="space-between col-md-12 mt-1">
@@ -238,11 +238,11 @@ function Step3() {
                     <span className="card-title">Contact Details</span>
                     <div className="row">
                         <div className="space-between col-md-12">
-                            <span className="text-gray">Email:</span>
+                            <span className="text-gray">Email Address:</span>
                             <span className="text-right">{contactDetails.email}</span>
                         </div>
                         <div className="space-between col-md-12 mt-1">
-                            <span className="text-gray">Mobile No:</span>
+                            <span className="text-gray">Mobile Number:</span>
                             <span className="text-right">{contactDetails.mobileNo}</span>
                         </div>
                     </div>
@@ -252,7 +252,7 @@ function Step3() {
 
                 {amountDueType === 'Total' ? (
                     <div className="card my-0">
-                        <span className="card-title">Amount</span>
+                        <span className="card-title">Amount Breakdown</span>
                         <div className="row">
                             <div className="space-between col-md-12">
                                 <span className="text-gray">Premium Amount:</span>
@@ -263,14 +263,14 @@ function Step3() {
                                 <span className="text-right">{currencyFormat(policyDetails.tax_amt)}</span>
                             </div>
                             <div className="space-between col-md-12 mt-1">
-                                <span>Total Amount:</span>
+                                <span>Total Payable Amount:</span>
                                 <span className="text-right fw-bold">Php {currencyFormat(policyDetails.total_amt_due)}</span>
                             </div>
                         </div>
                     </div>
                 ) : (
                     <div className="card my-0">
-                        <span className="card-title">Amount</span>
+                        <span className="card-title">Amount Breakdown</span>
                         <div className="row">
                             <div className="space-between col-md-12">
                                 <span>Payable Amount:</span>
@@ -308,7 +308,7 @@ function Step3() {
                             <span className="text-gray">Source:</span>
                             <div className="text-right">
                                 <span>{bankDetails[selectedMethod-1].longName}</span>
-                                <img className="bank-img ml-2" src={bankDetails[selectedMethod-1].logo} alt="" />
+                                <img className="bank-img ml-2" src={bankDetails[selectedMethod-1].logo} alt="" loading="lazy"/>
                             </div>
                             </div>
                         </div>

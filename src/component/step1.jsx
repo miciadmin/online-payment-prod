@@ -281,9 +281,9 @@ function Step1() {
 
                 <div className="note-box">
                     <p className="note-title">Please note the following guidelines for processing payments:</p>
-                    <p>1. Payment Type: Only full payment for main policy is accepted.</p>
-                    <p>2. Policy Status: Payments can only be processed for policies that are not overdue.</p>
-                    <p>3. Claim Status: Ensure that there are no outstanding claims on your policy before proceeding with the payment.</p>
+                    <p>1. <strong>Payment Type:</strong> Only full payment for main policy is accepted.</p>
+                    <p>2. <strong>Policy Status:</strong> Payments can only be processed for policies that are not overdue.</p>
+                    <p>3. <strong>Claim Status:</strong> Ensure that there are no outstanding claims on your policy before proceeding with the payment.</p>
                 </div>
 
             {isSearchingPolicy && (
@@ -321,7 +321,7 @@ function Step1() {
                             <span className="card-title">Policy Details</span>
                             <div className="row">
                                 <div className="space-between col-md-12">
-                                    <span className="text-gray">Policy No.:</span>
+                                    <span className="text-gray">Policy Number:</span>
                                     <span className="text-right" id="policy-no">
                                         {policyDetails.line_cd}-
                                         {policyDetails.subline_cd}-
@@ -332,11 +332,11 @@ function Step1() {
                                     </span>
                                 </div>
                                 <div className="space-between col-md-12 mt-1">
-                                    <span className="text-gray">Invoice No.:</span>
+                                    <span className="text-gray">Invoice Number:</span>
                                     <span className="text-right">{policyDetails.invoice_no_formatted}</span>
                                 </div>
                                 <div className="space-between col-md-12 mt-1">
-                                    <span className="text-gray">Assured:</span>
+                                    <span className="text-gray">Assured Name:</span>
                                     <span className="text-right">{policyDetails.assd_name}</span>
                                 </div>
                                 <div className="space-between col-md-12 mt-1">
@@ -364,12 +364,12 @@ function Step1() {
                                 <span>(to recieve payment confirmation)</span>
                             </div>
                             <div className="row">
-                                <div className="col-xl-6">
-                                    <label htmlFor="inputPassword5" className="form-label text-gray">Email*</label>
+                                <div className="col-xl-6 mb-1">
+                                    <label htmlFor="inputPassword5" className="form-label text-gray">Email Address*</label>
                                     <input type="text" className="form-control" name="email" value={contactFormData.email} onChange={handleContactFormDataChange} required/>
                                 </div>
-                                <div className="col-xl-6 mt-1">
-                                    <label htmlFor="inputAddress5" className="form-label text-gray">Mobile No*</label>
+                                <div className="col-xl-6">
+                                    <label htmlFor="inputAddress5" className="form-label text-gray">Mobile Number*</label>
                                     <input type="text" className="form-control" name="mobileNo" value={contactFormData.mobileNo} onChange={handleContactFormDataChange} required/>
                                 </div>
                             </div>

@@ -105,25 +105,25 @@ function Step2() {
                     <div className="row mb-3">
                         <div className="col-xl-6 my-1">
                             <div className={`radio-card radio-card-1 ${selectedMethod == 1 ? 'selected' : ''}`} onClick={() => selectRadioCard(1)}>
-                                <img className="bank-img mr-4" src={bpiLogo()}/>
+                                <img className="bank-img mr-4" src={bpiLogo()} loading="lazy"/>
                                 <span>BPI Online/Mobile</span>
                             </div>
                         </div>
                         <div className="col-xl-6 my-1">
                             <div className={`radio-card radio-card-2 ${selectedMethod == 2 ? 'selected' : ''}`} onClick={() => selectRadioCard(2)}>
-                                <img className="bank-img mr-4" src={cbcLogo()}/>
+                                <img className="bank-img mr-4" src={cbcLogo()} loading="lazy"/>
                                 <span>China Bank Online Direct Debit</span>
                             </div>
                         </div>
                         <div className="col-xl-6 my-1">
                             <div className={`radio-card radio-card-3 ${selectedMethod == 3 ? 'selected' : ''}`} onClick={() => selectRadioCard(3)}>
-                                <img className="bank-img mr-4" src={rcbcLogo()}/>
+                                <img className="bank-img mr-4" src={rcbcLogo()} loading="lazy"/>
                                 <span>RCBC Online Direct Debit</span>
                             </div>
                         </div>
                         <div className="col-xl-6 my-1">
                             <div className={`radio-card radio-card-4 ${selectedMethod == 4 ? 'selected' : ''}`} onClick={() => selectRadioCard(4)}>
-                                <img className="bank-img mr-4" src={ubpLogo()}/>
+                                <img className="bank-img mr-4" src={ubpLogo()} loading="lazy"/>
                                 <span>Unionbank Online Direct Debit</span>
                             </div>
                         </div>
@@ -133,13 +133,13 @@ function Step2() {
                     <div className="row mb-3">
                         <div className="col-xl-6 my-1">
                             <div className={`radio-card radio-card-5 ${selectedMethod == 5 ? 'selected' : ''}`} onClick={() => selectRadioCard(5)}>
-                                <img className="bank-img mr-4" src={gcashLogo()}/>
+                                <img className="bank-img mr-4" src={gcashLogo()} loading="lazy"/>
                                 <span>Globe GCash</span>
                             </div>
                         </div>
                         <div className="col-xl-6 my-1">
                             <div className={`radio-card radio-card-6 ${selectedMethod == 6 ? 'selected' : ''}`} onClick={() => selectRadioCard(6)}>
-                                <img className="bank-img mr-4" src={mayaLogo()}/>
+                                <img className="bank-img mr-4" src={mayaLogo()} loading="lazy"/>
                                 <span>PayMaya</span>
                             </div>
                         </div>
@@ -149,7 +149,7 @@ function Step2() {
                     <div className="row">
                         <div className="col-xl-6 my-1">
                             <div className={`radio-card radio-card-7 ${selectedMethod == 7 ? 'selected' : ''}`} onClick={() => selectRadioCard(7)}>
-                                <img className="bank-img mr-4" src={ccLogo()}/>
+                                <img className="bank-img mr-4" src={ccLogo()} loading="lazy"/>
                                 <span>Credit Card</span>
                             </div>
                         </div>
@@ -157,13 +157,13 @@ function Step2() {
                             <>
                             <div className="col-xl-6 my-1">
                                 <div className={`radio-card radio-card-8 ${selectedMethod == 8 ? 'selected' : ''}`} onClick={() => selectRadioCard(8)}>
-                                    <img className="bank-img mr-4" src={bogusLogo()}/>
+                                    <img className="bank-img mr-4" src={bogusLogo()} loading="lazy"/>
                                     <span>Test Bank Online</span>
                                 </div>
                             </div>
                             <div className="col-xl-6 my-1">
                                 <div className={`radio-card radio-card-9 ${selectedMethod == 9 ? 'selected' : ''}`} onClick={() => selectRadioCard(9)}>
-                                    <img className="bank-img mr-4" src={bogusLogo()}/>
+                                    <img className="bank-img mr-4" src={bogusLogo()} loading="lazy"/>
                                     <span>Test Bank Over-the-Counter</span>
                                 </div>
                             </div>
