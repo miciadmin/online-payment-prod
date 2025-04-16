@@ -61,7 +61,7 @@ function PrivacyPolicy() {
                         Mercantile Insurance Building Cor. General Luna & Beaterio Sts., Brgy. 655 Zone 69, Intramuros, Manila <br />
                         (632) 85277701 to 20 <br />
                         gen_info@mici.com.ph <br />
-                        www.mercantile.ph
+                        <a href='https://www.mercantile.ph/' target='_blank'>www.mercantile.ph</a> 
                         </p>
 
                         <p>By using our online payment application, you consent to the collection and use of your information as described in this Privacy Policy.</p>

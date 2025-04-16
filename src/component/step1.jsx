@@ -5,6 +5,7 @@ import { endpoint, currencyFormat, isValidEmail, isValidMobileNo, lpad, numInput
 import { useNavigate } from 'react-router-dom';
 import MiciLogo from '../assets/mici_logo.svg'
 import PartiallyPaidModal from './partially_paid_modal';
+import ReadyForORModal from './ready_for_or_modal';
 
 function Step1() {
     const navigate = useNavigate();
@@ -23,6 +24,7 @@ function Step1() {
     const [contactDetails, setContactDetails] = useState(JSON.parse(sessionStorage.getItem('contactDtls')));
     const [amountDueType, setAmountDueType] = useState(sessionStorage.getItem('amountDueType'));
 
+    const [showReadyForORModal, setShowReadyForORModal] = useState(false);
     const [showPartiallyPaidModal, setShowPartiallyPaidModal] = useState(false);
     const [isSearchingPolicy, setIsSearchingPolicy] = useState(true);
     const [errorContact, setErrorContact] = useState(null);
@@ -156,7 +158,7 @@ function Step1() {
                     } else if (status === 'FULLY_PAID') {
                         setErrorPolicy('(Policy is already settled)');
                     } else if (status === 'HAS_SUCCESSFUL_PAYMENT') {
-                        setErrorPolicy('(Payment successful; policy ready for OR)');
+                        setShowReadyForORModal(true);
                     } else if (status === 'TEMPORARY_PAYMENT') {
                         setErrorPolicy('(Policy has pending transaction)');
                     } else if (status === 'OVERDUE') {
@@ -254,6 +256,7 @@ function Step1() {
             
             <Sidebar isContainerVisible={isSidebarVisible} onClose={()=>setSidebarVisible(false)}/>
             <PartiallyPaidModal show={showPartiallyPaidModal} handleClose={() => setShowPartiallyPaidModal(false)} />
+            <ReadyForORModal show={showReadyForORModal} handleClose={() => setShowReadyForORModal(false)} />
 
             <div className="right-container">
                 <div className="action-container2">

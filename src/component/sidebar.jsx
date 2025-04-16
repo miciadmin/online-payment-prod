@@ -42,7 +42,7 @@ function Sidebar({ isContainerVisible, isBackVisible, onClose }) {
                     <i className="bi bi-chevron-right fs-12 mr-2"></i>
                 </div>
             </div>
-            <span className="copyright-text">Copyright © MICI 2024</span>
+            <span className="copyright-text">Copyright © MICI {new Date().getFullYear()}</span>
         </div>
     )
 }

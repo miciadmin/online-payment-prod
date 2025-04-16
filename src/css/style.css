@@ -114,7 +114,7 @@ body {
 .step-line {
     position: absolute;  
     border-top: 1px solid var(--light-gray1);
-    width: 40vw;
+    width: 80%;
     margin: 25px 8vw 0;
 }
 .step-items {  
