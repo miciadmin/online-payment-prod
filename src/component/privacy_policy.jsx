@@ -4,7 +4,6 @@ import { endpoint, goBack} from '../js/utils';
 import MiciLogo from '../assets/mici_logo.svg'
 import { useNavigate } from 'react-router-dom';
 
-
 function PrivacyPolicy() {
     const navigate = useNavigate();
     const [isSidebarVisible, setSidebarVisible] = useState(false);
