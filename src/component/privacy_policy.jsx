@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect} from 'react';
 import Sidebar from './sidebar';
-import { endpoint, goBack} from '../js/utils';
 import MiciLogo from '../assets/mici_logo.svg'
 import { useNavigate } from 'react-router-dom';
 
