@@ -1,27 +1,28 @@
 <!doctype html>
 <html lang="en">
-  <head>
+
+<head>
     <script type="text/javascript">
-      (function(l) {
-        if (l.search[1] === '/' ) {
-          var decoded = l.search.slice(1).split('&').map(function(s) { 
-            return s.replace(/~and~/g, '&')
-          }).join('?');
-          window.history.replaceState(null, null,
-              l.pathname.slice(0, -1) + decoded + l.hash
-          );
-        }
-      }(window.location))
+        (function (l) {
+            if (l.search[1] === '/') {
+                var decoded = l.search.slice(1).split('&').map(function (s) {
+                    return s.replace(/~and~/g, '&')
+                }).join('?');
+                window.history.replaceState(null, null,
+                    l.pathname.slice(0, -1) + decoded + l.hash
+                );
+            }
+        }(window.location))
     </script>
     <title>MICI Online Payment Facility</title>
     <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
     <meta name="author" content="HOITLLS">
     <meta name="description" content="">
-    <meta name="theme-color" content="#4c924c"/>
+    <meta name="theme-color" content="#4c924c" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-    <link rel="icon" type="image/x-icon" href="/op_ico192x192.png">    
+
+    <link rel="icon" type="image/x-icon" href="/op_ico192x192.png">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap">
@@ -29,22 +30,24 @@
     <link rel="manifest" href="manifest.json">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  </head>
-  <body>
+    <script src="https://www.google.com/recaptcha/enterprise.js?render=6LdSTBEsAAAAALceR-TpJF48g1p__OgqPDiKPzNU"></script>
+</head>
+
+<body>
     <div id="root"></div>
-    
+
     <script>
-      if ('serviceWorker' in navigator) {
-          navigator.serviceWorker.register('/sw.js')
-          .then((registration) => {
-              console.log('Service Worker registered!');
-          })
-          .catch((err) => {
-              console.log('Service Worker registration failed:', err);
-          });
-      } 
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js')
+                .then((registration) => {
+                    console.log('Service Worker registered!');
+                })
+                .catch((err) => {
+                    console.log('Service Worker registration failed:', err);
+                });
+        } 
     </script>
 
     <script type="module" src="/src/main.jsx"></script>
-  </body>
+</body>
 </html>
