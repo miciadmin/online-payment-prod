@@ -24,6 +24,7 @@ function Step1() {
     const [contactDetails, setContactDetails] = useState(JSON.parse(sessionStorage.getItem('contactDtls')));
     const [amountDueType, setAmountDueType] = useState(sessionStorage.getItem('amountDueType'));
 
+    const POLICY_YEAR = new Date().getFullYear().toString().substring(2);
     const [showReadyForORModal, setShowReadyForORModal] = useState(false);
     const [showPartiallyPaidModal, setShowPartiallyPaidModal] = useState(false);
     const [isSearchingPolicy, setIsSearchingPolicy] = useState(true);
@@ -74,6 +75,7 @@ function Step1() {
         });
         setErrorContact(null);
     };
+    
     const searchAnotherPolicy = (e) => {
         setPolicyDetails(null);
         setContactDetails(null);
@@ -91,6 +93,11 @@ function Step1() {
             email: '',
             mobileNo: ''
         });
+
+        sessionStorage.removeItem('contactDtls');
+        sessionStorage.removeItem('policyDtls');
+        sessionStorage.removeItem('amountDueType');
+
         try {
             inputRef.current.focus();
         } catch (e) { }
@@ -120,6 +127,11 @@ function Step1() {
         });
         setErrorPolicy(null);
         setErrorContact(null);
+
+        sessionStorage.removeItem('contactDtls');
+        sessionStorage.removeItem('policyDtls');
+        sessionStorage.removeItem('amountDueType');
+
         try {
             inputRef.current['lineCd'].focus();
         } catch (e) { }
@@ -326,7 +338,7 @@ function Step1() {
                             <input type="text" ref={(e) => (inputRef.current.seqNo = e)} className="form-control text-center" name="seqNo" value={policyFormData.seqNo} onChange={handlePolicyFormDataChange} onInput={(e) => { numInputOnly(e); handleMaxLength(e, 0); }} /*onBlur={handleSeqNoFocusOut}*/ maxLength={7} required />
                             <input type="text" ref={(e) => (inputRef.current.renewNo = e)} className="form-control text-center" name="renewNo" value={policyFormData.renewNo} onChange={handlePolicyFormDataChange} onInput={(e) => { numInputOnly(e); handleMaxLength(e, 0); }} /*onBlur={handleRenewNoFocusOut}*/ maxLength={2} required />
                         </div>
-                        <span className="text-gray my-2">(Example: PA-SPA-HO-24-0000123-00)</span>
+                        <span className="text-gray my-2">(Example: PA-SPA-HO-{POLICY_YEAR}-0000123-00)</span>
                         <div className="search-btn-div">
                             <button type="button" className="btn btn-success btn-w" onClick={handleSubmit}>
                                 {loading ? <><i className="spinner-border spinner-border-sm"></i> Searching</> : <><i className="bi bi-search"></i> Search</>}
