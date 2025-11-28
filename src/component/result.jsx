@@ -43,33 +43,25 @@ function ResultPage(status, refno) {
         sessionStorage.clear();     
     }, []);
     
-    /*useEffect(() => {
-        if (params.refno
-        && params.digest
-        && params.message
-        && params.txnid
-        && params.status) {
-            console.log('Payment successfull: sending email.');
-            sendSuccessEmail();
+    useEffect(() => {
+        if (params.refno && params.status) {
+            logSuccessTransaction();
         } 
     }, [params]);
-    
-    const sendSuccessEmail = async () => {
+
+    const logSuccessTransaction = async () => {
         const token = sessionStorage.getItem('token');
         try {
-            fetch(`${endpoint()}/sendSuccessEmail?refNo=${params.refno}`, {
-                method: 'GET',
+            fetch(`${endpoint()}/log-result?status=${params.status}&refNo=${params.refno}`, {
+                method: 'POST',
                 headers: {
-                'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`
                 }
             });
         } catch (error) {
             console.error('Error:', error);
-        } finally {
-            sessionStorage.clear();     
         }
-    }*/
+    }
 
     return(
         <div className="center-div">
