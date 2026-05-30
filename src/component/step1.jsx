@@ -6,9 +6,14 @@ import { useNavigate } from 'react-router-dom';
 import MiciLogo from '../assets/mici_logo.svg'
 import PartiallyPaidModal from './partially_paid_modal';
 import ReadyForORModal from './ready_for_or_modal';
+import {
+    AlertTriangle,
+    ChevronRightIcon
+} from 'lucide-react';
 
 function Step1() {
     const navigate = useNavigate();
+    const [showAnnouncement, setShowAnnouncement] = useState(true);
     const [isSidebarVisible, setSidebarVisible] = useState(false);
     const [loading, setLoading] = useState(false);
     const inputRef = useRef({
@@ -75,7 +80,7 @@ function Step1() {
         });
         setErrorContact(null);
     };
-    
+
     const searchAnotherPolicy = (e) => {
         setPolicyDetails(null);
         setContactDetails(null);
@@ -285,152 +290,225 @@ function Step1() {
     };
 
     return (
-        <div className="main-container">
+        <>
+            <div className="main-container">
+                <Sidebar isContainerVisible={isSidebarVisible} onClose={() => setSidebarVisible(false)} />
+                <PartiallyPaidModal show={showPartiallyPaidModal} handleClose={() => setShowPartiallyPaidModal(false)} />
+                <ReadyForORModal show={showReadyForORModal} handleClose={() => setShowReadyForORModal(false)} />
 
-            <Sidebar isContainerVisible={isSidebarVisible} onClose={() => setSidebarVisible(false)} />
-            <PartiallyPaidModal show={showPartiallyPaidModal} handleClose={() => setShowPartiallyPaidModal(false)} />
-            <ReadyForORModal show={showReadyForORModal} handleClose={() => setShowReadyForORModal(false)} />
+                {/* ── Announcement Modal ── cannot be dismissed ── */}
+                {showAnnouncement && (
+                    <div style={{
+                        position: 'fixed', inset: 0, top: 0, left: 0, right: 0, bottom: 0,
+                        zIndex: 9999,
+                        display: 'flex', alignItems: 'center', justifyContent: 'center',
+                        backgroundColor: 'rgba(0,0,0,0.65)',
+                        backdropFilter: 'blur(4px)',
+                    }}>
+                        <div style={{
+                            backgroundColor: '#fff',
+                            borderRadius: '12px',
+                            boxShadow: '0 8px 40px rgba(0,0,0,0.25)',
+                            maxWidth: '480px',
+                            width: '100%',
+                            margin: '0 16px',
+                            overflow: 'hidden',
+                            border: '1px solid #e5e7eb',
+                        }}>
+                            {/* Header */}
+                            <div style={{
+                                backgroundColor: '#dc2626',
+                                padding: '16px 24px',
+                                display: 'flex', alignItems: 'center', gap: '12px',
+                            }}>
+                                <AlertTriangle color="#fff" size={24} style={{ flexShrink: 0 }} />
+                                <h2 style={{ color: '#fff', fontSize: '18px', fontWeight: 700, margin: 0 }}>
+                                    Important Announcement
+                                </h2>
+                            </div>
 
-            <div className="right-container">
-                <div className="action-container2">
-                    <div className="back-container2">
-                        <img src={MiciLogo} alt="" />
-                        <b>Online Payment Facility</b>
-                    </div>
-                    <i className="bi bi-list ico-btn" onClick={() => setSidebarVisible(!isSidebarVisible)} />
-                </div>
-                <div className="steps">
-                    <div className="step-line" />
-                    <div className="step-items">
-                        <button className="step-button done" type="button">1</button>
-                        <div className="step-title">Search Policy</div>
-                    </div>
-                    <div className="step-items">
-                        <button className="step-button" type="button">2</button>
-                        <div className="step-title">Choose Method</div>
-                    </div>
-                    <div className="step-items">
-                        <button className="step-button" type="button">3</button>
-                        <div className="step-title">Review Payment</div>
-                    </div>
-                </div>
+                            {/* Body */}
+                            <div style={{ padding: '24px', display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                                <p style={{ fontSize: '14px', lineHeight: '1.6', margin: 0, color: '#111827' }}>
+                                    This payment portal is{' '}
+                                    <span style={{ fontWeight: 600, color: '#dc2626' }}>no longer in use</span>.
+                                    All payment transactions must now be processed through our new Unified Web Payment system.
+                                </p>
+                                <p style={{ fontSize: '14px', lineHeight: '1.6', margin: 0, color: '#111827' }}>
+                                    Please click the button below to be redirected to the new payment website and complete your transaction there.
+                                </p>
 
-                <div className="note-box">
-                    <p className="note-title">Please note the following guidelines for processing payments:</p>
-                    <p>1. <strong>Payment Type:</strong> Only full payment for main policy is accepted.</p>
-                    <p>2. <strong>Policy Status:</strong> Payments can only be processed for policies that are not overdue.</p>
-                    <p>3. <strong>Claim Status:</strong> Ensure that there are no outstanding claims on your policy before proceeding with the payment.</p>
-                </div>
-
-                {isSearchingPolicy && (
-                    <div className="card">
-                        <div className="space-between">
-                            <span className="card-title mb-2">Enter your Policy No.:</span>
-                            {errorPolicy && (
-                                <span className="text-error text-end" style={{ display: 'block' }}>{errorPolicy}</span>
-                            )}
-                        </div>
-                        <div className="policy-no-fields">
-                            <input type="text" ref={(e) => (inputRef.current.lineCd = e)} className="form-control text-center" name="lineCd" value={policyFormData.lineCd} onChange={handlePolicyFormDataChange} onInput={(e) => { textInputOnly(e); handleMaxLength(e, 0); }} maxLength={2} required />
-                            <input type="text" ref={(e) => (inputRef.current.sublineCd = e)} className="form-control text-center" name="sublineCd" value={policyFormData.sublineCd} onChange={handlePolicyFormDataChange} onInput={(e) => { numAndTextInput(e); handleMaxLength(e, 0); }} maxLength={7} required />
-                            <input type="text" ref={(e) => (inputRef.current.issCd = e)} className="form-control text-center" name="issCd" value={policyFormData.issCd} onChange={handlePolicyFormDataChange} onInput={(e) => { numAndTextInput(e); handleMaxLength(e, 0); }} maxLength={2} required />
-                            <input type="text" ref={(e) => (inputRef.current.issYy = e)} className="form-control text-center" name="issYy" value={policyFormData.issYy} onChange={handlePolicyFormDataChange} onInput={(e) => { numInputOnly(e); handleMaxLength(e, 0); }} maxLength={2} required />
-                            <input type="text" ref={(e) => (inputRef.current.seqNo = e)} className="form-control text-center" name="seqNo" value={policyFormData.seqNo} onChange={handlePolicyFormDataChange} onInput={(e) => { numInputOnly(e); handleMaxLength(e, 0); }} /*onBlur={handleSeqNoFocusOut}*/ maxLength={7} required />
-                            <input type="text" ref={(e) => (inputRef.current.renewNo = e)} className="form-control text-center" name="renewNo" value={policyFormData.renewNo} onChange={handlePolicyFormDataChange} onInput={(e) => { numInputOnly(e); handleMaxLength(e, 0); }} /*onBlur={handleRenewNoFocusOut}*/ maxLength={2} required />
-                        </div>
-                        <span className="text-gray my-2">(Example: PA-SPA-HO-{POLICY_YEAR}-0000123-00)</span>
-                        <div className="search-btn-div">
-                            <button type="button" className="btn btn-success btn-w" onClick={handleSubmit}>
-                                {loading ? <><i className="spinner-border spinner-border-sm"></i> Searching</> : <><i className="bi bi-search"></i> Search</>}
-                            </button>
-                            <button type="button" className="btn btn-outline-success btn-w" onClick={handleClear}>
-                                <i className="bi bi-arrow-left-square"></i> Clear
-                            </button>
-                        </div>
-                    </div>
-                )}
-
-                {policyDetails && (
-                    <div>
-                        <div id="policy-dtls-container">
-                            <div className="card">
-                                <span className="card-title">Policy Details</span>
-                                <div className="row">
-                                    <div className="space-between col-md-12">
-                                        <span className="text-gray">Policy Number:</span>
-                                        <span className="text-right" id="policy-no">
-                                            {policyDetails.line_cd}-
-                                            {policyDetails.subline_cd}-
-                                            {policyDetails.iss_cd}-
-                                            {policyDetails.issue_yy}-
-                                            {lpad(policyDetails.pol_seq_no, 7)}-
-                                            {lpad(policyDetails.renew_no, 2)}
-                                        </span>
-                                    </div>
-                                    <div className="space-between col-md-12 mt-1">
-                                        <span className="text-gray">Invoice Number:</span>
-                                        <span className="text-right">{policyDetails.invoice_no_formatted}</span>
-                                    </div>
-                                    <div className="space-between col-md-12 mt-1">
-                                        <span className="text-gray">Assured Name:</span>
-                                        <span className="text-right">{policyDetails.assd_name}</span>
-                                    </div>
-                                    <div className="space-between col-md-12 mt-1">
-                                        <span className="text-gray">Due Date:</span>
-                                        <span className="text-right">{policyDetails.due_date}</span>
-                                    </div>
-                                    <div className="space-between col-md-12 mt-2">
-                                        <span className="text-gray">{amountDueType === 'Balance' ? 'Balance Amount Due:' : 'Total Amount Due:'}</span>
-                                        <span className="text-right fw-bold">Php {currencyFormat(policyDetails.balance_amt_due)}</span>
-                                    </div>
+                                {/* Link block */}
+                                <div>
+                                    <a
+                                        href="https://payments.fpgmercantile.com/lookup"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        style={{
+                                            display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px',
+                                            width: '100%', backgroundColor: '#16a34a', color: '#fff',
+                                            fontWeight: 600, fontSize: '14px', padding: '10px',
+                                            borderRadius: '8px', textDecoration: 'none',
+                                            boxSizing: 'border-box',
+                                        }}
+                                    >
+                                        Go to Unified Web Payment
+                                        <ChevronRightIcon size={16} />
+                                    </a>
                                 </div>
-                                <div className="text-center mt-3">
-                                    <button type="button" className="btn btn-outline-success btn-w" onClick={searchAnotherPolicy}> Search another policy</button>
-                                </div>
+
+                                <p style={{ fontSize: '12px', color: '#6b7280', margin: 0 }}>
+                                    If you have questions, please contact your system administrator.
+                                </p>
                             </div>
                         </div>
+                    </div >
+                )
+                }
+                {/* ── End Announcement Modal ── */}
 
 
-                        <div id="add-contact-container">
-                            <div className="divider"></div>
+                <div className="right-container">
+                    <div className="action-container2">
+                        <div className="back-container2">
+                            <img src={MiciLogo} alt="" />
+                            <b>Online Payment Facility</b>
+                        </div>
+                        <i className="bi bi-list ico-btn" onClick={() => setSidebarVisible(!isSidebarVisible)} />
+                    </div>
+                    <div className="steps">
+                        <div className="step-line" />
+                        <div className="step-items">
+                            <button className="step-button done" type="button">1</button>
+                            <div className="step-title">Search Policy</div>
+                        </div>
+                        <div className="step-items">
+                            <button className="step-button" type="button">2</button>
+                            <div className="step-title">Choose Method</div>
+                        </div>
+                        <div className="step-items">
+                            <button className="step-button" type="button">3</button>
+                            <div className="step-title">Review Payment</div>
+                        </div>
+                    </div>
 
-                            <div className="card">
-                                <div>
-                                    <span className="card-title">Contact Details </span>
-                                    <span>(to recieve payment confirmation)</span>
-                                </div>
-                                <div className="row">
-                                    <div className="col-xl-6 mb-1">
-                                        <label htmlFor="inputPassword5" className="form-label text-gray">Email Address*</label>
-                                        <input type="text" className="form-control" name="email" value={contactFormData.email} onChange={handleContactFormDataChange} required />
-                                    </div>
-                                    <div className="col-xl-6">
-                                        <label htmlFor="inputAddress5" className="form-label text-gray">Mobile Number*</label>
-                                        <input type="text" className="form-control" name="mobileNo" value={contactFormData.mobileNo} onChange={handleContactFormDataChange} required />
-                                    </div>
-                                </div>
-                                {errorContact && (
-                                    <span className="text-error" style={{ display: 'block' }}>{errorContact}</span>
+                    <div className="note-box">
+                        <p className="note-title">Please note the following guidelines for processing payments:</p>
+                        <p>1. <strong>Payment Type:</strong> Only full payment for main policy is accepted.</p>
+                        <p>2. <strong>Policy Status:</strong> Payments can only be processed for policies that are not overdue.</p>
+                        <p>3. <strong>Claim Status:</strong> Ensure that there are no outstanding claims on your policy before proceeding with the payment.</p>
+                    </div>
+
+                    {isSearchingPolicy && (
+                        <div className="card">
+                            <div className="space-between">
+                                <span className="card-title mb-2">Enter your Policy No.:</span>
+                                {errorPolicy && (
+                                    <span className="text-error text-end" style={{ display: 'block' }}>{errorPolicy}</span>
                                 )}
                             </div>
+                            <div className="policy-no-fields">
+                                <input type="text" ref={(e) => (inputRef.current.lineCd = e)} className="form-control text-center" name="lineCd" value={policyFormData.lineCd} onChange={handlePolicyFormDataChange} onInput={(e) => { textInputOnly(e); handleMaxLength(e, 0); }} maxLength={2} required />
+                                <input type="text" ref={(e) => (inputRef.current.sublineCd = e)} className="form-control text-center" name="sublineCd" value={policyFormData.sublineCd} onChange={handlePolicyFormDataChange} onInput={(e) => { numAndTextInput(e); handleMaxLength(e, 0); }} maxLength={7} required />
+                                <input type="text" ref={(e) => (inputRef.current.issCd = e)} className="form-control text-center" name="issCd" value={policyFormData.issCd} onChange={handlePolicyFormDataChange} onInput={(e) => { numAndTextInput(e); handleMaxLength(e, 0); }} maxLength={2} required />
+                                <input type="text" ref={(e) => (inputRef.current.issYy = e)} className="form-control text-center" name="issYy" value={policyFormData.issYy} onChange={handlePolicyFormDataChange} onInput={(e) => { numInputOnly(e); handleMaxLength(e, 0); }} maxLength={2} required />
+                                <input type="text" ref={(e) => (inputRef.current.seqNo = e)} className="form-control text-center" name="seqNo" value={policyFormData.seqNo} onChange={handlePolicyFormDataChange} onInput={(e) => { numInputOnly(e); handleMaxLength(e, 0); }} /*onBlur={handleSeqNoFocusOut}*/ maxLength={7} required />
+                                <input type="text" ref={(e) => (inputRef.current.renewNo = e)} className="form-control text-center" name="renewNo" value={policyFormData.renewNo} onChange={handlePolicyFormDataChange} onInput={(e) => { numInputOnly(e); handleMaxLength(e, 0); }} /*onBlur={handleRenewNoFocusOut}*/ maxLength={2} required />
+                            </div>
+                            <span className="text-gray my-2">(Example: PA-SPA-HO-{POLICY_YEAR}-0000123-00)</span>
+                            <div className="search-btn-div">
+                                <button type="button" className="btn btn-success btn-w" onClick={handleSubmit}>
+                                    {loading ? <><i className="spinner-border spinner-border-sm"></i> Searching</> : <><i className="bi bi-search"></i> Search</>}
+                                </button>
+                                <button type="button" className="btn btn-outline-success btn-w" onClick={handleClear}>
+                                    <i className="bi bi-arrow-left-square"></i> Clear
+                                </button>
+                            </div>
                         </div>
+                    )}
 
-                        <div className="card">
-                            <div className="row mt-4">
-                                <div className="col-sm-6 mb-2"></div>
-                                <div className="col-sm-6 text-right">
-                                    <button type="button" className="btn btn-success btn-w" onClick={gotoNextPage}>Next <i className="bi bi-chevron-right fs-12 ml-2" />
-                                    </button>
+                    {policyDetails && (
+                        <div>
+                            <div id="policy-dtls-container">
+                                <div className="card">
+                                    <span className="card-title">Policy Details</span>
+                                    <div className="row">
+                                        <div className="space-between col-md-12">
+                                            <span className="text-gray">Policy Number:</span>
+                                            <span className="text-right" id="policy-no">
+                                                {policyDetails.line_cd}-
+                                                {policyDetails.subline_cd}-
+                                                {policyDetails.iss_cd}-
+                                                {policyDetails.issue_yy}-
+                                                {lpad(policyDetails.pol_seq_no, 7)}-
+                                                {lpad(policyDetails.renew_no, 2)}
+                                            </span>
+                                        </div>
+                                        <div className="space-between col-md-12 mt-1">
+                                            <span className="text-gray">Invoice Number:</span>
+                                            <span className="text-right">{policyDetails.invoice_no_formatted}</span>
+                                        </div>
+                                        <div className="space-between col-md-12 mt-1">
+                                            <span className="text-gray">Assured Name:</span>
+                                            <span className="text-right">{policyDetails.assd_name}</span>
+                                        </div>
+                                        <div className="space-between col-md-12 mt-1">
+                                            <span className="text-gray">Due Date:</span>
+                                            <span className="text-right">{policyDetails.due_date}</span>
+                                        </div>
+                                        <div className="space-between col-md-12 mt-2">
+                                            <span className="text-gray">{amountDueType === 'Balance' ? 'Balance Amount Due:' : 'Total Amount Due:'}</span>
+                                            <span className="text-right fw-bold">Php {currencyFormat(policyDetails.balance_amt_due)}</span>
+                                        </div>
+                                    </div>
+                                    <div className="text-center mt-3">
+                                        <button type="button" className="btn btn-outline-success btn-w" onClick={searchAnotherPolicy}> Search another policy</button>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div id="add-contact-container">
+                                <div className="divider"></div>
+
+                                <div className="card">
+                                    <div>
+                                        <span className="card-title">Contact Details </span>
+                                        <span>(to recieve payment confirmation)</span>
+                                    </div>
+                                    <div className="row">
+                                        <div className="col-xl-6 mb-1">
+                                            <label htmlFor="inputPassword5" className="form-label text-gray">Email Address*</label>
+                                            <input type="text" className="form-control" name="email" value={contactFormData.email} onChange={handleContactFormDataChange} required />
+                                        </div>
+                                        <div className="col-xl-6">
+                                            <label htmlFor="inputAddress5" className="form-label text-gray">Mobile Number*</label>
+                                            <input type="text" className="form-control" name="mobileNo" value={contactFormData.mobileNo} onChange={handleContactFormDataChange} required />
+                                        </div>
+                                    </div>
+                                    {errorContact && (
+                                        <span className="text-error" style={{ display: 'block' }}>{errorContact}</span>
+                                    )}
+                                </div>
+                            </div>
+
+                            <div className="card">
+                                <div className="row mt-4">
+                                    <div className="col-sm-6 mb-2"></div>
+                                    <div className="col-sm-6 text-right">
+                                        <button type="button" className="btn btn-success btn-w" onClick={gotoNextPage}>Next <i className="bi bi-chevron-right fs-12 ml-2" />
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                )}
+                    )}
 
-            </div>
+                </div>
 
-            <CookiePermission />
-        </div>
+                <CookiePermission />
+            </div >
+        </>
     )
 }
 
