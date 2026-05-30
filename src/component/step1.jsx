@@ -297,7 +297,7 @@ function Step1() {
                 <ReadyForORModal show={showReadyForORModal} handleClose={() => setShowReadyForORModal(false)} />
 
                 {/* ── Announcement Modal ── cannot be dismissed ── */}
-                {showAnnouncement && (
+                {/* {showAnnouncement && (
                     <div style={{
                         position: 'fixed', inset: 0, top: 0, left: 0, right: 0, bottom: 0,
                         zIndex: 9999,
@@ -315,7 +315,6 @@ function Step1() {
                             overflow: 'hidden',
                             border: '1px solid #e5e7eb',
                         }}>
-                            {/* Header */}
                             <div style={{
                                 backgroundColor: '#dc2626',
                                 padding: '16px 24px',
@@ -327,7 +326,6 @@ function Step1() {
                                 </h2>
                             </div>
 
-                            {/* Body */}
                             <div style={{ padding: '24px', display: 'flex', flexDirection: 'column', gap: '16px' }}>
                                 <p style={{ fontSize: '14px', lineHeight: '1.6', margin: 0, color: '#111827' }}>
                                     This payment portal is{' '}
@@ -338,7 +336,6 @@ function Step1() {
                                     Please click the button below to be redirected to the new payment website and complete your transaction there.
                                 </p>
 
-                                {/* Link block */}
                                 <div>
                                     <a
                                         href="https://payments.fpgmercantile.com/lookup"
@@ -363,10 +360,79 @@ function Step1() {
                             </div>
                         </div>
                     </div >
-                )
-                }
+                )*/}
                 {/* ── End Announcement Modal ── */}
+                
+                {showAnnouncement && (
+                    <div style={{
+                        position: 'fixed', inset: 0, top: 0, left: 0, right: 0, bottom: 0,
+                        zIndex: 9999,
+                        display: 'flex', alignItems: 'center', justifyContent: 'center',
+                        backgroundColor: 'rgba(0,0,0,0.65)',
+                        backdropFilter: 'blur(4px)',
+                    }}>
+                        <div style={{
+                            backgroundColor: '#fff',
+                            borderRadius: '12px',
+                            boxShadow: '0 8px 40px rgba(0,0,0,0.25)',
+                            maxWidth: '480px',
+                            width: '100%',
+                            margin: '0 16px',
+                            overflow: 'hidden',
+                            border: '1px solid #e5e7eb',
+                        }}>
+                            {/* Body */}
+                            <div style={{ padding: '24px', display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                                <p style={{ fontSize: '14px', lineHeight: '1.7', margin: 0, color: '#111827' }}>
+                                    The Online Payment Portal is currently unavailable due to scheduled maintenance
+                                    in preparation for the merger of <strong>FPG Insurance</strong> and
+                                    <strong> Mercantile Insurance</strong>.
+                                </p>
 
+                                <p style={{ fontSize: '14px', lineHeight: '1.7', margin: 0, color: '#111827' }}>
+                                    During this period, payment transactions and related services may be
+                                    temporarily inaccessible while system integration activities are being
+                                    completed.
+                                </p>
+
+                                <div
+                                    style={{
+                                        backgroundColor: '#fef3c7',
+                                        border: '1px solid #fcd34d',
+                                        borderRadius: '8px',
+                                        padding: '12px',
+                                    }}
+                                >
+                                    <p style={{ margin: 0, fontSize: '13px', color: '#92400e' }}>
+                                        Thank you for your patience and understanding as we enhance our systems
+                                        to provide a more seamless and unified experience.
+                                    </p>
+                                </div>
+
+                                <div
+                                    style={{
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                        backgroundColor: '#f3f4f6',
+                                        color: '#6b7280',
+                                        fontWeight: 600,
+                                        fontSize: '14px',
+                                        padding: '12px',
+                                        borderRadius: '8px',
+                                    }}
+                                >
+                                    🔧 Maintenance in Progress
+                                </div>
+
+                                <p style={{ fontSize: '12px', color: '#6b7280', margin: 0 }}>
+                                    For urgent concerns or payment assistance, please contact your branch
+                                    representative or system administrator.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                )}
 
                 <div className="right-container">
                     <div className="action-container2">
