@@ -362,8 +362,8 @@ function Step1() {
                     </div >
                 )*/}
                 {/* ── End Announcement Modal ── */}
-                
-                {showAnnouncement && (
+
+                {/*showAnnouncement && (
                     <div style={{
                         position: 'fixed', inset: 0, top: 0, left: 0, right: 0, bottom: 0,
                         zIndex: 9999,
@@ -381,7 +381,6 @@ function Step1() {
                             overflow: 'hidden',
                             border: '1px solid #e5e7eb',
                         }}>
-                            {/* Body */}
                             <div style={{ padding: '24px', display: 'flex', flexDirection: 'column', gap: '16px' }}>
                                 <p style={{ fontSize: '14px', lineHeight: '1.7', margin: 0, color: '#111827' }}>
                                     The Online Payment Portal is currently unavailable due to scheduled maintenance
@@ -432,7 +431,7 @@ function Step1() {
                             </div>
                         </div>
                     </div>
-                )}
+                )*/}
 
                 <div className="right-container">
                     <div className="action-container2">
